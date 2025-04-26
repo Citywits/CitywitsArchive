@@ -1,65 +1,20 @@
-<video autoplay muted loop id="bg-video">
-  <source src="CitywitsBackground.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video><!DOCTYPE html>
-<html lang="en">
-<head>
-  #bg-video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  object-fit: cover;
-  opacity: 0.8; /* adjust if needed */
-}
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the City</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@1,700&family=Oswald:wght@700&display=swap" rel="stylesheet">
-  <style>
-    * {#bg-video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-  object-fit: cover;
-  opacity: 0.8;
-}
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {<video autoplay muted loop id="bg-video">
-  <source src="CitywitsBackground.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
-    }
-    h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 5rem;
-      margin-bottom: 1rem;
-      color: #e2d7ff;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #ffffff;
-    }
-    p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      line-height: 1.6;
-      color: #d0d0d0;
-    }
-  </style>
-</head>
 <body>
-  <h1>Citywits</h1>
-  <h2>Weirdo Music</h2>
-  <p>The life & times of Citywits. Come see the sights and hear the sounds!<br />Welcome to the City.</p>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video">
+    <source src="CitywitsBackground.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Background Music (looped & autoplay) -->
+  <audio autoplay loop id="bg-audio">
+    <source src="CitywitsLoop.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <!-- Page Content -->
+  <div id="content">
+    <h1>Citywits</h1>
+    <h2>Weirdo Music</h2>
+    <p>The life & times of Citywits. Come see the sights and hear the sounds!<br />Welcome to the City.</p>
+  </div>
 </body>
-</html>
