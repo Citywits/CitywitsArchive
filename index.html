@@ -1,29 +1,65 @@
-<!DOCTYPE html>
+<video autoplay muted loop id="bg-video">
+  <source src="CitywitsBackground.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citywits Archive</title>
-  <link rel="stylesheet" href="style.css">
+  #bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.8; /* adjust if needed */
+}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to the City</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@1,700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: url('your-background-image.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      color: #ffffff;
+      font-family: 'Oswald', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      backdrop-filter: brightness(0.85);
+    }
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      color: #e2d7ff;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #ffffff;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      line-height: 1.6;
+      color: #d0d0d0;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to the Citywits Archive</h1>
-    <nav>
-      <ul>
-        <li><a href="welcome.html">Welcome to the City</a></li>
-        <li><a href="vault/index.html">The Vault</a></li>
-        <li><a href="mayor/index.html">The Mayor’s Office</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <p>This is the digital heart of Citywits. Enter and explore the vaults, the lore, and the city behind the sound.</p>
-  </main>
-  <footer>
-    <p>© Citywits, all rights reserved</p>
-  </footer>
+  <h1>Citywits</h1>
+  <h2>Weirdo Music</h2>
+  <p>The life & times of Citywits. Come see the sights and hear the sounds!<br />Welcome to the City.</p>
 </body>
 </html>
-
-background: url('CitywitsArchive/assets/images/background.jpg') no-repeat center center fixed;
