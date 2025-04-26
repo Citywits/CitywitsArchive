@@ -45,3 +45,13 @@ footer {
   backdrop-filter: blur(2px);
 };
 }
+#content {
+  position: relative;
+  z-index: 1;
+  color: #e2d7ff;
+  font-family: 'Libre Baskerville', serif;
+  text-align: center;
+  padding: 4rem 2rem;
+  text-shadow: 0 0 10px #000;
+  backdrop-filter: blur(2px);
+}
