@@ -54,4 +54,31 @@ footer {
   padding: 4rem 2rem;
   text-shadow: 0 0 10px #000;
   backdrop-filter: blur(2px);
+}#content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #e2d7ff;
+  font-family: 'Libre Baskerville', serif;
+  text-shadow: 0 0 10px #000;
+  backdrop-filter: blur(3px);
+}button {
+  background-color: #370066;
+  color: #e2d7ff;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #000;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #4e0099;
+  transform: scale(1.05);
 }
