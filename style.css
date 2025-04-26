@@ -27,3 +27,22 @@ footer {
   background-color: #111;
   color: #666;
 }
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+#content {
+  position: relative;
+  z-index: 1;
+  color: #e2d7ff;
+  text-align: center;
+  padding: 5rem 2rem;
+  font-family: 'Libre Baskerville', serif;
+}
