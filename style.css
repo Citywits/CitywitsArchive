@@ -28,7 +28,8 @@ body {
 }
 
 h1, h2, p {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Satisfy', cursive;
+  font-weight: normal; /* <= critical!! */
 }
 
 button#play-audio {
