@@ -5,49 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Citywits Archive</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@1,700&family=Oswald:wght@400&display=swap" rel="stylesheet">
+  <!-- Import Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,700&family=Oswald:wght@400&display=swap" rel="stylesheet">
 
-  <!-- Style -->
+  <!-- Link CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background Video -->
-  <video autoplay muted loop id="bg-video">
-    <source src="CitywitsBackground.webm" type="video/webm">
-    Your browser does not have your back.
-  </video>
+<!-- Background Video -->
+<video autoplay muted loop id="bg-video">
+  <source src="CitywitsBackground.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
 
-  <!-- Background Music (Hidden, Playable) -->
+<!-- Background Music (needs click) -->
 <audio id="bg-audio" loop>
-  <source src="Citywits-Loop.mp3" type="audio/mpeg">
-  Your browser does not support you.
+  <source src="citywits-loop.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
 </audio>
- 
 
-  <!-- Main Content -->
-  <div id="content">
-    <h1>Citywits</h1>
-    <h2>Weirdo Music</h2>
-    <p>The life & times of Citywits. Come see the sights, come hear the sounds!<br />Welcome to the City.</p>
-  </div>
+<!-- Audio Play Button -->
+<button id="play-audio">🎶 Enter the City 🎶</button>
 
-  <!-- Play Audio Button -->
-  <button id="play-audio">🔊 Enter the City</button>
+<!-- Page Content -->
+<div id="content">
+  <h1>Citywits</h1>
+  <h2>Weirdo Music</h2>
+  <p>The life & times of Citywits. Come see the sights, come hear the sounds!<br>Welcome to the City.</p>
+</div>
 
-  <!-- Script to Play Audio on Click -->
- <script>
+<!-- Simple JavaScript for Button -->
+<script>
   const audio = document.getElementById("bg-audio");
   const playButton = document.getElementById("play-audio");
 
   playButton.addEventListener("click", () => {
-    audio.muted = false; // UNMUTE first!
     audio.play();
-    playButton.style.display = "none";
+    playButton.style.display = "none"; // Hide button after clicked
   });
 </script>
- 
 
 </body>
 </html>
