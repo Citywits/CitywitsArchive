@@ -1,30 +1,50 @@
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@1,700&family=Oswald:wght@400&display=swap" rel="stylesheet"><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citywits Archive</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@1,700&family=Oswald:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
   <!-- Background Video -->
   <video autoplay muted loop id="bg-video">
     <source src="CitywitsBackground.webm" type="video/webm">
-    Your browser is too old for the sounds of the City..
+    Your browser does not support the video tag.
   </video>
 
-  <!-- Background Music (looped & autoplay) -->
-  <audio autoplay loop id="bg-audio">
+  <!-- Background Music (Hidden, Playable) -->
+  <audio id="bg-audio" loop>
     <source src="citywits-loop.m4a" type="audio/mp4">
-    Your tech is too ancient for the City.
+    Your browser does not support the audio tag.
   </audio>
-<!-- Audio Play Button -->
-<button id="play-audio">🔊 Enter the City</button>
-  <!-- Page Content -->
+
+  <!-- Main Content -->
   <div id="content">
     <h1>Citywits</h1>
     <h2>Weirdo Music</h2>
-    <p>The life & times of Citywits. Come see the sights, come hear the sounds! <br />Welcome to the City.</p>
+    <p>The life & times of Citywits. Come see the sights, come hear the sounds!<br />Welcome to the City.</p>
   </div>
-<script>
-  const audio = document.getElementById("bg-audio");
-  const playButton = document.getElementById("play-audio");
 
-  playButton.addEventListener("click", () => {
-    audio.play();
-    playButton.style.display = "none";
-  });
-</script>
+  <!-- Play Audio Button -->
+  <button id="play-audio">🔊 Enter the City</button>
+
+  <!-- Script to Play Audio on Click -->
+  <script>
+    const audio = document.getElementById("bg-audio");
+    const playButton = document.getElementById("play-audio");
+
+    playButton.addEventListener("click", () => {
+      audio.play();
+      playButton.style.display = "none";
+    });
+  </script>
+
 </body>
+</html>
