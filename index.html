@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Citywits Archive</title>
 
-  <!-- Import Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,700&family=Oswald:wght@400&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Oswald:wght@400&display=swap" rel="stylesheet">
 
-  <!-- Link CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <!-- Background Video -->
@@ -19,31 +20,31 @@
   Your browser does not support the video tag.
 </video>
 
-<!-- Background Music (needs click) -->
+<!-- Audio (click to start) -->
 <audio id="bg-audio" loop>
   <source src="citywits-loop.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-<!-- Audio Play Button -->
+<!-- Button -->
 <button id="play-audio">🎶 Enter the City 🎶</button>
 
-<!-- Page Content -->
+<!-- Main Text -->
 <div id="content">
   <h1>Citywits</h1>
   <h2>Weirdo Music</h2>
   <p>The life & times of Citywits. Come see the sights, come hear the sounds!<br>Welcome to the City.</p>
 </div>
 
-<!-- Simple JavaScript for Button -->
+<!-- Simple JS for Audio -->
 <script>
-  const audio = document.getElementById("bg-audio");
-  const playButton = document.getElementById("play-audio");
+const audio = document.getElementById('bg-audio');
+const playButton = document.getElementById('play-audio');
 
-  playButton.addEventListener("click", () => {
-    audio.play();
-    playButton.style.display = "none"; // Hide button after clicked
-  });
+playButton.addEventListener('click', () => {
+  audio.play();
+  playButton.style.display = 'none';
+});
 </script>
 
 </body>
