@@ -81,4 +81,23 @@ footer {
 button:hover {
   background-color: #4e0099;
   transform: scale(1.05);
+}#play-audio {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(20, 10, 50, 0.85);
+  color: #e2d7ff;
+  border: 1px solid #e2d7ff;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  font-family: 'Oswald', sans-serif;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 999;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#play-audio:hover {
+  background-color: rgba(60, 0, 100, 0.9);
+  transform: scale(1.05);
 }
