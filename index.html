@@ -37,14 +37,16 @@
   <button id="play-audio">🔊 Enter the City</button>
 
   <!-- Script to Play Audio on Click -->
-  <script>
-    const audio = document.getElementById("bg-audio");
-    const playButton = document.getElementById("play-audio");
+ <script>
+  const audio = document.getElementById("bg-audio");
+  const playButton = document.getElementById("play-audio");
 
-    playButton.addEventListener("click", () => {
-      audio.play();
-      playButton.style.display = "none";
-    });
+  playButton.addEventListener("click", () => {
+    audio.muted = false; // UNMUTE first!
+    audio.play();
+    playButton.style.display = "none";
+  });
+</script>
   </script>
 
 </body>
