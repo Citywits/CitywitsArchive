@@ -1,28 +1,10 @@
+body {
+  background-color: black;
+  margin: 0;
+  font-family: 'Libre Baskerville', serif;
+  color: #e2d7ff;
+}
 
-}
-header {
-  background: #1a1a1a;
-  padding: 20px;
-  text-align: center;
-}
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-nav ul li {
-  display: inline-block;
-  margin: 0 10px;
-}
-nav ul li a {
-  color: #00ffff;
-  text-decoration: none;
-}
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #111;
-  color: #666;
-}
 #bg-video {
   position: fixed;
   top: 0;
@@ -37,33 +19,15 @@ footer {
 #content {
   position: relative;
   z-index: 1;
-  color: #e2d7ff;
-  font-family: 'Libre Baskerville', serif;
-  text-align: center;
-  padding: 4rem 2rem;
-  text-shadow: 0 0 10px #000;
-  backdrop-filter: blur(2px);
-};
-}
-#content {
-  position: relative;
-  z-index: 1;
-  color: #e2d7ff;
-  font-family: 'Libre Baskerville', serif;
-  text-align: center;
-  padding: 4rem 2rem;
-  text-shadow: 0 0 10px #000;
-  backdrop-filter: blur(2px);
-}#content {
-  position: relative;
-  z-index: 1;
   padding: 4rem 2rem;
   text-align: center;
   color: #e2d7ff;
   font-family: 'Libre Baskerville', serif;
   text-shadow: 0 0 10px #000;
   backdrop-filter: blur(3px);
-}button {
+}
+
+button {
   background-color: #370066;
   color: #e2d7ff;
   border: none;
@@ -81,36 +45,6 @@ footer {
 button:hover {
   background-color: #4e0099;
   transform: scale(1.05);
-}#play-audio {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: rgba(20, 10, 50, 0.85);
-  color: #e2d7ff;
-  border: 1px solid #e2d7ff;
-  padding: 0.7rem 1.2rem;
-  font-size: 1rem;
-  font-family: 'Oswald', sans-serif;
-  border-radius: 6px;
-  cursor: pointer;
-  z-index: 999;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#play-audio:hover {
-  background-color: rgba(60, 0, 100, 0.9);
-  transform: scale(1.05);
-}
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 8px #e2d7ff, 0 0 16px #e2d7ff;
-  }
-  50% {
-    box-shadow: 0 0 20px #a17eff, 0 0 40px #a17eff;
-  }
-  100% {
-    box-shadow: 0 0 8px #e2d7ff, 0 0 16px #e2d7ff;
-  }
 }
 
 #play-audio {
@@ -132,5 +66,17 @@ button:hover {
 
 #play-audio:hover {
   background-color: rgba(60, 0, 100, 0.9);
-  transform: scale(1.08);
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 8px #e2d7ff, 0 0 16px #e2d7ff;
+  }
+  50% {
+    box-shadow: 0 0 20px #a17eff, 0 0 40px #a17eff;
+  }
+  100% {
+    box-shadow: 0 0 8px #e2d7ff, 0 0 16px #e2d7ff;
+  }
 }
