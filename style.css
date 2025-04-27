@@ -128,3 +128,67 @@ p {
   text-align: center;
   z-index: 5;
 }
+/* Background Video Settings */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Navigation Bar Neon */
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin: 0;
+  gap: 2rem;
+}
+
+nav ul li a {
+  color: #00ffff;
+  font-family: 'Josefin Sans', sans-serif;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #7f00ff;
+  text-shadow: 0 0 10px #7f00ff, 0 0 20px #7f00ff;
+}
+
+/* Welcome Center Content */
+#welcome-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+#welcome-content h1 {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 6rem;
+  margin: 0;
+  text-shadow: 0 0 15px #00ffff;
+}
+
+#welcome-content h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #7f00ff;
+}
+
+/* Background Audio Hidden */
+audio {
+  display: none;
+}
