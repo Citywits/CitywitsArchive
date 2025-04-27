@@ -1,70 +1,127 @@
-/* Citywits Title Font Options */
-.citywits-satisfy { font-family: 'Satisfy', cursive; }
-.citywits-kaushan { font-family: 'Kaushan Script', cursive; }
-.citywits-goldman { font-family: 'Goldman', cursive; }
-.citywits-fredoka { font-family: 'Fredoka One', cursive; }
-
-/* Weirdo Music Album Title Font Options */
-.weirdomusic-josefin { font-family: 'Josefin Sans', sans-serif; text-transform: uppercase; }
-.weirdomusic-katibeh { font-family: 'Katibeh', serif; text-transform: uppercase; }
-.weirdomusic-dokdo { font-family: 'Dokdo', cursive; text-transform: uppercase; }
-.weirdomusic-sunflower { font-family: 'Sunflower', sans-serif; text-transform: uppercase; }
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to the City</title>
+  <title>Welcome to Citywits</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Barkeliy&family=Kaushan+Script&family=Goldman&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Kaushan+Script&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Background Video Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Josefin Sans', sans-serif;
+      color: #e2d7ff;
+      background-color: black;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    #fallback-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Centerpiece Logo */
+    #welcome-content {
+      position: relative;
+      text-align: center;
+      top: 20%;
+    }
+
+    h1 {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 5rem;
+      text-shadow: 0 0 15px #00ffff;
+      margin: 0.5rem 0;
+    }
+
+    h2 {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #7f00ff;
+      margin: 0.5rem 0;
+    }
+
+    /* Navigation Menu */
+    nav {
+      position: absolute;
+      top: 5%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #e2d7ff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    nav a:hover {
+      color: #7f00ff;
+      text-shadow: 0 0 15px #7f00ff;
+    }
+
+    /* Audio Player Hidden */
+    audio {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Background Video with fallback -->
+  <video autoplay muted loop id="bg-video" playsinline>
+    <source src="CityForestBack.webm" type="video/webm">
+    <img id="fallback-bg" src="fallback.jpg" alt="City Background">
+  </video>
 
-<!-- Background Video with Fallback -->
-<video autoplay muted loop id="bg-video" playsinline poster="fallback.jpg">
-  <source src="CityForestBack.webm" type="video/webm">
-  <img src="fallback.jpg" alt="City Background">
-</video>
+  <!-- Background Music -->
+  <audio id="bg-audio" autoplay loop>
+    <source src="Citywits_Ambient2.mp3" type="audio/mp3">
+    Your browser does not believe in you.
+  </audio>
 
-<!-- Background Music -->
-<audio id="bg-audio" autoplay loop>
-  <source src="Reception_Song.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#vault">The Vault</a>
+    <a href="#citywits">Citywits</a>
+    <a href="#aliases">Aliases & Citywitizens</a>
+    <a href="#official">Official Business & Directory</a>
+  </nav>
 
-<!-- Navbar -->
-<nav>
-  <ul id="navbar">
-    <li><a href="#vault">The Vault</a></li>
-    <li><a href="#citywits">Citywits</a></li>
-    <li><a href="#aliases">Aliases & Citywitizens</a></li>
-    <li><a href="#official">Official Business & Directory</a></li>
-  </ul>
-</nav>
-
-<!-- Centerpiece Logo / Welcome -->
-<div id="welcome-content">
-  <h1 class="citywits-font">Citywits</h1>
-  <h2 class="weirdomusic-font">WEIRDO MUSIC</h2>
-</div>
-
-<!-- Lower the Music Volume + Futureproof Scripts -->
-<script>
-  const bgAudio = document.getElementById('bg-audio');
-  bgAudio.volume = 0.25; // ambient level
-
-  // If you want to swap tracks later dynamically
-  function switchTrack(newSrc) {
-    bgAudio.src = newSrc;
-    bgAudio.load();
-    bgAudio.play();
-  }
-</script>
+  <!-- Centerpiece Text -->
+  <div id="welcome-content">
+    <h1>Citywits</h1>
+    <h2>Weirdo Music</h2>
+  </div>
 
 </body>
 </html>
