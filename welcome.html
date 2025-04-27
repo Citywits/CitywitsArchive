@@ -11,126 +11,60 @@
 .weirdomusic-sunflower { font-family: 'Sunflower', sans-serif; text-transform: uppercase; }
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Kaushan+Script&family=Goldman&family=Fredoka+One&family=Josefin+Sans&family=Katibeh&family=Dokdo&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to the City</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Barkeliy&family=Kaushan+Script&family=Goldman&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style-welcome.css">
-
-  <style>
-    /* Background Video Styling */
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
-      opacity: 0.8;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    /* Background Music Hidden Controls */
-    audio {
-      display: none;
-    }
-
-    /* Navbar Styling */
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      top: 20px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #00ffff;
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
-      transition: 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #8aff80;
-      text-shadow: 0 0 8px #8aff80, 0 0 16px #8aff80;
-    }
-
-    /* Welcome Content Styling */
-    #welcome-content {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: #e2d7ff;
-      text-shadow: 0 0 8px #000;
-      animation: fadeIn 3s ease-in-out;
-    }
-
-    #welcome-content h1 {
-      font-family: 'Satisfy', cursive;
-      font-size: 4rem;
-      margin-bottom: 1rem;
-    }
-
-    #welcome-content h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2rem;
-    }
-
-    /* Fade In Animation */
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-  </style>
-
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Background Video -->
-  <video id="bg-video" autoplay muted loop playsinline>
-    <source src="CityForestBack.webm" type="video/webm">
-    <img src="fallback.jpg" alt="City Background">
-  </video>
+<!-- Background Video with Fallback -->
+<video autoplay muted loop id="bg-video" playsinline poster="fallback.jpg">
+  <source src="CityForestBack.webm" type="video/webm">
+  <img src="fallback.jpg" alt="City Background">
+</video>
 
-  <!-- Background Music -->
-  <audio id="bg-audio" autoplay loop>
-    <source src="Reception_Song.m4a" type="audio/mp4">
-    Your browser does not support the audio element.
-  </audio>
+<!-- Background Music -->
+<audio id="bg-audio" autoplay loop>
+  <source src="Reception_Song.m4a" type="audio/mp4">
+  Your browser does not support the audio element.
+</audio>
 
-  <!-- Navbar -->
-  <nav>
-    <ul>
-      <li><a href="#vault">The Vault</a></li>
-      <li><a href="#citywits">Citywits</a></li>
-      <li><a href="#aliases">Aliases & Citywitizens</a></li>
-      <li><a href="#official">Official Business & Directory</a></li>
-    </ul>
-  </nav>
+<!-- Navbar -->
+<nav>
+  <ul id="navbar">
+    <li><a href="#vault">The Vault</a></li>
+    <li><a href="#citywits">Citywits</a></li>
+    <li><a href="#aliases">Aliases & Citywitizens</a></li>
+    <li><a href="#official">Official Business & Directory</a></li>
+  </ul>
+</nav>
 
-  <!-- Centerpiece Logo / Welcome -->
-  <<div id="welcome-content">
-  <h1 class="citywits-kaushan">Citywits</h1>
-  <h2 class="weirdomusic-josefin">WEIRDO MUSIC</h2>
+<!-- Centerpiece Logo / Welcome -->
+<div id="welcome-content">
+  <h1 class="citywits-font">Citywits</h1>
+  <h2 class="weirdomusic-font">WEIRDO MUSIC</h2>
 </div>
+
+<!-- Lower the Music Volume + Futureproof Scripts -->
+<script>
+  const bgAudio = document.getElementById('bg-audio');
+  bgAudio.volume = 0.25; // ambient level
+
+  // If you want to swap tracks later dynamically
+  function switchTrack(newSrc) {
+    bgAudio.src = newSrc;
+    bgAudio.load();
+    bgAudio.play();
+  }
+</script>
 
 </body>
 </html>
