@@ -24,21 +24,20 @@
 }
 
 /* Font Styles */
-h1, h2, p {
-  font-family: 'Satisfy', cursive;
-  font-weight: normal;
-}
+
 
 h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 5rem;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
 }
 
 h2 {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
-  margin-bottom: 2rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px #a17eff, 0 0 40px #a17eff;
 }
-
 p {
   font-size: 1.5rem;
   line-height: 1.6;
