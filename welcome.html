@@ -2,11 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to the City</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style-welcome.css">
+
+  <style>
+    /* Background Video Styling */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.8;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Background Music Hidden Controls */
+    audio {
+      display: none;
+    }
+
+    /* Navbar Styling */
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #00ffff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #8aff80;
+      text-shadow: 0 0 8px #8aff80, 0 0 16px #8aff80;
+    }
+
+    /* Welcome Content Styling */
+    #welcome-content {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #e2d7ff;
+      text-shadow: 0 0 8px #000;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    #welcome-content h1 {
+      font-family: 'Satisfy', cursive;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    #welcome-content h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+  </style>
+
 </head>
+
 <body>
-  <h1>Welcome to the City</h1>
-  <p>This is your portal into the sprawling mythos and musical universe of Citywits.</p>
+
+  <!-- Background Video -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="CityForestBack.webm" type="video/webm">
+    <img src="fallback.jpg" alt="City Background">
+  </video>
+
+  <!-- Background Music -->
+  <audio id="bg-audio" autoplay loop>
+    <source src="Reception_Song.m4a" type="audio/mp4">
+    Your browser does not believe in magic.
+  </audio>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="#vault">The Vault</a></li>
+      <li><a href="#citywits">Citywits</a></li>
+      <li><a href="#aliases">Aliases & Citywitizens</a></li>
+      <li><a href="#official">Official Business & Directory</a></li>
+    </ul>
+  </nav>
+
+  <!-- Centerpiece Logo / Welcome -->
+  <div id="welcome-content">
+    <h1>Welcome to the City</h1>
+    <h2>Weirdo Music Capital of the Earth</h2>
+  </div>
+
 </body>
 </html>
