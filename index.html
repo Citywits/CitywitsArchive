@@ -8,47 +8,30 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Kaushan+Script&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <!-- Background Video with Fallback -->
-  <video autoplay muted loop id="bg-video" playsinline poster="fallback.jpg">
-    <source src="CitywitsBackground.webm" type="video/webm">
-    Your browser resents your lust for newer tech.
+  <video autoplay muted loop id="bg-video" playsinline>
+    <source src="CityBackground.webm" type="video/webm">
+    <img src="fallback.jpg" alt="City Background">
   </video>
 
-  <!-- Background Music (hidden initially) -->
-  <audio id="bg-audio" loop>
-    <source src="citywits-loop.mp3" type="audio/mpeg">
-    Your browser does not believe you're Citywits material.
-  </audio>
-
-  <!-- Audio Play Button -->
-  <button id="play-audio">🎶 Enter the City 🎶</button>
-
-  <!-- Page Content -->
+  <!-- Main Content -->
   <div id="content">
     <h1>Citywits</h1>
-    <h2>Archive</h2>
-    <p>The life & works of Citywits, a complete auditory and visual catalogue spanning all iterations<br>& all mediums. 
-      The mothership of all things Citywits. 
-      Come see the sights, come hear the sounds!<br>Welcome to the City.
-    <br></p>
+    <h2>Weirdo Music</h2>
+    <button id="enter-site">Enter the Laboratory!</button>
   </div>
 
-  <!-- Simple Script -->
+  <!-- Script to Go to Welcome Page -->
   <script>
-    const playButton = document.getElementById('play-audio');
-    const bgAudio = document.getElementById('bg-audio');
-
-    playButton.addEventListener('click', function () {
-      bgAudio.play();
-      playButton.style.display = 'none'; // Hide the button after playing
+    document.getElementById('enter-site').addEventListener('click', function () {
+      window.location.href = 'welcome.html';
     });
   </script>
 
