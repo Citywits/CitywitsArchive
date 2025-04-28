@@ -1,13 +1,16 @@
-/* Global Styles */
-body, html {
+/* Global Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  background-color: #0a0a0a;
-  color: #e2d7ff;
   font-family: 'Josefin Sans', sans-serif;
+  background-color: #0a0a0a;
 }
 
 /* Background Video */
@@ -22,7 +25,7 @@ body, html {
   opacity: 0.85;
 }
 
-/* Fallback Image (if video fails) */
+/* Fallback Background Image */
 #fallback-bg {
   position: fixed;
   top: 0;
@@ -39,30 +42,31 @@ body, html {
   z-index: 2;
   text-align: center;
   padding-top: 20vh;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 #landing-content h1 {
   font-family: 'Kaushan Script', cursive;
   font-size: 6rem;
-  margin: 0;
-  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+  margin-bottom: 1rem;
+  color: #e2d7ff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
 }
 
 #landing-content h2 {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
-  margin-top: 1rem;
-  text-shadow: 0 0 15px #a17eff, 0 0 30px #a17eff;
+  margin-bottom: 1.5rem;
+  color: #e2d7ff;
+  text-shadow: 0 0 3px #a17eff, 0 0 6px #a17eff;
 }
 
 #landing-content p {
-  margin-top: 2rem;
   font-size: 1.5rem;
-  width: 80%;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 0 0 8px #000;
+  margin-top: 1.5rem;
+  color: #e2d7ff;
+  text-shadow: 0 0 5px #000;
 }
 
 /* Enter Button */
@@ -78,7 +82,6 @@ body, html {
   border-radius: 8px;
   font-family: 'Josefin Sans', sans-serif;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  animation: pulse 2.5s infinite;
 }
 
 .enter-button:hover {
@@ -97,18 +100,18 @@ body, html {
 #welcome-center h1 {
   font-family: 'Kaushan Script', cursive;
   font-size: 5rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+  color: #e2d7ff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
 }
 
 #welcome-center h2 {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
-  margin-top: 0;
-  text-shadow: 0 0 15px #a17eff, 0 0 30px #a17eff;
+  color: #e2d7ff;
+  text-shadow: 0 0 3px #a17eff, 0 0 6px #a17eff;
 }
 
-/* Navbar */
+/* Navigation Bar */
 #main-nav {
   position: fixed;
   top: 0;
@@ -122,8 +125,6 @@ body, html {
   list-style: none;
   display: flex;
   justify-content: center;
-  margin: 0;
-  padding: 0;
 }
 
 #main-nav ul li {
@@ -141,17 +142,4 @@ body, html {
 
 #main-nav ul li a:hover {
   color: #a17eff;
-}
-
-/* Pulse Animation */
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 8px #e2d7ff, 0 0 16px #e2d7ff;
-  }
-  50% {
-    box-shadow: 0 0 20px #a17eff, 0 0 40px #a17eff;
-  }
-  100% {
-    box-shadow: 0 0 8px #e2d7ff, 0 0 16px #e2d7ff;
-  }
 }
