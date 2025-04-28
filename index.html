@@ -6,34 +6,30 @@
   <title>Citywits Archive</title>
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Background Video with Fallback -->
   <video autoplay muted loop id="bg-video" playsinline>
     <source src="CityBackground.webm" type="video/webm">
-    <img src="fallback.jpg" alt="City Background">
+    <img id="fallback-bg" src="fallback.jpg" alt="City Background">
   </video>
 
   <!-- Main Content -->
-  <div id="content">
-    <h1>Citywits</h1>
-    <h2>Weirdo Music</h2>
-    <button id="enter-site">Enter the Laboratory!</button>
+  <div id="landing-content">
+    <h1>The Citywits Archive</h1>
+    <h2>The Father of Weirdo Music</h2>
+    <p id="intro-paragraph">
+      <!-- Placeholder for your paragraph. Write whatever you want here! -->
+      Welcome, traveler! Within these vaults lies the story, sound, and soul of Citywits.
+    </p>
+    <a href="welcome.html" class="enter-button">Let me in, I'm a Weirdo!</a>
   </div>
-
-  <!-- Script to Go to Welcome Page -->
-  <script>
-    document.getElementById('enter-site').addEventListener('click', function () {
-      window.location.href = 'welcome.html';
-    });
-  </script>
 
 </body>
 </html>
