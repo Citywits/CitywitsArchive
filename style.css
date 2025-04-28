@@ -1,3 +1,15 @@
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #0a0a0a;
+  color: #e2d7ff;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 /* Background Video */
 #bg-video {
   position: fixed;
@@ -10,49 +22,125 @@
   opacity: 0.85;
 }
 
-/* Main Content */
-#content, #welcome-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 5rem 2rem;
-  color: #e2d7ff;
-  text-shadow: 0 0 10px #000;
+/* Fallback Image (if video fails) */
+#fallback-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
 }
 
-/* Font Styling */
-h1 {
+/* Landing Content */
+#landing-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 20vh;
+}
+
+#landing-content h1 {
   font-family: 'Kaushan Script', cursive;
-  font-size: 5rem;
-  margin-bottom: 1rem;
+  font-size: 6rem;
+  margin: 0;
   text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
 }
 
-h2 {
+#landing-content h2 {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 2rem;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 20px #a17eff, 0 0 40px #a17eff;
+  margin-top: 1rem;
+  text-shadow: 0 0 15px #a17eff, 0 0 30px #a17eff;
+}
+
+#landing-content p {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  width: 80%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 0 8px #000;
 }
 
 /* Enter Button */
-#enter-site {
+.enter-button {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.5rem;
   background-color: rgba(20, 10, 50, 0.85);
   color: #e2d7ff;
-  border: 1px solid #e2d7ff;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  font-family: 'Josefin Sans', sans-serif;
+  text-decoration: none;
+  border: 2px solid #e2d7ff;
   border-radius: 8px;
-  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
   transition: background-color 0.3s ease, transform 0.2s ease;
   animation: pulse 2.5s infinite;
 }
 
-#enter-site:hover {
+.enter-button:hover {
   background-color: rgba(60, 0, 100, 0.9);
   transform: scale(1.05);
+}
+
+/* Welcome Center Content */
+#welcome-center {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 20vh;
+}
+
+#welcome-center h1 {
+  font-family: 'Kaushan Script', cursive;
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+}
+
+#welcome-center h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2rem;
+  margin-top: 0;
+  text-shadow: 0 0 15px #a17eff, 0 0 30px #a17eff;
+}
+
+/* Navbar */
+#main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 10, 20, 0.75);
+  padding: 1rem 0;
+  z-index: 3;
+}
+
+#main-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+#main-nav ul li {
+  margin: 0 20px;
+}
+
+#main-nav ul li a {
+  color: #e2d7ff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-family: 'Josefin Sans', sans-serif;
+  text-shadow: 0 0 5px #00ffff;
+  transition: color 0.3s ease;
+}
+
+#main-nav ul li a:hover {
+  color: #a17eff;
 }
 
 /* Pulse Animation */
@@ -66,29 +154,4 @@ h2 {
   100% {
     box-shadow: 0 0 8px #e2d7ff, 0 0 16px #e2d7ff;
   }
-}
-
-/* Navbar */
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  padding: 0;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #e2d7ff;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 1.2rem;
-  text-shadow: 0 0 5px #00ffff;
-}
-
-nav ul li a:hover {
-  color: #a17eff;
 }
