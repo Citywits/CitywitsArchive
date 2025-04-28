@@ -2,31 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Citywits Archive</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citywits Archive</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Background Video with Fallback -->
+  <!-- Background Video -->
   <video autoplay muted loop id="bg-video" playsinline>
     <source src="CitywitsBackground.webm" type="video/webm">
-    <img id="fallback-bg" src="fallback.jpg" alt="Background Image">
+    <img src="fallback.jpg" alt="City Background">
   </video>
 
-  <div id="landing-content">
-    <h1>The Citywits Archive</h1>
-    <h2>The Father of Weirdo Music</h2>
-    <p>Welcome, traveler! Inside the vaults, the City breathes. Songs, sights, and secrets await.</p>
-    <a href="welcome.html" class="enter-button">Let me in, I'm a Weirdo!</a>
+  <!-- Page Content -->
+  <div id="content">
+    <h1 class="citywits-title">The Citywits Archive</h1>
+    <h2 class="weirdo-title">The Father of Weirdo Music</h2>
+    <p class="intro-text">
+      Welcome, traveler! Within this labyrinth lies the complete works of the artist currently known as Citywits.<br>
+      Well, the complete works <em>thus far</em>. The City never stops growing.
+    </p>
+    <a href="welcome.html" id="enter-button">Let me in, I'm a Weirdo!</a>
   </div>
-
 </body>
 </html>
