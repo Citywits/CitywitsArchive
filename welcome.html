@@ -3,44 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome Citwitizen! </title>
+  <title>Welcome to Citywits</title>
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Background Video with Fallback -->
   <video autoplay muted loop id="bg-video" playsinline>
     <source src="CityForestBack.webm" type="video/webm">
-    <img src="fallback.jpg" alt="City Background">
+    <img id="fallback-bg" src="fallback.jpg" alt="City Forest Background">
   </video>
 
   <!-- Background Music -->
   <audio id="bg-audio" autoplay loop>
     <source src="Citywits_Ambient2.mp3" type="audio/mpeg">
-    Your browser does not want you hearing this, man.
+    Your browser does not support the audio element.
   </audio>
 
   <!-- Navigation Menu -->
-  <nav>
+  <nav id="main-nav">
     <ul>
       <li><a href="#">The Vault</a></li>
       <li><a href="#">Citywits</a></li>
-      <li><a href="#">Aliases & Citywitizens</a></li>
+      <li><a href="#">Aliases & Citywitzen</a></li>
       <li><a href="#">Official Business & Directory</a></li>
     </ul>
   </nav>
 
-  <!-- Centerpiece -->
-  <div id="welcome-content">
+  <!-- Welcome Centerpiece -->
+  <div id="welcome-center">
     <h1>Citywits</h1>
-    <h2>NEW ALBUM "Weirdo Music" Coming Soon!</h2>
+    <h2>Weirdo Music Awaits</h2>
   </div>
 
 </body>
