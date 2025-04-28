@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Citywits</title>
+  <title>Welcome Citwitizen! </title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,116 +11,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Kaushan+Script&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <style>
-    /* Background Video Styling */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Josefin Sans', sans-serif;
-      color: #e2d7ff;
-      background-color: black;
-    }
-
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    #fallback-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    /* Centerpiece Logo */
-    #welcome-content {
-      position: relative;
-      text-align: center;
-      top: 20%;
-    }
-
-    h1 {
-      font-family: 'Kaushan Script', cursive;
-      font-size: 5rem;
-      text-shadow: 0 0 15px #00ffff;
-      margin: 0.5rem 0;
-    }
-
-    h2 {
-      font-family: 'Josefin Sans', sans-serif;
-      font-size: 2rem;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px #7f00ff;
-      margin: 0.5rem 0;
-    }
-
-    /* Navigation Menu */
-    nav {
-      position: absolute;
-      top: 5%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    nav a {
-      color: #e2d7ff;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      text-shadow: 0 0 5px #00ffff;
-    }
-
-    nav a:hover {
-      color: #7f00ff;
-      text-shadow: 0 0 15px #7f00ff;
-    }
-
-    /* Audio Player Hidden */
-    audio {
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <!-- Background Video with fallback -->
+
+  <!-- Background Video with Fallback -->
   <video autoplay muted loop id="bg-video" playsinline>
     <source src="CityForestBack.webm" type="video/webm">
-    <img id="fallback-bg" src="fallback.jpg" alt="City Background">
+    <img src="fallback.jpg" alt="City Background">
   </video>
 
   <!-- Background Music -->
   <audio id="bg-audio" autoplay loop>
-    <source src="Citywits_Ambient2.mp3" type="audio/mp3">
-    Your browser does not believe in you.
+    <source src="Citywits_Ambient2.mp3" type="audio/mpeg">
+    Your browser does not want you hearing this, man.
   </audio>
 
-  <!-- Navigation Bar -->
+  <!-- Navigation Menu -->
   <nav>
-    <a href="#vault">The Vault</a>
-    <a href="#citywits">Citywits</a>
-    <a href="#aliases">Aliases & Citywitizens</a>
-    <a href="#official">Official Business & Directory</a>
+    <ul>
+      <li><a href="#">The Vault</a></li>
+      <li><a href="#">Citywits</a></li>
+      <li><a href="#">Aliases & Citywitizens</a></li>
+      <li><a href="#">Official Business & Directory</a></li>
+    </ul>
   </nav>
 
-  <!-- Centerpiece Text -->
+  <!-- Centerpiece -->
   <div id="welcome-content">
     <h1>Citywits</h1>
-    <h2>Weirdo Music</h2>
+    <h2>NEW ALBUM "Weirdo Music" Coming Soon!</h2>
   </div>
 
 </body>
