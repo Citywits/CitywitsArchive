@@ -11,7 +11,14 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   color: #e2d7ff;
 }
-
+body {
+  background: url('yourBackgroundImage.jpg') no-repeat center center;
+  background-size: contain; /* or use 'cover' depending on the effect you want */
+  padding: 0.5in;
+  margin: 0;
+  height: 100vh;
+  background-color: black; /* fallback or border */
+}
 /* Background Video */
 #bg-video {
   position: fixed;
