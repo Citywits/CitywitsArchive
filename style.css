@@ -103,4 +103,66 @@ body {
   text-align: center;
   margin-top: 1.5rem;
   text-shadow: 0 0 5px #000;
+}#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+#landing-content {
+  text-align: center;
+  color: #fff;
+  padding: 3rem 2rem;
+  font-family: 'Tangerine', cursive;
+  text-shadow: 0 0 10px #3e0f3e;
+}
+
+#logo {
+  width: 50%;
+  max-width: 500px;
+  margin: 2rem auto 1rem;
+  display: block;
+}
+
+#subtitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Tangerine', cursive;
+  text-shadow: 0 0 8px #b07dff;
+}
+
+#intro {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-family: 'Tangerine', cursive;
+}
+
+#enter-button {
+  font-size: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: rgba(20, 10, 50, 0.85);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #a17eff;
+  transition: all 0.3s ease;
+}
+
+#enter-button:hover {
+  transform: scale(1.05);
+  background-color: rgba(60, 0, 100, 0.9);
+}
+
+#social-icons {
+  margin-top: 2rem;
+}
+
+#social-icons img {
+  height: 40px;
+  margin: 0 10px;
+  vertical-align: middle;
 }
