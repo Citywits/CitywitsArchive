@@ -2,46 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Citywits</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Kaushan+Script&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <!-- Background Video with Fallback -->
+  <!-- Background Video -->
   <video autoplay muted loop id="bg-video" playsinline>
-    <source src="CityForestBack.webm" type="video/webm">
-    <img id="fallback-bg" src="fallback.jpg" alt="Background Image">
+    <source src="newwebmbackgroundmay.webm" type="video/webm">
+    <img src="fallback.jpg" alt="Background" class="fallback-bg">
   </video>
 
-  <!-- Background Music (autoplay once user clicked through) -->
+  <!-- Autoplay Music -->
   <audio id="bg-audio" autoplay loop>
-    <source src="Reception_Song.m4a" type="audio/mpeg">
+    <source src="Reception_Song.m4a" type="audio/mp4">
     Your browser does not support the audio tag.
   </audio>
 
-  <!-- Navbar -->
-  <nav id="main-nav">
+  <!-- Navigation Sidebar -->
+  <div class="sidebar">
     <ul>
-      <li><a href="#">The Vault</a></li>
-      <li><a href="#">Citywits</a></li>
-      <li><a href="#">Aliases & Citywitizens</a></li>
-      <li><a href="#">Official Business</a></li>
+      <li><a href="vault.html">The Vault</a></li>
+      <li><a href="mayor.html">From the Mayor's Desk</a></li>
+      <li><a href="https://soundcloud.com/yourlink">SoundCloud</a></li>
+      <li><a href="https://bandcamp.com/yourlink">Bandcamp</a></li>
     </ul>
-  </nav>
-
-  <!-- Welcome Content -->
-  <div id="welcome-center">
-    <h1>Citywits</h1>
-    <h2>Weirdo Music Awaits</h2>
   </div>
 
+  <!-- Content Area -->
+  <div class="main-content">
+    <h1 class="title">Welcome to the City</h1>
+    <h2 class="subtitle">WEIRDO MUSIC</h2>
+    <p class="description">This is the official archive of Citywits. Explore the vault, hear the sounds, see the sights, and discover what we’ve built.</p>
+  </div>
 </body>
 </html>
