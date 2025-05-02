@@ -54,6 +54,26 @@ body, html {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
+/* Music Play Button */
+.music-button {
+  font-size: 1rem;
+  padding: 8px 16px;
+  margin-top: 10px;
+  color: #fff;
+  background-color: #444;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  font-family: 'Josefin Sans', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.music-button:hover {
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.05);
+}
+
 /* Enter button */
 .enter-button {
   font-size: 1.2rem;
