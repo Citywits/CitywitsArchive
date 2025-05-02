@@ -1,20 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Vault</title>
-  <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Vault | Citywits Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Kaushan+Script&family=Tangerine&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Josefin Sans', sans-serif;
+      background-color: #000;
+      color: #e2d7ff;
+      overflow-x: hidden;
+    }
+
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 2rem 2rem;
+    }
+
+    .vault-title {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 4rem;
+      text-shadow: 0 0 15px #00ffff;
+    }
+
+    .vault-subtitle {
+      font-family: 'Tangerine', cursive;
+      font-size: 2rem;
+      margin-top: 0.5rem;
+      color: #ccc;
+    }
+
+    .vault-nav {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .vault-nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .vault-nav li {
+      display: inline-block;
+      margin: 0 1rem;
+    }
+
+    .vault-nav a {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .vault-nav a:hover {
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .vault-chamber {
+      padding: 3rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 2rem auto;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .vault-chamber h2 {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #a17eff;
+      text-shadow: 0 0 8px #210042;
+    }
+
+    .media-gallery {
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-  <h1>The Vault</h1>
-  <ul>
-    <li><a href="#">Citywits - Elemeno</a></li>
-    <li><a href="#">Current Album</a></li>
-    <li><a href="#">Sister Cities</a></li>
-    <li><a href="#">Cityvids</a></li>
-    <li><a href="#">Collaborations</a></li>
-    <li><a href="#">Under Construction</a></li>
-    <li><a href="#">Small Drawings</a></li>
-  </ul>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video" playsinline>
+    <source src="CityForestBack.webm" type="video/webm" />
+    <img src="fallback.jpg" alt="Vault Background" />
+  </video>
+
+  <!-- Music Autoplay -->
+  <audio autoplay loop>
+    <source src="Citywits_Ambient2.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Header -->
+  <header>
+    <h1 class="vault-title">The Vault</h1>
+    <p class="vault-subtitle">A place for every sound and every secret.</p>
+  </header>
+
+  <!-- Navigation Menu -->
+  <nav class="vault-nav">
+    <ul>
+      <li><a href="#citywits">Citywits</a></li>
+      <li><a href="#smalldrawings">Small Drawings</a></li>
+      <li><a href="#collabs">Collaborations</a></li>
+    </ul>
+  </nav>
+
+  <!-- Vault Sections -->
+  <section id="citywits" class="vault-chamber">
+    <h2>Citywits Chamber</h2>
+    <div class="media-gallery">
+      <p>Coming soon: The full Citywits archive.</p>
+    </div>
+  </section>
+
+  <section id="smalldrawings" class="vault-chamber">
+    <h2>Small Drawings Chamber</h2>
+    <div class="media-gallery">
+      <p>Rare and unreleased material from the Small Drawings era.</p>
+    </div>
+  </section>
+
+  <section id="collabs" class="vault-chamber">
+    <h2>Collabs & Early Works</h2>
+    <div class="media-gallery">
+      <p>Lost tracks, ambient jams, and musical experiments.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© Citywits Archive. All sounds reserved.</p>
+  </footer>
 </body>
 </html>
