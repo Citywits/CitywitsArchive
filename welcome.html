@@ -14,10 +14,10 @@
     html, body {
       height: 100%;
       width: 100%;
-      overflow: hidden;
       font-family: Arial, sans-serif;
       color: white;
       background-color: black;
+      overflow: hidden;
     }
 
     #bg-video {
@@ -36,7 +36,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.4);
       z-index: -1;
     }
 
@@ -88,34 +88,44 @@
   </style>
 </head>
 <body>
-  <!-- Background Video (correct filename) -->
+  <!-- Background video (correct file) -->
   <video autoplay muted loop id="bg-video" playsinline>
     <source src="newwebmbackground.webm" type="video/webm" />
   </video>
 
   <div class="overlay"></div>
 
+  <!-- Sidebar navigation -->
   <div class="sidebar">
     <a href="#">The Vault</a>
     <a href="#">Current Events</a>
   </div>
 
+  <!-- Main content -->
   <div class="main">
     <h1>Welcome to the Citywits Archive</h1>
-    <p>The weirdness lives on. Everything you buried on purpose now sings in stereo. Stay a while.</p>
+    <p>here you will find the worlds only complete library of Citywits content. In addition to all the Citywits original songs & albums, you will also find 
+      additional vaults of video content, artwork, covers, sketches, side projects, old bands, solo work, songs produced by Citywits for friends of the City & anything else
+even tangentially related to the artistic work of the artist currently known as Citywits (
+
+</p>
   </div>
 
-  <!-- Music (correct filename) -->
+  <!-- Background music -->
   <audio id="bg-audio" autoplay loop>
     <source src="Reception_Song.m4a" type="audio/mp4">
   </audio>
 
   <script>
-    document.addEventListener('click', () => {
+    // Try to play audio automatically, retry once loaded
+    window.addEventListener('load', () => {
       const audio = document.getElementById('bg-audio');
-      if (audio && audio.paused) {
-        audio.play().catch(() => {});
-      }
+      const tryPlay = () => {
+        audio.play().catch(() => {
+          setTimeout(tryPlay, 500);
+        });
+      };
+      tryPlay();
     });
   </script>
 </body>
