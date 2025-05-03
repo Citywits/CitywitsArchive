@@ -9,6 +9,7 @@ body, html {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
 #static-bg {
   position: fixed;
   top: 0.5in;
@@ -37,7 +38,7 @@ body, html {
   padding: 20px;
 }
 
-/* Full-width logo */
+/* Logo */
 .logo-full {
   width: 100%;
   max-height: 120px;
@@ -45,7 +46,7 @@ body, html {
   filter: drop-shadow(2px 2px 4px #000);
 }
 
-/* Album cover */
+/* Album promo */
 .promo-img {
   width: 400px;
   max-width: 80%;
@@ -54,7 +55,28 @@ body, html {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-/* Music Play Button */
+/* Enter button */
+.enter-button {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #1f1f1f;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-family: 'Kaushan Script', cursive;
+  text-shadow: 2px 2px 4px #4a00e0;
+}
+
+.enter-button:hover {
+  background-color: #fff;
+  color: #1f1f1f;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+/* Music Button */
 .music-button {
   font-size: 1rem;
   padding: 8px 16px;
@@ -74,45 +96,26 @@ body, html {
   transform: scale(1.05);
 }
 
-/* Enter button */
-.enter-button {
-  font-size: 1.2rem;
-  padding: 10px 20px;
-  color: #fff;
-  background-color: #1f1f1f;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  font-family: 'Kaushan Script', cursive;
-}
-
-.enter-button:hover {
-  background-color: #fff;
-  color: #1f1f1f;
-  cursor: pointer;
-  transform: scale(1.05);
-}
-
-/* Social icons */
+/* Social Icons */
 .socials {
   display: flex;
   gap: 20px;
   justify-content: center;
+  margin-top: 20px;
 }
 
-.socials img {
+.socials a img {
   width: 50px;
   height: 50px;
   transition: transform 0.3s ease;
 }
 
-.socials img:hover {
+.socials a img:hover {
   transform: scale(1.2);
   filter: brightness(1.2);
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   #bg-video {
     top: 0;
