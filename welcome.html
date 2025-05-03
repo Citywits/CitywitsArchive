@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Citywits Archive</title>
+  <title>Citywits Archive – Diagnostic Mode</title>
   <style>
     * {
       margin: 0;
@@ -16,10 +16,10 @@
       width: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
+      background-color: black;
       color: white;
     }
 
-    /* Fullscreen video background */
     #bg-video {
       position: fixed;
       top: 0;
@@ -28,6 +28,7 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
+      background: red;
     }
 
     .overlay {
@@ -85,41 +86,62 @@
     audio {
       display: none;
     }
+
+    .error-box {
+      background: darkred;
+      color: white;
+      padding: 20px;
+      font-size: 1.5em;
+      margin: 20px;
+      border: 2px solid red;
+    }
   </style>
 </head>
 <body>
-  <!-- 🔥 Video Background -->
-  <video autoplay muted loop id="bg-video">
+  <video autoplay muted loop id="bg-video" playsinline>
     <source src="CitywitsBackground.webm" type="video/webm" />
-    Your browser does not support HTML5 video.
+    <!-- If this fails, message appears: -->
+    <div class="error-box">
+      ERROR: Background video failed to load.<br />
+      Please ensure the file <strong>CitywitsBackground.webm</strong> exists in the same folder as this page.<br />
+      Or try a public test video instead.
+    </div>
   </video>
 
-  <!-- 🔒 Dark overlay to boost text contrast -->
   <div class="overlay"></div>
 
-  <!-- Navigation -->
   <div class="sidebar">
     <a href="#">The Vault</a>
     <a href="#">Current Events</a>
   </div>
 
-  <!-- Page Content -->
   <div class="main">
-    <h1>Welcome to the Citywits Archive</h1>
-    <p>All roads lead here. The sound of weirdness, light of lore, and haunting echoes of everything you’ve forgotten on purpose. Dig in.</p>
+    <h1>🧠 Citywits Archive – Diagnostic Mode</h1>
+    <p>If you're reading this, the page is rendering and text is working. If you see a RED BOX, your video is not loading.</p>
+    <p>If you only see a white screen, the file is not being served at all. That means the web server isn’t loading the HTML.</p>
+    <p>If audio plays, then audio is working. If not, check filename: <code>Reception_Song.m4a</code></p>
   </div>
 
-  <!-- Background Music -->
   <audio id="bg-audio" autoplay loop>
     <source src="Reception_Song.m4a" type="audio/mp4">
   </audio>
 
-  <!-- Autoplay Fix -->
   <script>
     document.addEventListener('click', () => {
       const audio = document.getElementById('bg-audio');
       if (audio && audio.paused) {
         audio.play().catch(() => {});
+      }
+    });
+
+    // Check if video element failed
+    window.addEventListener('load', () => {
+      const video = document.getElementById('bg-video');
+      if (!video || video.readyState === 0) {
+        const error = document.createElement('div');
+        error.className = 'error-box';
+        error.innerHTML = 'ERROR: Background video could not be loaded or played.<br>Check the filename: <strong>CitywitsBackground.webm</strong>';
+        document.body.appendChild(error);
       }
     });
   </script>
