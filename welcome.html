@@ -3,21 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to Citywits</title>
+  <title>Citywits Archive</title>
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
-      height: 100%;
-      width: 100%;
-      overflow: auto;
+      box-sizing: border-box;
     }
 
-    body {
-      background: url('CitywitsBackground.webm') no-repeat center center fixed;
-      background-size: cover;
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
       color: white;
+    }
+
+    /* Fullscreen video background */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
     }
 
     .sidebar {
@@ -25,10 +45,10 @@
       left: 0;
       top: 0;
       width: 200px;
-      height: 100%;
+      height: 100vh;
       background-color: rgba(20, 20, 20, 0.95);
       padding-top: 50px;
-      z-index: 2;
+      z-index: 1;
     }
 
     .sidebar a {
@@ -46,12 +66,15 @@
     .main {
       margin-left: 220px;
       padding: 40px;
+      height: 100vh;
+      overflow-y: auto;
       position: relative;
       z-index: 1;
     }
 
     h1 {
       font-size: 3em;
+      margin-bottom: 20px;
     }
 
     p {
@@ -65,24 +88,35 @@
   </style>
 </head>
 <body>
+  <!-- 🔥 Video Background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="CitywitsBackground.webm" type="video/webm" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- 🔒 Dark overlay to boost text contrast -->
+  <div class="overlay"></div>
+
+  <!-- Navigation -->
   <div class="sidebar">
     <a href="#">The Vault</a>
     <a href="#">Current Events</a>
   </div>
 
+  <!-- Page Content -->
   <div class="main">
     <h1>Welcome to the Citywits Archive</h1>
-    <p>This is the weird zone. Everything that didn’t fit elsewhere lives here now. Explore carefully. Sing loudly. Break nothing.</p>
+    <p>All roads lead here. The sound of weirdness, light of lore, and haunting echoes of everything you’ve forgotten on purpose. Dig in.</p>
   </div>
 
+  <!-- Background Music -->
   <audio id="bg-audio" autoplay loop>
     <source src="Reception_Song.m4a" type="audio/mp4">
-    Your browser does not support the audio element.
   </audio>
 
+  <!-- Autoplay Fix -->
   <script>
-    // Force play after user interaction for autoplay policy
-    window.addEventListener('click', () => {
+    document.addEventListener('click', () => {
       const audio = document.getElementById('bg-audio');
       if (audio && audio.paused) {
         audio.play().catch(() => {});
