@@ -11,21 +11,24 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      height: 100%;
+      overflow: hidden;
       font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
       background: url('your-background-image.jpg') no-repeat center center fixed;
       background-size: cover;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
+      color: white;
     }
 
     .navbar {
       width: 200px;
       background-color: rgba(0, 0, 0, 0.8);
-      color: white;
       padding: 20px 10px;
-      height: 100vh;
+      flex-shrink: 0;
     }
 
     .navbar a {
@@ -42,7 +45,6 @@
     .content {
       flex-grow: 1;
       padding: 40px;
-      color: white;
       overflow-y: auto;
     }
   </style>
@@ -55,9 +57,20 @@
   <div class="content">
     <h1>Welcome to the Citywits Archive</h1>
     <p>This is the main content area. If you're seeing this, the layout is working. Time to populate it!</p>
-    <audio autoplay>
+
+    <audio id="citywits-audio" autoplay>
       <source src="Reception_Song.m4a" type="audio/mp4">
     </audio>
   </div>
+
+  <script>
+    // Fallback autoplay script (will try to play after DOM loads)
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('citywits-audio');
+      audio.play().catch(err => {
+        console.warn('Autoplay failed, browser may have blocked it:', err);
+      });
+    });
+  </script>
 </body>
 </html>
