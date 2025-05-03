@@ -11,63 +11,68 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
-      font-family: 'Arial', sans-serif;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: white;
+      overflow: hidden;
     }
 
-    /* Background */
     .background {
       position: fixed;
       top: 0;
       left: 0;
-      height: 100%;
-      width: 100%;
-      background-image: url('CitywitsBackground.jpg'); /* <-- replace with your real image file path */
+      height: 100vh;
+      width: 100vw;
+      background-image: url('CitywitsBackground.jpg'); /* REPLACE THIS */
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       z-index: -1;
     }
 
-    /* Sidebar */
     .sidebar {
       position: fixed;
       left: 0;
       top: 0;
       width: 200px;
-      height: 100%;
-      background-color: rgba(30, 30, 30, 0.95);
-      padding: 20px;
+      height: 100vh;
+      background-color: rgba(25, 25, 25, 0.95);
+      padding-top: 60px;
     }
 
     .sidebar a {
       display: block;
-      color: #fff;
+      padding: 15px 20px;
+      color: white;
       text-decoration: none;
-      margin: 20px 0;
       font-weight: bold;
     }
 
     .sidebar a:hover {
-      text-decoration: underline;
+      background-color: #444;
     }
 
-    /* Content */
     .content {
       margin-left: 220px;
       padding: 40px;
-      color: white;
-      position: relative;
+      height: calc(100vh - 80px);
+      overflow-y: auto;
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 3rem;
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
@@ -81,19 +86,19 @@
 
   <div class="content">
     <h1>Welcome to the Citywits Archive</h1>
-    <p>This is where the mythos, the chaos, and the weirdness live forever. Scroll down to explore the city.</p>
-
-    <audio id="bg-audio" autoplay>
-      <source src="Reception_Song.m4a" type="audio/mp4">
-      Your browser does not support the audio tag.
-    </audio>
+    <p>This is where the mythos, chaos, and weirdness of the Citywits universe are preserved. Feel free to poke around. Click, scroll, and vibe.</p>
   </div>
 
+  <audio id="bg-audio" autoplay loop>
+    <source src="Reception_Song.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
+
   <script>
-    // Attempt to play audio again after user interaction (browser autoplay policies workaround)
-    document.addEventListener('click', () => {
-      const audio = document.getElementById('bg-audio');
-      if (audio.paused) {
+    // Reattempt playback after user interaction if autoplay fails
+    window.addEventListener("click", () => {
+      const audio = document.getElementById("bg-audio");
+      if (audio && audio.paused) {
         audio.play().catch(() => {});
       }
     });
