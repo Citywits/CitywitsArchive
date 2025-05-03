@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to the Vault</title>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Kaushan+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
+    body, html {
       margin: 0;
-      background-color: black;
-      color: #f8f4e3;
-      font-family: 'Josefin Sans', sans-serif;
+      padding: 0;
+      height: 100vh;
       overflow: hidden;
-      text-align: center;
+      font-family: 'Josefin Sans', sans-serif;
+      background-color: #000;
     }
 
-    video {
+    video#bg-video {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       object-fit: cover;
       z-index: -1;
     }
 
+    #content {
+      position: relative;
+      z-index: 1;
+      color: #e2d7ff;
+      padding: 2rem;
+      text-align: center;
+      backdrop-filter: blur(3px);
+    }
+
     h1 {
-      margin-top: 15vh;
+      font-family: 'Kaushan Script', cursive;
       font-size: 4rem;
-      text-shadow: 0 0 15px #00ffea;
+      color: #fff;
+      text-shadow: 2px 2px 10px #00ffff;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: #e2d7ff;
+      text-shadow: 1px 1px 8px #00ffff;
     }
 
     audio {
@@ -37,17 +56,24 @@
 </head>
 <body>
 
-  <video autoplay muted loop playsinline>
-    <source src="CityForestBack.webm" type="video/webm">
-    <img src="fallback.jpg" alt="vault background">
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video" playsinline>
+    <source src="newwebmbackgroundmay.webm" type="video/webm">
+    <img src="fallback.jpg" alt="Background">
   </video>
 
-  <h1>Welcome to the Vault</h1>
-
-  <audio autoplay loop>
+  <!-- Audio (autoplay) -->
+  <audio id="vault-audio" autoplay loop>
     <source src="Reception_Song.m4a" type="audio/mp4">
     Your browser does not support the audio element.
   </audio>
+
+  <!-- Page Content -->
+  <div id="content">
+    <h1>Welcome to the Vault</h1>
+    <h2>Explore the archives, the sounds, the lore</h2>
+    <p>Links and galleries coming soon...</p>
+  </div>
 
 </body>
 </html>
