@@ -1,76 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to Citywits</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      display: flex;
-      background: url('your-background-image.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-    }
-
-    .navbar {
-      width: 200px;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 20px 10px;
-      flex-shrink: 0;
-    }
-
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      margin: 15px 0;
-    }
-
-    .navbar a:hover {
-      text-decoration: underline;
-    }
-
-    .content {
-      flex-grow: 1;
-      padding: 40px;
-      overflow-y: auto;
-    }
-  </style>
-</head>
-<body>
-  <div class="navbar">
-    <a href="#">The Vault</a>
-    <a href="#">Current Events</a>
-  </div>
-  <div class="content">
-    <h1>Welcome to the Citywits Archive</h1>
-    <p>This is the main content area. If you're seeing this, the layout is working. Time to populate it!</p>
-
-    <audio id="citywits-audio" autoplay>
-      <source src="Reception_Song.m4a" type="audio/mp4">
-    </audio>
-  </div>
-
-  <script>
-    // Fallback autoplay script (will try to play after DOM loads)
-    window.addEventListener('DOMContentLoaded', () => {
-      const audio = document.getElementById('citywits-audio');
-      audio.play().catch(err => {
-        console.warn('Autoplay failed, browser may have blocked it:', err);
-      });
-    });
-  </script>
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('your-background-image.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
