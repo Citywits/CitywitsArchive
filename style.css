@@ -1,12 +1,10 @@
-/* Reset basic styles */
 body {
   margin: 0;
   background-color: black;
-  overflow: hidden;
+  overflow-x: hidden; /* ⛔ disables horizontal only — keeps mobile sane */
   color: #f8f4e3;
   font-family: 'Josefin Sans', sans-serif;
 }
-
 #static-bg {
   position: fixed;
   top: 0.5in;
