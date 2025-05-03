@@ -1,65 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: url('your-background-image.jpg') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden; /* Prevent scrolling */
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200px;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding-top: 20px;
-        }
-        .navbar a {
-            display: block;
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-        }
-        .navbar a:hover {
-            background-color: #575757;
-        }
-        .content {
-            margin-left: 220px; /* Space for the navbar */
-            padding: 20px;
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Citywits</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Georgia', serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.3); /* Optional overlay */
+    }
+
+    h1 {
+      font-size: 3em;
+      letter-spacing: 0.1em;
+      margin-bottom: 2em;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-size: 1em;
+      letter-spacing: 0.1em;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="#vault">The Vault</a>
-        <a href="#current-events">Current Events</a>
-    </div>
-    <div class="content">
-        <h1>Welcome to the Citywits Archive</h1>
-        <p>Your journey begins here.</p>
-        <audio id="background-audio" autoplay>
-            <source src="your-audio-file.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const audio = document.getElementById('background-audio');
-            audio.play().catch(error => {
-                console.log('Audio playback prevented:', error);
-            });
-        });
-    </script>
+  <video class="bg-video" autoplay muted loop>
+    <source src="your-video.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="content">
+    <h1>CITYWITS</h1>
+    <nav>
+      <a href="#home">HOME</a>
+      <a href="#vault">VAULT</a>
+      <a href="#music">ANNOUNCEMENTS</a>
+      <a href="#video">VIDEO</a>
+      <a href="#contact">CONTACT</a>
+      <a href="#weed">the MAYOR's OFFICE</a>
+      <a href="#store">STORE</a>
+    </nav>
+  </div>
 </body>
 </html>
