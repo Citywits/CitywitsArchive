@@ -3,33 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Citywits Archive</title>
+  <title>Welcome to Citywits</title>
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
+      font-family: 'Arial', sans-serif;
       height: 100%;
       width: 100%;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: white;
-      overflow: hidden;
+      overflow: auto;
     }
 
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      background-image: url('CitywitsBackground.jpg'); /* REPLACE THIS */
+    body {
+      background: url('CitywitsBackground.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
-      z-index: -1;
+      color: white;
     }
 
     .sidebar {
@@ -37,15 +25,16 @@
       left: 0;
       top: 0;
       width: 200px;
-      height: 100vh;
-      background-color: rgba(25, 25, 25, 0.95);
-      padding-top: 60px;
+      height: 100%;
+      background-color: rgba(20, 20, 20, 0.95);
+      padding-top: 50px;
+      z-index: 2;
     }
 
     .sidebar a {
       display: block;
-      padding: 15px 20px;
       color: white;
+      padding: 15px 20px;
       text-decoration: none;
       font-weight: bold;
     }
@@ -54,21 +43,20 @@
       background-color: #444;
     }
 
-    .content {
+    .main {
       margin-left: 220px;
       padding: 40px;
-      height: calc(100vh - 80px);
-      overflow-y: auto;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: 3em;
     }
 
     p {
-      font-size: 1.2rem;
-      line-height: 1.6;
+      font-size: 1.2em;
+      max-width: 600px;
     }
 
     audio {
@@ -77,16 +65,14 @@
   </style>
 </head>
 <body>
-  <div class="background"></div>
-
   <div class="sidebar">
     <a href="#">The Vault</a>
     <a href="#">Current Events</a>
   </div>
 
-  <div class="content">
+  <div class="main">
     <h1>Welcome to the Citywits Archive</h1>
-    <p>This is where the mythos, chaos, and weirdness of the Citywits universe are preserved. Feel free to poke around. Click, scroll, and vibe.</p>
+    <p>This is the weird zone. Everything that didn’t fit elsewhere lives here now. Explore carefully. Sing loudly. Break nothing.</p>
   </div>
 
   <audio id="bg-audio" autoplay loop>
@@ -95,9 +81,9 @@
   </audio>
 
   <script>
-    // Reattempt playback after user interaction if autoplay fails
-    window.addEventListener("click", () => {
-      const audio = document.getElementById("bg-audio");
+    // Force play after user interaction for autoplay policy
+    window.addEventListener('click', () => {
+      const audio = document.getElementById('bg-audio');
       if (audio && audio.paused) {
         audio.play().catch(() => {});
       }
