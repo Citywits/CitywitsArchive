@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Citywits Archive – Diagnostic Mode</title>
+  <title>Citywits Archive</title>
   <style>
     * {
       margin: 0;
@@ -16,8 +16,8 @@
       width: 100%;
       overflow: hidden;
       font-family: Arial, sans-serif;
-      background-color: black;
       color: white;
+      background-color: black;
     }
 
     #bg-video {
@@ -28,7 +28,6 @@
       height: 100%;
       object-fit: cover;
       z-index: -2;
-      background: red;
     }
 
     .overlay {
@@ -86,26 +85,12 @@
     audio {
       display: none;
     }
-
-    .error-box {
-      background: darkred;
-      color: white;
-      padding: 20px;
-      font-size: 1.5em;
-      margin: 20px;
-      border: 2px solid red;
-    }
   </style>
 </head>
 <body>
+  <!-- Background Video (correct filename) -->
   <video autoplay muted loop id="bg-video" playsinline>
-    <source src="newwebmbackgroundmay.webm" type="video/webm" />
-    <!-- If this fails, message appears: -->
-    <div class="error-box">
-      ERROR: Background video failed to load.<br />
-      Please ensure the file <strong>newwebmbackgroundmay.webm</strong> exists in the same folder as this page.<br />
-      Or try a public test video instead.
-    </div>
+    <source src="newwebmbackground.webm" type="video/webm" />
   </video>
 
   <div class="overlay"></div>
@@ -116,12 +101,11 @@
   </div>
 
   <div class="main">
-    <h1>🧠 Citywits Archive – Diagnostic Mode</h1>
-    <p>If you're reading this, the page is rendering and text is working. If you see a RED BOX, your video is not loading.</p>
-    <p>If you only see a white screen, the file is not being served at all. That means the web server isn’t loading the HTML.</p>
-    <p>If audio plays, then audio is working. If not, check filename: <code>Reception_Song.m4a</code></p>
+    <h1>Welcome to the Citywits Archive</h1>
+    <p>The weirdness lives on. Everything you buried on purpose now sings in stereo. Stay a while.</p>
   </div>
 
+  <!-- Music (correct filename) -->
   <audio id="bg-audio" autoplay loop>
     <source src="Reception_Song.m4a" type="audio/mp4">
   </audio>
@@ -131,17 +115,6 @@
       const audio = document.getElementById('bg-audio');
       if (audio && audio.paused) {
         audio.play().catch(() => {});
-      }
-    });
-
-    // Check if video element failed
-    window.addEventListener('load', () => {
-      const video = document.getElementById('bg-video');
-      if (!video || video.readyState === 0) {
-        const error = document.createElement('div');
-        error.className = 'error-box';
-        error.innerHTML = 'ERROR: Background video could not be loaded or played.<br>Check the filename: <strong>newwebmbackgroundmay.webm</strong>';
-        document.body.appendChild(error);
       }
     });
   </script>
