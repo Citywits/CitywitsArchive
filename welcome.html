@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to Citywits</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to the City</title>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
   <style>
     * {
@@ -11,69 +11,74 @@
       padding: 0;
       box-sizing: border-box;
     }
-if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
-  // The video element will autoplay with audio.
-} else if (navigator.getAutoplayPolicy("mediaelement") === "allowed-muted") {
-  // Mute audio on video
-  video.muted = true;
-} else if (navigator.getAutoplayPolicy("mediaelement") === "disallowed") {
-  // Set a default placeholder image.
-  video.poster = "http://example.com/poster_image_url";
-}
-    body, html {
-      font-family: 'Josefin Sans', sans-serif;
+
+    html, body {
       height: 100%;
       overflow-x: hidden;
-      background-color: #000;
+      font-family: 'Josefin Sans', sans-serif;
       color: #f8f4e3;
+      background-color: black;
     }
 
     #bg-video {
       position: fixed;
       top: 0;
       left: 0;
-      min-width: 100%;
-      min-height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: -1;
+    }
+
+    #bg-fallback {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
     }
 
     .content {
       position: relative;
       z-index: 1;
-      padding: 5vh 10vw;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
+      padding: 2rem;
     }
 
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      text-shadow: 0 0 12px #210042;
+      text-shadow: 0 0 10px #210042;
     }
 
     p {
       font-size: 1.2rem;
-      max-width: 800px;
       margin-bottom: 2rem;
+      max-width: 800px;
+      text-shadow: 0 0 8px black;
     }
 
     button {
-      font-size: 1rem;
-      padding: 10px 20px;
-      border: 2px solid #fff;
-      border-radius: 8px;
-      background-color: rgba(30, 10, 60, 0.8);
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      background-color: #2e1a47;
       color: #fff;
+      border: 2px solid #fff;
+      border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     button:hover {
+      background-color: #4b2a74;
       transform: scale(1.05);
-      background-color: rgba(80, 20, 100, 0.9);
     }
 
     audio {
@@ -83,18 +88,20 @@ if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
 </head>
 <body>
 
+  <!-- Fallback image behind video -->
+  <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
+
   <!-- Background video -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="newwebmbackgroundmay.webm" type="video/webm" />
-    <img src="fallback.jpg" alt="Background Fallback Image">
+    <source src="newwebmbackgroundmay.webm" type="video/webm">
   </video>
 
-  <!-- Content -->
+  <!-- Main content -->
   <div class="content">
     <h1>Welcome to the City</h1>
-    <p>This is the Citywits Welcome Center. Navigate the archive, listen to original soundtracks, and wander the Vaults.</p>
-
-    <!-- Play Music Button -->
+    <p>
+      This is the Citywits Welcome Center. Navigate the archive, listen to original soundtracks, and wander the Vaults.
+    </p>
     <button id="play-music">Play Music</button>
     <audio id="bg-music" loop>
       <source src="Reception_Song.m4a" type="audio/mp4">
@@ -102,16 +109,18 @@ if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
     </audio>
   </div>
 
-  <!-- Script to allow manual music play -->
+  <!-- Enable music on click -->
   <script>
-    const btn = document.getElementById('play-music');
-    const audio = document.getElementById('bg-music');
+    const button = document.getElementById('play-music');
+    const music = document.getElementById('bg-music');
 
-    btn.addEventListener('click', () => {
-      audio.play().catch((err) => {
-        console.error("Audio play failed:", err);
+    button.addEventListener('click', () => {
+      music.play().then(() => {
+        button.style.display = 'none';
+      }).catch(err => {
+        alert("Autoplay blocked. Please click to start music.");
+        console.error("Playback failed", err);
       });
-      btn.style.display = 'none';
     });
   </script>
 
