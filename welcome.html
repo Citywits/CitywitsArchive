@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Citywits Archive</title>
+  <title>Welcome to Citywits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -11,75 +12,60 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    body, html {
+      font-family: 'Josefin Sans', sans-serif;
       height: 100%;
-      width: 100%;
-      font-family: Arial, sans-serif;
-      color: white;
-      background-color: black;
-      overflow: hidden;
+      overflow-x: hidden;
+      background-color: #000;
+      color: #f8f4e3;
     }
 
     #bg-video {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      min-width: 100%;
+      min-height: 100%;
       object-fit: cover;
-      z-index: -2;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
       z-index: -1;
     }
 
-    .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 200px;
-      height: 100vh;
-      background-color: rgba(20, 20, 20, 0.95);
-      padding-top: 50px;
-      z-index: 1;
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      padding: 15px 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .sidebar a:hover {
-      background-color: #444;
-    }
-
-    .main {
-      margin-left: 220px;
-      padding: 40px;
-      height: 100vh;
-      overflow-y: auto;
+    .content {
       position: relative;
       z-index: 1;
+      padding: 5vh 10vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 12px #210042;
     }
 
     p {
-      font-size: 1.2em;
-      max-width: 600px;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      font-size: 1rem;
+      padding: 10px 20px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      background-color: rgba(30, 10, 60, 0.8);
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: rgba(80, 20, 100, 0.9);
     }
 
     audio {
@@ -88,45 +74,38 @@
   </style>
 </head>
 <body>
-  <!-- Background video (correct file) -->
-  <video autoplay muted loop id="bg-video" playsinline>
-    <source src="newwebmbackground.webm" type="video/webm" />
+
+  <!-- Background video -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="newwebmbackgroundmay.webm" type="video/webm" />
+    <img src="fallback.jpg" alt="Background Fallback Image">
   </video>
 
-  <div class="overlay"></div>
+  <!-- Content -->
+  <div class="content">
+    <h1>Welcome to the City</h1>
+    <p>This is the Citywits Welcome Center. Navigate the archive, listen to original soundtracks, and wander the Vaults.</p>
 
-  <!-- Sidebar navigation -->
-  <div class="sidebar">
-    <a href="#">The Vault</a>
-    <a href="#">Current Events</a>
+    <!-- Play Music Button -->
+    <button id="play-music">Play Music</button>
+    <audio id="bg-music" loop>
+      <source src="Reception_Song.m4a" type="audio/mp4">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 
-  <!-- Main content -->
-  <div class="main">
-    <h1>Welcome to the Citywits Archive</h1>
-    <p>here you will find the worlds only complete library of Citywits content. In addition to all the Citywits original songs & albums, you will also find 
-      additional vaults of video content, artwork, covers, sketches, side projects, old bands, solo work, songs produced by Citywits for friends of the City & anything else
-even tangentially related to the artistic work of the artist currently known as Citywits (
-
-</p>
-  </div>
-
-  <!-- Background music -->
-  <audio id="bg-audio" autoplay loop>
-    <source src="Reception_Song.m4a" type="audio/mp4">
-  </audio>
-
+  <!-- Script to allow manual music play -->
   <script>
-    // Try to play audio automatically, retry once loaded
-    window.addEventListener('load', () => {
-      const audio = document.getElementById('bg-audio');
-      const tryPlay = () => {
-        audio.play().catch(() => {
-          setTimeout(tryPlay, 500);
-        });
-      };
-      tryPlay();
+    const btn = document.getElementById('play-music');
+    const audio = document.getElementById('bg-music');
+
+    btn.addEventListener('click', () => {
+      audio.play().catch((err) => {
+        console.error("Audio play failed:", err);
+      });
+      btn.style.display = 'none';
     });
   </script>
+
 </body>
 </html>
