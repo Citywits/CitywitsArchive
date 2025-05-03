@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Citywits</title>
+  <title>Welcome to Citywits</title>
   <style>
     * {
       margin: 0;
@@ -11,77 +11,53 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      font-family: 'Georgia', serif;
-      color: white;
+    body {
+      font-family: Arial, sans-serif;
+      background: url('your-background-image.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      height: 100vh;
       overflow: hidden;
     }
 
-    video.bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
+    .navbar {
+      width: 200px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px 10px;
+      height: 100vh;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 15px 0;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
     }
 
     .content {
-      position: relative;
-      z-index: 1;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.3); /* Optional overlay */
-    }
-
-    h1 {
-      font-size: 3em;
-      letter-spacing: 0.1em;
-      margin-bottom: 2em;
-    }
-
-    nav {
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-    }
-
-    nav a {
-      text-decoration: none;
+      flex-grow: 1;
+      padding: 40px;
       color: white;
-      font-size: 1em;
-      letter-spacing: 0.1em;
-      transition: opacity 0.3s;
-    }
-
-    nav a:hover {
-      opacity: 0.6;
+      overflow-y: auto;
     }
   </style>
 </head>
 <body>
-  <video class="bg-video" autoplay muted loop>
-    <source src="your-video.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-
+  <div class="navbar">
+    <a href="#">The Vault</a>
+    <a href="#">Current Events</a>
+  </div>
   <div class="content">
-    <h1>CITYWITS</h1>
-    <nav>
-      <a href="#home">HOME</a>
-      <a href="#vault">VAULT</a>
-      <a href="#music">ANNOUNCEMENTS</a>
-      <a href="#video">VIDEO</a>
-      <a href="#contact">CONTACT</a>
-      <a href="#weed">the MAYOR's OFFICE</a>
-      <a href="#store">STORE</a>
-    </nav>
+    <h1>Welcome to the Citywits Archive</h1>
+    <p>This is the main content area. If you're seeing this, the layout is working. Time to populate it!</p>
+    <audio autoplay>
+      <source src="Reception_Song.m4a" type="audio/mp4">
+    </audio>
   </div>
 </body>
 </html>
