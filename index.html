@@ -1,153 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Citywits Archive</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Josefin+Sans&display=swap" rel="stylesheet" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citywits Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      margin: 0;
-      padding: 0;
       font-family: 'Josefin Sans', sans-serif;
-      background-color: #000;
+      background-color: #0a0a0a;
       color: #f8f4e3;
-      overflow-x: hidden;
     }
-
-    .background-wrap {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .background-wrap video,
-    .background-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .content {
-      padding: 5vh 2rem 10vh;
-      text-align: center;
-      text-shadow: 0 0 12px #210042;
-    }
-
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 5rem;
-      margin-bottom: 0.5rem;
-      color: #fff;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .promo-text {
-      max-width: 600px;
-      margin: 2rem auto;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .album {
-      margin: 2rem auto;
-      max-width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    }
-
-    .button {
-      background: rgba(30, 10, 60, 0.9);
-      color: #fff;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 20px #5e00ff;
-      transition: 0.3s;
-    }
-
-    .button:hover {
-      transform: scale(1.05);
-      background: rgba(60, 20, 100, 1);
-    }
-
-    .socials {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .socials img {
-      width: 40px;
-      height: 40px;
-      filter: drop-shadow(0 0 4px #00ffff);
+    .social-logo {
       transition: transform 0.3s ease;
     }
-
-    .socials img:hover {
-      transform: scale(1.2);
-    }
-
-    audio {
-      display: none;
+    .social-logo:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
-<body>
-
-  <!-- Background Video with Fallback -->
-  <div class="background-wrap">
-    <video autoplay muted loop playsinline>
-      <source src="CitywitsBackground.webm" type="video/webm" />
-    </video>
-    <img src="yellowlogo.JPG" alt="Background fallback" />
+<body class="min-h-screen flex flex-col items-center justify-center">
+  <!-- Logo -->
+  <div class="mb-8">
+    <img src="yellowlogo.JPG" alt="Citywits Logo" class="w-48">
   </div>
-
-  <!-- Autoplaying Music -->
-  <audio id="bg-audio" autoplay loop>
-    <source src="Reception_Song.m4a" type="audio/mp4" />
-    Your browser does not support the audio element.
-  </audio>
-
   <!-- Main Content -->
   <div class="content">
     <h1>The Citywits Archive</h1>
     <h2>The Father of Weirdo Music</h2>
-
-    <div class="promo-text">
-      <p><em>
-        Rejoice, Weirdos; you have finally made it back home. Citywits has returned & bears gifts: first, the Citywits Archive. From now until the bombs drop, this will serve as an archive for all Citywits content past, present, and future—as well as a repository for all content that falls under the Cityverse umbrella (Small Drawings, Covers, Citywits Studios projects & collaborations). "Weirdo Music" will soon be available wherever music is sold, pirated, or naturally occurring. The Weirdo Era has begun. Welcome to the City.
-      </em></p>
-    </div>
-
-    <img src="albumcover.JPG" alt="New Album Cover" class="album" />
-
-    <form action="welcome.html" method="get">
-      <button type="submit" class="button">Let me in, I'm a Weirdo!!</button>
-    </form>
-
-    <div class="socials">
-      <a href="https://soundcloud.com/user-811990820" target="_blank"><img src="soundcloud button.PNG" alt="SoundCloud" /></a>
-      <a href="https://citywits.bandcamp.com" target="_blank"><img src="bandcamp.PNG" alt="Bandcamp" /></a>
-      <a href="https://www.youtube.com/@citywits" target="_blank"><img src="youtube.PNG" alt="YouTube" /></a>
+  <!-- Promotional Media (Video or Image) -->
+  <div class="w-full max-w-4xl mb-8">
+    <div class="relative" style="padding-bottom: 56.25%;">
+      <iframe class="absolute top-0 left-0 w-full h-full" src="albumcover.JPG" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
+  <!-- Button -->
+  <a href="welcome.html" class="bg-purple-900 text-white px-6 py-3 rounded-lg border-2 border-white hover:bg-purple-700 transition-transform transform hover:scale-105 text-lg">
+    I’m a weirdo, let me in!!
+  </a>
+
+  <!-- Social Media Logos -->
+  <div class="flex space-x-6 mt-8">
+    <a href="https://citywits.bandcamp.com" target="_blank">
+      <img src="bandcamp.PNG" alt="Bandcamp" class="w-10 h-10 social-logo">
+    </a>
+    <a href="youtube.com/@citywits" target="_blank">
+      <img src="youtube.PNG" alt="YouTube" class="w-10 h-10 social-logo">
+    </a>
+    <a href="https://soundcloud.com/citywits" target="_blank">
+      <img src="soundcloud button.PNG" alt="SoundCloud" class="w-10 h-10 social-logo">
+    </a>
+  </div>
+
+  <!-- Linktree Footer -->
+  <footer class="fixed bottom-0 w-full bg-black bg-opacity-50 py-2 text-center">
+    <div class="flex justify-center space-x-4">
+      <a href="https://citywits.bandcamp.com" class="text-white hover:text-purple-400">Bandcamp</a>
+      <a href="youtube.com/@citywits" class="text-white hover:text-purple-400">YouTube</a>
+      <a href="https://soundcloud.com/citywits" class="text-white hover:text-purple-400">SoundCloud</a>
+    </div>
+  </footer>
 </body>
 </html>
