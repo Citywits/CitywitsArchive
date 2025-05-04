@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to the City</title>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -30,16 +30,60 @@
       z-index: -1;
     }
 
-    .content {
+    .container {
       position: relative;
       z-index: 1;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
+      justify-content: space-between;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      padding: 2rem 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu li {
+      margin: 1rem 0;
+    }
+
+    .menu a {
+      color: #f8f4e3;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .menu a:hover {
+      color: #4b2a74;
+    }
+
+    .submenu {
+      list-style: none;
+      padding-left: 1.5rem;
+      display: none;
+    }
+
+    .menu li:hover .submenu {
+      display: block;
+    }
+
+    .content {
+      margin-left: 270px;
       padding: 2rem;
+      text-align: center;
+      flex-grow: 1;
     }
 
     h1 {
@@ -53,9 +97,85 @@
       margin-bottom: 2rem;
       max-width: 800px;
       text-shadow: 0 0 8px black;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    button {
+    .album-section {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .album-cover {
+      width: 100%;
+      max-width: 400px;
+      transform: scale(1.25);
+    }
+
+    .bandcamp-link {
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      background-color: #2e1a47;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .bandcamp-link:hover {
+      background-color: #4b2a74;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .footer a {
+      color: #f8f4e3;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .footer a:hover {
+      color: #4b2a74;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .autoplay-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      transition: opacity 0.5s ease;
+    }
+
+    .autoplay-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .autoplay-button {
       font-size: 1.1rem;
       padding: 12px 24px;
       background-color: #2e1a47;
@@ -66,57 +186,145 @@
       transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
-    button:hover {
+    .autoplay-button:hover {
       background-color: #4b2a74;
       transform: scale(1.05);
     }
 
-    audio {
-      display: none;
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+      .content {
+        margin-left: 220px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-
   <!-- Background fallback image -->
   <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
 
   <!-- Background video -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="rainbow.webm" type="video/webm">
+    <source src="newwebmbackgroundmay.webm" type="video/webm">
   </video>
 
-  <!-- Main content -->
-  <div class="content">
-    <h1>Welcome to the City</h1>
-    <p>
-      Welcome my weirdo friends! From here you can navigate the archive, or at least as much as has been designed so far. This site is being built with longevity
-      in mind & is both the mothership for Citywits as well as a permanent time capsule to preserve the work that i have poured my heart & soul into.
-      Enter the Vaults & peruse old Citywits content, videos, lyrics, art, side projects... this is the Cityverse hub. Check out the album WEIRDO MUSIC if these songs and vibes speak to you.
-      The Weirdo Era has begun. <strong>So begins the Weirdo Era!!</strong>
-    </p>
+  <!-- Audio -->
+  <audio id="bg-music" loop>
+    <source src="Reception_Song.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
 
-    <button id="play-music">Play Music</button>
-    <audio id="bg-music" loop>
-      <source src="Reception_Song.m4a" type="audio/mp4">
-      Your browser does not support the audio element.
-    </audio>
+  <!-- Autoplay overlay -->
+  <div class="autoplay-overlay" id="autoplay-overlay">
+    <button class="autoplay-button" id="autoplay-button">Start Music</button>
   </div>
 
-  <!-- JS to enable music playback -->
-  <script>
-    const button = document.getElementById('play-music');
-    const music = document.getElementById('bg-music');
+  <!-- Main container -->
+  <div class="container">
+    <!-- Sidebar menu -->
+    <nav class="sidebar">
+      <ul class="menu">
+        <li>
+          <a href="welcome.html">WEIRDO MUSIC</a>
+          <ul class="submenu">
+            <li><a href="weirdo-art.html">Art & Videos</a></li>
+            <li><a href="weirdo-mixes.html">Alternate Mixes</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="mayors-desk.html">The MAYOR’S DESK</a>
+          <ul class="submenu">
+            <li><a href="bio.html">Bio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="mailing-list.html">Mailing List</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="vault.html">the VAULT</a>
+          <ul class="submenu">
+            <li>
+              <a href="citywits.html">Citywits</a>
+              <ul class="submenu">
+                <li><a href="weirdo-vault.html">Weirdo Music</a></li>
+                <li><a href="elemeno.html">Elemeno</a></li>
+                <li><a href="drum-covers.html">Drum Covers & Collabs</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="small-drawings.html">Small Drawings</a>
+              <ul class="submenu">
+                <li><a href="drawing-progress.html">Drawing Progress</a></li>
+                <li><a href="dogwater.html">Dogwater EP/Self Titled</a></li>
+                <li><a href="early-unreleased.html">Early Days & Unreleased</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 
-    button.addEventListener('click', () => {
+    <!-- Main content -->
+    <div class="content">
+      <h1>Welcome to the City</h1>
+      <p>
+        Welcome my weirdo friends! From here you can navigate the archive, or at least as much as has been designed so far. This site is being built with longevity
+        in mind & is both the mothership for Citywits as well as a permanent time capsule to preserve the work that i have poured my heart & soul into.
+        Enter the Vaults & peruse old Citywits content, videos, lyrics, art, side projects... this is the Cityverse hub. Check out the album WEIRDO MUSIC if these songs and vibes speak to you.
+        The Weirdo Era has begun. <strong>So begins the Weirdo Era!!</strong>
+      </p>
+
+      <div class="album-section">
+        <!-- Embedded video -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/placeholder" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <!-- Album cover -->
+        <img src="weirdo-music-cover.jpg" alt="Weirdo Music Album Cover" class="album-cover">
+
+        <!-- Bandcamp link -->
+        <a href="https://bandcamp.com" class="bandcamp-link">Buy on Bandcamp</a>
+      </div>
+    </div>
+
+    <!-- Footer with link tree -->
+    <footer class="footer">
+      <a href="https://bandcamp.com">Bandcamp</a>
+      <a href="https://youtube.com">YouTube</a>
+      <a href="https://instagram.com">Instagram</a>
+      <a href="https://twitter.com">Twitter</a>
+    </footer>
+  </div>
+
+  <!-- JS for audio autoplay -->
+  <script>
+    const music = document.getElementById('bg-music');
+    const overlay = document.getElementById('autoplay-overlay');
+    const button = document.getElementById('autoplay-button');
+
+    function startMusic() {
       music.play().then(() => {
-        button.style.display = 'none';
+        overlay.classList.add('hidden');
       }).catch(err => {
-        alert("Playback blocked. Please click to start music.");
         console.error("Playback error:", err);
       });
+    }
+
+    // Attempt autoplay
+    music.play().then(() => {
+      overlay.classList.add('hidden');
+    }).catch(err => {
+      console.log("Autoplay blocked, showing overlay:", err);
+      // Show overlay and wait for user interaction
+      button.addEventListener('click', startMusic, { once: true });
     });
   </script>
-
 </body>
 </html>
