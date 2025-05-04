@@ -6,31 +6,17 @@
   <title>Welcome to the City</title>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 1;
-      padding: 1;
-      box-sizing: border-box;
-    }
-
     html, body {
-      height: 100%;
-      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
       font-family: 'Josefin Sans', sans-serif;
-      color: #f8f4e3;
       background-color: black;
-    }
-
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      color: #f8f4e3;
       height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      overflow: auto;
     }
 
-    #bg-fallback {
+    #bg-video, #bg-fallback {
       position: fixed;
       top: 0;
       left: 0;
@@ -42,27 +28,23 @@
 
     .content {
       position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      z-index: 2;
       text-align: center;
-      padding: 2rem;
+      padding: 4rem 2rem;
     }
 
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      text-shadow: 0 0 10px #210042;
+      text-shadow: 0 0 12px #210042;
     }
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 2rem;
+      line-height: 1.6;
       max-width: 800px;
-      text-shadow: 0 0 8px black;
+      margin: 0 auto 2rem auto;
+      text-shadow: 0 0 6px black;
     }
 
     button {
@@ -88,15 +70,15 @@
 </head>
 <body>
 
-  <!-- Fallback image behind video -->
-  <img src="yfallback.jpg" alt="Fallback Background" id="bg-fallback">
+  <!-- Fallback image -->
+  <img src="fallback.jpg" alt="Background fallback" id="bg-fallback">
 
   <!-- Background video -->
   <video autoplay muted loop playsinline id="bg-video">
     <source src="rainbow.webm" type="video/webm">
   </video>
 
-  <!-- Main content -->
+  <!-- Foreground content -->
   <div class="content">
     <h1>Welcome to the City</h1>
     <p>
@@ -107,12 +89,7 @@
       Enter the Vaults & peruse old Citywits content from the historical record, videos, artwork, lyrics, side projects...this will be the ultimate
       repository for all things artistic in the Cityverse. Please check out the work & buy the album WEIRDO MUSIC if these songs and vibes call to you & stay tuned
       for TONS of new content that is coming very soon, so keep your eye on this site & all my other platforms!! 
-
-      The Weirdo Era has begun. 
-
-
-
-
+ <strong>So begins the Weirdo Era!</strong>
     </p>
     <button id="play-music">Play Music</button>
     <audio id="bg-music" loop>
@@ -121,7 +98,6 @@
     </audio>
   </div>
 
-  <!-- Enable music on click -->
   <script>
     const button = document.getElementById('play-music');
     const music = document.getElementById('bg-music');
@@ -130,11 +106,10 @@
       music.play().then(() => {
         button.style.display = 'none';
       }).catch(err => {
-        alert("Autoplay blocked. Please click to start music.");
-        console.error("Playback failed", err);
+        alert("Playback blocked. Please click to start music.");
+        console.error(err);
       });
     });
   </script>
-
 </body>
 </html>
