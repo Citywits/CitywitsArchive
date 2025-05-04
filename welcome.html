@@ -30,6 +30,14 @@
       z-index: -1;
     }
 
+    #bg-fallback {
+      display: none;
+    }
+
+    #bg-video:invalid + #bg-fallback, #bg-video source[data-error] + #bg-fallback {
+      display: block;
+    }
+
     .container {
       position: relative;
       z-index: 1;
@@ -208,13 +216,13 @@
   </style>
 </head>
 <body>
-  <!-- Background fallback image -->
-  <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
-
-  <!-- Background video -->
+  <!-- Background video with fallback image -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="newwebmbackgroundmay.webm" type="video/webm">
+    <source src="newwebmbackgroundmay.webm" type="video/webm" onerror="this.setAttribute('data-error', 'true'); console.error('Webm failed to load. Ensure newwebmbackgroundmay.webm exists in the correct directory (e.g., same as welcome.html or media/). Current path: ' + this.src)">
+    <!-- Update path above if the webm is in a different folder, e.g., 'media/newwebmbackgroundmay.webm' -->
   </video>
+  <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
+  <!-- Update fallback.jpg path if needed, e.g., 'media/fallback.jpg' -->
 
   <!-- Audio -->
   <audio id="bg-music" loop>
@@ -276,25 +284,25 @@
     <div class="content">
       <h1>Welcome to the City</h1>
       <p>
-        Welcome my weirdo friends! From here you can navigate the archive (whats built of it thus far) & keep in the loop about all things Weirdo Music. This site is being built with longevity & preservation
-        in mind & is both the mothership for Citywits as well the (as close to) permanent time capsule possible to preserve all the stuff i have created & will create. i have poured my heart & soul into various 
-        creative works for the last two decades and unforuntaley some have been lost in the shuffle of life. so, i vowed to never lose another song. & then the archive was born! 
-        
-        Enter the Vaults & peruse old Citywits content, videos, lyrics, art, side projects... this is your Cityverse hub!
-        
-        <b> WEIRDO MUSIC</b> 
-        The <i>100% self-produced 10-song album</i> out now on select platforms & will enjoy a full release across all major music sales platforms in the coming weeks.
-        or, you can purchase the album directly from the Mayor himself on citywits.bandcamp.com
-    
-    </b><strong>The Weirdo Era has begun. </strong>
+        Welcome my weirdo friends! From here you can navigate the archive, or at least as much as has been designed so far. This site is being built with longevity
+        in mind & is both the mothership for Citywits as well as a permanent time capsule to preserve the work that i have poured my heart & soul into.
+        Enter the Vaults & peruse old Citywits content, videos, lyrics, art, side projects... this is the Cityverse hub. Check out the album WEIRDO MUSIC if these songs and vibes speak to you.
+        The Weirdo Era has begun. <strong>So begins the Weirdo Era!!</strong>
       </p>
 
       <div class="album-section">
-        <!-- Embedded video -->
+        <!-- Embedded video (replace 'placeholder' with your YouTube video ID) -->
+        <!-- For self-hosted video, use: <video controls><source src="media/videos/your-video.mp4" type="video/mp4"></video> -->
         <iframe width="560" height="315" src="https://www.youtube.com/embed/placeholder" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-        <!-- Album cover -->
-        <img src="weirdo-music-cover.jpg" alt="Weirdo Music Album Cover" class="album-cover">
+        <!-- Album cover with fallback -->
+        <img src="albumcover.JPG" alt="Weirdo Music Album Cover" class="album-cover" 
+             onerror="this.src='placeholder-album.jpg'; console.error('Album cover failed to load. Ensure albumcover.JPG exists in the correct directory (e.g., same as welcome.html or media/). Current path: ' + this.src)">
+        <!-- 
+          Update src above to the correct path if in a different folder, e.g., 'media/albumcover.JPG'.
+          To use an alternate image, replace 'albumcover.JPG' with your image file name, e.g., 'new-cover.jpg'.
+          Ensure placeholder-album.jpg exists as a fallback in the same directory.
+        -->
 
         <!-- Bandcamp link -->
         <a href="https://bandcamp.com" class="bandcamp-link">Buy on Bandcamp</a>
@@ -324,14 +332,19 @@
       });
     }
 
-    // Attempt autoplay
-    music.play().then(() => {
-      overlay.classList.add('hidden');
-    }).catch(err => {
-      console.log("Autoplay blocked, showing overlay:", err);
-      // Show overlay and wait for user interaction
-      button.addEventListener('click', startMusic, { once: true });
-    });
+    // Check for play query parameter from landing page
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('play') === 'true') {
+      startMusic();
+    } else {
+      // Attempt autoplay
+      music.play().then(() => {
+        overlay.classList.add('hidden');
+      }).catch(err => {
+        console.log("Autoplay blocked, showing overlay:", err);
+        button.addEventListener('click', startMusic, { once: true });
+      });
+    }
   </script>
 </body>
 </html>
