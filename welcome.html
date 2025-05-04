@@ -114,13 +114,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
+      gap: 3rem; /* Increased gap to prevent overlap */
+      z-index: 1;
     }
 
     .album-cover {
       width: 100%;
-      max-width: 400px;
-      transform: scale(1.25);
+      max-width: 300px; /* Reduced max-width to prevent overlap */
+      z-index: 1; /* Ensure it stacks correctly */
     }
 
     .bandcamp-link {
@@ -132,6 +133,7 @@
       border-radius: 10px;
       text-decoration: none;
       transition: transform 0.3s ease, background-color 0.3s ease;
+      z-index: 1;
     }
 
     .bandcamp-link:hover {
@@ -212,14 +214,20 @@
       p {
         font-size: 1rem;
       }
+      .album-section {
+        gap: 2rem;
+      }
+      .album-cover {
+        max-width: 250px;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Background video with fallback image -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="newwebmbackgroundmay.webm" type="video/webm" onerror="this.setAttribute('data-error', 'true'); console.error('Webm failed to load. Ensure newwebmbackgroundmay.webm exists in the correct directory (e.g., same as welcome.html or media/). Current path: ' + this.src)">
-    <!-- Update path above if the webm is in a different folder, e.g., 'media/newwebmbackgroundmay.webm' -->
+    <source src="Citywitsforestbackground.webm" type="video/webm" onerror="this.setAttribute('data-error', 'true'); console.error('Webm failed to load. Ensure Citywitsforestbackground.webm exists in the correct directory (e.g., same as welcome.html or media/). Current path: ' + this.src)">
+    <!-- Update path above if the webm is in a different folder, e.g., 'media/Citywitsforestbackground.webm' -->
   </video>
   <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
   <!-- Update fallback.jpg path if needed, e.g., 'media/fallback.jpg' -->
@@ -291,9 +299,8 @@
       </p>
 
       <div class="album-section">
-        <!-- Embedded video (replace 'placeholder' with your YouTube video ID) -->
-        <!-- For self-hosted video, use: <video controls><source src="media/videos/your-video.mp4" type="video/mp4"></video> -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/placeholder" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- Embedded YouTube video -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/9YzBKnuIkhk" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
         <!-- Album cover with fallback -->
         <img src="albumcover.JPG" alt="Weirdo Music Album Cover" class="album-cover" 
