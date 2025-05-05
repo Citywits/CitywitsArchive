@@ -13,14 +13,14 @@
     }
 
     html, body {
-      height: 100%;
+      min-height: 100%;
       overflow-x: hidden;
       font-family: 'Josefin Sans', sans-serif;
       color: #f8f4e3;
       background-color: black;
     }
 
-    #bg-fallback {
+    #bg-video {
       position: fixed;
       top: 0;
       left: 0;
@@ -30,6 +30,17 @@
       z-index: -1;
     }
 
+    #bg-fallback {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      display: none;
+    }
+
     .container {
       position: relative;
       z-index: 1;
@@ -37,6 +48,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow-y: auto;
     }
 
     .sidebar {
@@ -48,6 +60,7 @@
       padding: 2rem 1rem;
       background: rgba(0, 0, 0, 0.7);
       z-index: 2;
+      overflow-y: auto;
     }
 
     .menu {
@@ -84,6 +97,7 @@
       padding: 2rem;
       text-align: center;
       flex-grow: 1;
+      overflow-y: auto;
     }
 
     h1 {
@@ -247,24 +261,15 @@
   </style>
 </head>
 <body>
-  <!-- Background (using static image for reliability) -->
-  <img src="background.png" alt="Background" id="bg-fallback" onerror="console.error('Background image failed to load. Ensure background.png exists in the main directory. Current path: ' + this.src)">
-  <!-- 
-    Verify background.png exists in the main directory.
-    If it doesn't display, check the console for errors (instructions below).
-  -->
-
-  <!-- Commented out webm section for debugging -->
-  <!--
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="rainbow.webm" type="video/webm" onerror="this.setAttribute('data-error', 'true'); console.error('Webm failed to load. Ensure rainbow.webm exists in the main directory. Check case-sensitivity and server MIME types (video/webm). Current path: ' + this.src)">
+  <!-- Background Video with Fallback -->
+  <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; alert('Video background failed to load. Using fallback image.')">
+    <source src="assets/images/forest background.webm" type="video/webm">
   </video>
-  <img src="background.png" alt="Static Fallback Background" id="bg-fallback" onerror="console.error('Static fallback image failed to load. Ensure background.png exists in the main directory. Current path: ' + this.src)">
-  -->
+  <img src="assets/images/background.png" alt="Fallback Background" id="bg-fallback" onerror="alert('Fallback image failed to load. Ensure assets/images/background.png exists.')">
 
   <!-- Audio -->
   <audio id="bg-music" loop>
-    <source src="Reception_Song.m4a" type="audio/mp4">
+    <source src="assets/images/Reception_Song.m4a" type="audio/mp4">
     Your browser does not support the audio element.
   </audio>
 
@@ -285,7 +290,7 @@
     <nav class="sidebar">
       <ul class="menu">
         <li>
-          <a href="index.html">WEIRDO MUSIC</a>
+          <img src="assets/images/main font no bg white.png" alt="WEIRDO MUSIC" class="logo-full" onerror="alert('Logo image failed to load. Ensure assets/images/main font no bg white.png exists.')">
           <ul class="submenu">
             <li><a href="weirdo-art.html">Art & Videos</a></li>
             <li><a href="weirdo-mixes.html">Alternate Mixes</a></li>
@@ -304,7 +309,7 @@
           <a href="vault.html">the VAULT</a>
           <ul class="submenu">
             <li>
-              <a href="citywits.html">Citywits</a>
+              <img src="assets/images/main font no bg white.png" alt="Citywits" class="logo-full" onerror="alert('Logo image failed to load. Ensure assets/images/main font no bg white.png exists.')">
               <ul class="submenu">
                 <li><a href="weirdo-vault.html">Weirdo Music</a></li>
                 <li><a href="elemeno.html">Elemeno</a></li>
@@ -338,18 +343,18 @@
         <!-- Embedded YouTube video -->
         <iframe id="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/9YzBKnuIkhk?enablejsapi=1" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-        <!-- Album cover with fallback -->
-        <img src="coverwidescreen.png" alt="Weirdo Music Album Cover" class="album-cover" 
-             onerror="this.src='placeholder-album.jpg'; console.error('Album cover failed to load. Ensure coverwidescreen.png exists in the main directory. Current path: ' + this.src)">
-        <!-- 
-          Verify coverwidescreen.png exists in the main directory.
-          To revert to albumcover.JPG, replace with 'albumcover.JPG'.
-          Ensure placeholder-album.jpg exists as a fallback.
-        -->
+        <!-- Album cover -->
+        <img src="assets/images/The actual 3k album cover.PNG" alt="Weirdo Music Album Cover" class="album-cover" 
+             onerror="alert('Album cover failed to load. Ensure assets/images/The actual 3k album cover.PNG exists.')">
 
         <!-- Bandcamp link -->
         <a href="https://bandcamp.com" class="bandcamp-link">Buy on Bandcamp</a>
       </div>
+
+      <!-- Add extra content to test scrolling -->
+      <p>Additional content to test scrolling...</p>
+      <p>More content here to ensure the page can scroll properly...</p>
+      <p>Keep scrolling to verify functionality...</p>
     </div>
 
     <!-- Footer with link tree -->
@@ -370,17 +375,22 @@
     const overlay = document.getElementById('autoplay-overlay');
     const autoplayButton = document.getElementById('autoplay-button');
     const playPauseButton = document.getElementById('play-pause');
-    const progressBar = document="progress');
+    const progressBar = document.getElementById('progress');
     let youtubePlayer;
 
     // Audio player controls
     function updatePlayPauseButton() {
       playPauseButton.textContent = music.paused ? 'Play' : 'Pause';
+      if (music.paused) {
+        alert('Music is paused. Click Play to start.');
+      } else {
+        alert('Music is playing.');
+      }
     }
 
     playPauseButton.addEventListener('click', () => {
       if (music.paused) {
-        music.play();
+        music.play().then(() => alert('Music started.')).catch(err => alert('Error starting music: ' + err));
       } else {
         music.pause();
       }
@@ -404,8 +414,9 @@
     function startMusic() {
       music.play().then(() => {
         overlay.classList.add('hidden');
+        alert('Music started automatically.');
       }).catch(err => {
-        console.error("Playback error:", err);
+        alert('Autoplay blocked or error: ' + err);
       });
     }
 
@@ -415,8 +426,9 @@
     } else {
       music.play().then(() => {
         overlay.classList.add('hidden');
+        alert('Music started.');
       }).catch(err => {
-        console.log("Autoplay blocked, showing overlay:", err);
+        alert('Autoplay blocked: ' + err);
         autoplayButton.addEventListener('click', startMusic, { once: true });
       });
     }
@@ -433,8 +445,9 @@
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PLAYING) {
         music.pause();
+        alert('YouTube video playing, music paused.');
       } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-        music.play().catch(err => console.error("Resume audio error:", err));
+        music.play().catch(err => alert('Error resuming music: ' + err));
       }
     }
   </script>
