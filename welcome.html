@@ -20,7 +20,7 @@
       background-color: black;
     }
 
-    #bg-video, #bg-fallback {
+    #bg-fallback {
       position: fixed;
       top: 0;
       left: 0;
@@ -28,14 +28,6 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
-    }
-
-    #bg-fallback {
-      display: none;
-    }
-
-    #bg-video:invalid + #bg-fallback, #bg-video source[data-error] + #bg-fallback {
-      display: block;
     }
 
     .container {
@@ -114,14 +106,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3rem; /* Increased gap to prevent overlap */
+      gap: 3rem;
       z-index: 1;
     }
 
     .album-cover {
       width: 100%;
-      max-width: 300px; /* Reduced max-width to prevent overlap */
-      z-index: 1; /* Ensure it stacks correctly */
+      max-width: 300px;
+      z-index: 1;
     }
 
     .bandcamp-link {
@@ -162,8 +154,35 @@
       color: #4b2a74;
     }
 
-    audio {
-      display: none;
+    .audio-player {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 3;
+    }
+
+    .audio-player button {
+      background-color: #2e1a47;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .audio-player button:hover {
+      background-color: #4b2a74;
+    }
+
+    .audio-player input[type="range"] {
+      width: 100px;
     }
 
     .autoplay-overlay {
@@ -220,17 +239,28 @@
       .album-cover {
         max-width: 250px;
       }
+      .audio-player {
+        bottom: 80px;
+        right: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Background video with fallback image -->
+  <!-- Background (using static image for reliability) -->
+  <img src="background.png" alt="Background" id="bg-fallback" onerror="console.error('Background image failed to load. Ensure background.png exists in the main directory. Current path: ' + this.src)">
+  <!-- 
+    Verify background.png exists in the main directory.
+    If it doesn't display, check the console for errors (instructions below).
+  -->
+
+  <!-- Commented out webm section for debugging -->
+  <!--
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="Citywitsforestbackground.webm" type="video/webm" onerror="this.setAttribute('data-error', 'true'); console.error('Webm failed to load. Ensure Citywitsforestbackground.webm exists in the correct directory (e.g., same as welcome.html or media/). Current path: ' + this.src)">
-    <!-- Update path above if the webm is in a different folder, e.g., 'media/Citywitsforestbackground.webm' -->
+    <source src="rainbow.webm" type="video/webm" onerror="this.setAttribute('data-error', 'true'); console.error('Webm failed to load. Ensure rainbow.webm exists in the main directory. Check case-sensitivity and server MIME types (video/webm). Current path: ' + this.src)">
   </video>
-  <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
-  <!-- Update fallback.jpg path if needed, e.g., 'media/fallback.jpg' -->
+  <img src="background.png" alt="Static Fallback Background" id="bg-fallback" onerror="console.error('Static fallback image failed to load. Ensure background.png exists in the main directory. Current path: ' + this.src)">
+  -->
 
   <!-- Audio -->
   <audio id="bg-music" loop>
@@ -243,13 +273,19 @@
     <button class="autoplay-button" id="autoplay-button">Start Music</button>
   </div>
 
+  <!-- Audio player interface -->
+  <div class="audio-player" id="audio-player">
+    <button id="play-pause">Play</button>
+    <input type="range" id="progress" min="0" max="100" value="0">
+  </div>
+
   <!-- Main container -->
   <div class="container">
     <!-- Sidebar menu -->
     <nav class="sidebar">
       <ul class="menu">
         <li>
-          <a href="welcome.html">WEIRDO MUSIC</a>
+          <a href="index.html">WEIRDO MUSIC</a>
           <ul class="submenu">
             <li><a href="weirdo-art.html">Art & Videos</a></li>
             <li><a href="weirdo-mixes.html">Alternate Mixes</a></li>
@@ -300,15 +336,15 @@
 
       <div class="album-section">
         <!-- Embedded YouTube video -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/9YzBKnuIkhk" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/9YzBKnuIkhk?enablejsapi=1" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
         <!-- Album cover with fallback -->
-        <img src="albumcover.JPG" alt="Weirdo Music Album Cover" class="album-cover" 
-             onerror="this.src='placeholder-album.jpg'; console.error('Album cover failed to load. Ensure albumcover.JPG exists in the correct directory (e.g., same as welcome.html or media/). Current path: ' + this.src)">
+        <img src="coverwidescreen.png" alt="Weirdo Music Album Cover" class="album-cover" 
+             onerror="this.src='placeholder-album.jpg'; console.error('Album cover failed to load. Ensure coverwidescreen.png exists in the main directory. Current path: ' + this.src)">
         <!-- 
-          Update src above to the correct path if in a different folder, e.g., 'media/albumcover.JPG'.
-          To use an alternate image, replace 'albumcover.JPG' with your image file name, e.g., 'new-cover.jpg'.
-          Ensure placeholder-album.jpg exists as a fallback in the same directory.
+          Verify coverwidescreen.png exists in the main directory.
+          To revert to albumcover.JPG, replace with 'albumcover.JPG'.
+          Ensure placeholder-album.jpg exists as a fallback.
         -->
 
         <!-- Bandcamp link -->
@@ -325,12 +361,46 @@
     </footer>
   </div>
 
-  <!-- JS for audio autoplay -->
+  <!-- YouTube Iframe API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <!-- JS for audio player and YouTube integration -->
   <script>
     const music = document.getElementById('bg-music');
     const overlay = document.getElementById('autoplay-overlay');
-    const button = document.getElementById('autoplay-button');
+    const autoplayButton = document.getElementById('autoplay-button');
+    const playPauseButton = document.getElementById('play-pause');
+    const progressBar = document="progress');
+    let youtubePlayer;
 
+    // Audio player controls
+    function updatePlayPauseButton() {
+      playPauseButton.textContent = music.paused ? 'Play' : 'Pause';
+    }
+
+    playPauseButton.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+      updatePlayPauseButton();
+    });
+
+    music.addEventListener('play', updatePlayPauseButton);
+    music.addEventListener('pause', updatePlayPauseButton);
+
+    music.addEventListener('timeupdate', () => {
+      const progress = (music.currentTime / music.duration) * 100;
+      progressBar.value = isNaN(progress) ? 0 : progress;
+    });
+
+    progressBar.addEventListener('input', () => {
+      const time = (progressBar.value / 100) * music.duration;
+      music.currentTime = time;
+    });
+
+    // Autoplay logic
     function startMusic() {
       music.play().then(() => {
         overlay.classList.add('hidden');
@@ -339,18 +409,33 @@
       });
     }
 
-    // Check for play query parameter from landing page
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('play') === 'true') {
       startMusic();
     } else {
-      // Attempt autoplay
       music.play().then(() => {
         overlay.classList.add('hidden');
       }).catch(err => {
         console.log("Autoplay blocked, showing overlay:", err);
-        button.addEventListener('click', startMusic, { once: true });
+        autoplayButton.addEventListener('click', startMusic, { once: true });
       });
+    }
+
+    // YouTube Iframe API setup
+    function onYouTubeIframeAPIReady() {
+      youtubePlayer = new YT.Player('youtube-player', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        music.pause();
+      } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        music.play().catch(err => console.error("Resume audio error:", err));
+      }
     }
   </script>
 </body>
