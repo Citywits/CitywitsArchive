@@ -55,9 +55,9 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 250px;
+      width: 200px;
       height: 100%;
-      padding: 2rem 1rem;
+      padding: 1rem;
       background: rgba(0, 0, 0, 0.7);
       z-index: 2;
       overflow-y: auto;
@@ -68,13 +68,13 @@
     }
 
     .menu li {
-      margin: 1rem 0;
+      margin: 0.5rem 0;
     }
 
     .menu a {
       color: #f8f4e3;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition: color 0.3s ease;
     }
 
@@ -84,7 +84,7 @@
 
     .submenu {
       list-style: none;
-      padding-left: 1.5rem;
+      padding-left: 1rem;
       display: none;
     }
 
@@ -93,50 +93,50 @@
     }
 
     .content {
-      margin-left: 270px;
-      padding: 2rem;
+      margin-left: 220px;
+      padding: 1rem;
       text-align: center;
       flex-grow: 1;
       overflow-y: auto;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px #210042;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px #210042;
     }
 
     p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      max-width: 800px;
-      text-shadow: 0 0 8px black;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      max-width: 700px;
+      text-shadow: 0 0 6px black;
       margin-left: auto;
       margin-right: auto;
     }
 
     .album-section {
-      margin: 2rem 0;
+      margin: 1rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3rem;
+      gap: 2rem;
       z-index: 1;
     }
 
     .album-cover {
       width: 100%;
-      max-width: 300px;
+      max-width: 250px;
       z-index: 1;
     }
 
     .bandcamp-link {
-      font-size: 1.1rem;
-      padding: 12px 24px;
+      font-size: 1rem;
+      padding: 10px 20px;
       background-color: #2e1a47;
       color: #fff;
       border: 2px solid #fff;
-      border-radius: 10px;
+      border-radius: 8px;
       text-decoration: none;
       transition: transform 0.3s ease, background-color 0.3s ease;
       z-index: 1;
@@ -152,16 +152,16 @@
       bottom: 0;
       width: 100%;
       background: rgba(0, 0, 0, 0.8);
-      padding: 1rem;
+      padding: 0.5rem;
       text-align: center;
       z-index: 2;
     }
 
     .footer a {
       color: #f8f4e3;
-      margin: 0 1rem;
+      margin: 0 0.5rem;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .footer a:hover {
@@ -173,11 +173,11 @@
       bottom: 60px;
       right: 20px;
       background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      border-radius: 10px;
+      padding: 8px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       z-index: 3;
     }
 
@@ -185,8 +185,8 @@
       background-color: #2e1a47;
       color: #fff;
       border: 2px solid #fff;
-      border-radius: 5px;
-      padding: 5px 10px;
+      border-radius: 4px;
+      padding: 4px 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -196,65 +196,52 @@
     }
 
     .audio-player input[type="range"] {
-      width: 100px;
+      width: 80px;
     }
 
-    .autoplay-overlay {
+    .notification {
+      display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 3;
-      transition: opacity 0.5s ease;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 10;
     }
 
-    .autoplay-overlay.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .autoplay-button {
-      font-size: 1.1rem;
-      padding: 12px 24px;
-      background-color: #2e1a47;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 10px;
+    .notification button {
+      float: right;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    .autoplay-button:hover {
-      background-color: #4b2a74;
-      transform: scale(1.05);
     }
 
     @media (max-width: 768px) {
       .sidebar {
-        width: 200px;
+        width: 150px;
       }
       .content {
-        margin-left: 220px;
+        margin-left: 170px;
       }
       h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       p {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
       .album-section {
-        gap: 2rem;
+        gap: 1.5rem;
       }
       .album-cover {
-        max-width: 250px;
+        max-width: 200px;
       }
       .audio-player {
-        bottom: 80px;
+        bottom: 70px;
         right: 10px;
       }
     }
@@ -262,20 +249,20 @@
 </head>
 <body>
   <!-- Background Video with Fallback -->
-  <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; alert('Video background failed to load. Using fallback image.')">
+  <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Video background failed to load. Using fallback image.';">
     <source src="assets/images/forest background.webm" type="video/webm">
   </video>
-  <img src="assets/images/background.png" alt="Fallback Background" id="bg-fallback" onerror="alert('Fallback image failed to load. Ensure assets/images/background.png exists.')">
+  <img src="assets/images/background.png" alt="Fallback Background" id="bg-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Fallback image failed to load. Ensure assets/images/background.png exists.';">
 
   <!-- Audio -->
   <audio id="bg-music" loop>
-    <source src="assets/images/Reception_Song.m4a" type="audio/mp4">
+    <source src="Reception_Song.m4a" type="audio/mp4">
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Autoplay overlay -->
-  <div class="autoplay-overlay" id="autoplay-overlay">
-    <button class="autoplay-button" id="autoplay-button">Start Music</button>
+  <!-- Notification overlay -->
+  <div id="notification" class="notification">
+    <button onclick="this.parentElement.style.display='none';">X</button>
   </div>
 
   <!-- Audio player interface -->
@@ -290,7 +277,7 @@
     <nav class="sidebar">
       <ul class="menu">
         <li>
-          <img src="assets/images/main font no bg white.png" alt="WEIRDO MUSIC" class="logo-full" onerror="alert('Logo image failed to load. Ensure assets/images/main font no bg white.png exists.')">
+          <img src="assets/images/main font no bg white.png" alt="WEIRDO MUSIC" class="logo-full" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/main font no bg white.png exists.';">
           <ul class="submenu">
             <li><a href="weirdo-art.html">Art & Videos</a></li>
             <li><a href="weirdo-mixes.html">Alternate Mixes</a></li>
@@ -309,7 +296,7 @@
           <a href="vault.html">the VAULT</a>
           <ul class="submenu">
             <li>
-              <img src="assets/images/main font no bg white.png" alt="Citywits" class="logo-full" onerror="alert('Logo image failed to load. Ensure assets/images/main font no bg white.png exists.')">
+              <img src="assets/images/main font no bg white.png" alt="Citywits" class="logo-full" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/main font no bg white.png exists.';">
               <ul class="submenu">
                 <li><a href="weirdo-vault.html">Weirdo Music</a></li>
                 <li><a href="elemeno.html">Elemeno</a></li>
@@ -333,10 +320,7 @@
     <div class="content">
       <h1>Welcome to the City</h1>
       <p>
-        Welcome my weirdo friends! From here you can navigate the archive, or at least as much as has been designed so far. This site is being built with longevity
-        in mind & is both the mothership for Citywits as well as a permanent time capsule to preserve the work that i have poured my heart & soul into.
-        Enter the Vaults & peruse old Citywits content, videos, lyrics, art, side projects... this is the Cityverse hub. Check out the album WEIRDO MUSIC if these songs and vibes speak to you.
-        The Weirdo Era has begun. <strong>So begins the Weirdo Era!!</strong>
+        Welcome my weirdo friends! Navigate the archive or explore Citywits content, videos, and art. This site is a time capsule for my work. Check out WEIRDO MUSIC if it resonates!
       </p>
 
       <div class="album-section">
@@ -345,24 +329,18 @@
 
         <!-- Album cover -->
         <img src="assets/images/The actual 3k album cover.PNG" alt="Weirdo Music Album Cover" class="album-cover" 
-             onerror="alert('Album cover failed to load. Ensure assets/images/The actual 3k album cover.PNG exists.')">
+             onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Album cover failed to load. Ensure assets/images/The actual 3k album cover.PNG exists.';">
 
         <!-- Bandcamp link -->
         <a href="https://bandcamp.com" class="bandcamp-link">Buy on Bandcamp</a>
       </div>
-
-      <!-- Add extra content to test scrolling -->
-      <p>Additional content to test scrolling...</p>
-      <p>More content here to ensure the page can scroll properly...</p>
-      <p>Keep scrolling to verify functionality...</p>
     </div>
 
     <!-- Footer with link tree -->
     <footer class="footer">
       <a href="https://bandcamp.com">Bandcamp</a>
       <a href="https://youtube.com">YouTube</a>
-      <a href="https://instagram.com">Instagram</a>
-      <a href="https://twitter.com">Twitter</a>
+      <a href="https://soundcloud.com">SoundCloud</a>
     </footer>
   </div>
 
@@ -372,33 +350,34 @@
   <!-- JS for audio player and YouTube integration -->
   <script>
     const music = document.getElementById('bg-music');
-    const overlay = document.getElementById('autoplay-overlay');
-    const autoplayButton = document.getElementById('autoplay-button');
+    const notification = document.getElementById('notification');
     const playPauseButton = document.getElementById('play-pause');
     const progressBar = document.getElementById('progress');
     let youtubePlayer;
 
     // Audio player controls
     function updatePlayPauseButton() {
-      playPauseButton.textContent = music.paused ? 'Play' : 'Pause';
       if (music.paused) {
-        alert('Music is paused. Click Play to start.');
+        music.play().then(() => {
+          playPauseButton.textContent = 'Pause';
+          notification.style.display = 'block';
+          notification.textContent = 'Music started.';
+          setTimeout(() => notification.style.display = 'none', 3000);
+        }).catch(err => {
+          notification.style.display = 'block';
+          notification.textContent = 'Error starting music: ' + err.message;
+          setTimeout(() => notification.style.display = 'none', 3000);
+        });
       } else {
-        alert('Music is playing.');
+        music.pause();
+        playPauseButton.textContent = 'Play';
+        notification.style.display = 'block';
+        notification.textContent = 'Music paused.';
+        setTimeout(() => notification.style.display = 'none', 3000);
       }
     }
 
-    playPauseButton.addEventListener('click', () => {
-      if (music.paused) {
-        music.play().then(() => alert('Music started.')).catch(err => alert('Error starting music: ' + err));
-      } else {
-        music.pause();
-      }
-      updatePlayPauseButton();
-    });
-
-    music.addEventListener('play', updatePlayPauseButton);
-    music.addEventListener('pause', updatePlayPauseButton);
+    playPauseButton.addEventListener('click', updatePlayPauseButton);
 
     music.addEventListener('timeupdate', () => {
       const progress = (music.currentTime / music.duration) * 100;
@@ -411,25 +390,16 @@
     });
 
     // Autoplay logic
-    function startMusic() {
-      music.play().then(() => {
-        overlay.classList.add('hidden');
-        alert('Music started automatically.');
-      }).catch(err => {
-        alert('Autoplay blocked or error: ' + err);
-      });
-    }
-
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('play') === 'true') {
-      startMusic();
-    } else {
       music.play().then(() => {
-        overlay.classList.add('hidden');
-        alert('Music started.');
+        notification.style.display = 'block';
+        notification.textContent = 'Music started automatically.';
+        setTimeout(() => notification.style.display = 'none', 3000);
       }).catch(err => {
-        alert('Autoplay blocked: ' + err);
-        autoplayButton.addEventListener('click', startMusic, { once: true });
+        notification.style.display = 'block';
+        notification.textContent = 'Autoplay error: ' + err.message;
+        setTimeout(() => notification.style.display = 'none', 3000);
       });
     }
 
@@ -445,9 +415,15 @@
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PLAYING) {
         music.pause();
-        alert('YouTube video playing, music paused.');
+        notification.style.display = 'block';
+        notification.textContent = 'YouTube video playing, music paused.';
+        setTimeout(() => notification.style.display = 'none', 3000);
       } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-        music.play().catch(err => alert('Error resuming music: ' + err));
+        music.play().catch(err => {
+          notification.style.display = 'block';
+          notification.textContent = 'Error resuming music: ' + err.message;
+          setTimeout(() => notification.style.display = 'none', 3000);
+        });
       }
     }
   </script>
