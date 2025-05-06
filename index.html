@@ -47,13 +47,63 @@
       width: 100%;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      flex-direction: row;
+      justify-content: center;
       text-align: center;
       padding: 40px 20px;
       box-sizing: border-box;
       overflow-y: auto;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2;
+      overflow-y: auto;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu li {
+      margin: 0.5rem 0;
+    }
+
+    .menu a {
+      color: #f8f4e3;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .menu a:hover {
+      color: #4b2a74;
+    }
+
+    .submenu {
+      list-style: none;
+      padding-left: 1rem;
+      display: none;
+    }
+
+    .menu li:hover .submenu {
+      display: block;
+    }
+
+    .content {
+      margin-left: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      flex-grow: 1;
     }
 
     .logo-full {
@@ -128,6 +178,28 @@
       filter: brightness(1.2);
     }
 
+    .notification {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 10;
+    }
+
+    .notification button {
+      float: right;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       #bg-video, #bg-fallback {
         top: 0;
@@ -139,6 +211,14 @@
 
       .container {
         padding: 10px;
+      }
+
+      .sidebar {
+        width: 150px;
+      }
+
+      .content {
+        margin-left: 170px;
       }
 
       .promo-img, .logo-full {
@@ -161,7 +241,7 @@
   <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block';">
     <source src="assets/images/original rainbow bg.webm" type="video/webm">
   </video>
-  <img src="assets/images/background.png" alt="Fallback Background" id="bg-fallback" onerror="document.getElementById('bg-fallback').style.display='none';">
+  <img src="assets/images/background.png" alt="Fallback Background" id="bg-fallback" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='Fallback image failed to load. Ensure assets/images/background.png exists.';">
 
   <!-- Audio -->
   <audio id="bg-music" loop>
@@ -169,30 +249,76 @@
     Your browser does not support the audio element.
   </audio>
 
+  <!-- Notification overlay -->
+  <div id="notification" class="notification">
+    <button onclick="this.parentElement.style.display='none';">X</button>
+  </div>
+
   <!-- Main container -->
   <div class="container">
-    <!-- Logo -->
-    <img src="assets/images/main font no bg white.png" alt="Citywits Logo" class="logo-full" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/main font no bg white.png exists.';">
+    <!-- Sidebar menu -->
+    <nav class="sidebar">
+      <ul class="menu">
+        <li>
+          <a href="#">WEIRDO MUSIC</a>
+          <ul class="submenu">
+            <li><a href="weirdo-art.html">Art & Videos</a></li>
+            <li><a href="weirdo-mixes.html">Alternate Mixes</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="mayors-desk.html">The MAYOR’S DESK</a>
+          <ul class="submenu">
+            <li><a href="bio.html">Bio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="mailing-list.html">Mailing List</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="vault.html">the VAULT</a>
+          <ul class="submenu">
+            <li>
+              <a href="#">Citywits</a>
+              <ul class="submenu">
+                <li><a href="weirdo-vault.html">Weirdo Music</a></li>
+                <li><a href="elemeno.html">Elemeno</a></li>
+                <li><a href="drum-covers.html">Drum Covers & Collabs</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="small-drawings.html">Small Drawings</a>
+              <ul class="submenu">
+                <li><a href="drawing-progress.html">Drawing Progress</a></li>
+                <li><a href="dogwater.html">Dogwater EP/Self Titled</a></li>
+                <li><a href="early-unreleased.html">Early Days & Unreleased</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 
-    <!-- Promo image -->
-    <img src="assets/images/coverwidescreen.png" alt="Album Promo" class="promo-img" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='Promo image failed to load. Ensure assets/images/coverwidescreen.png exists.';">
+    <!-- Main content -->
+    <div class="content">
+      <!-- Logo -->
+      <img src="assets/images/main font no bg white.png" alt="Citywits Logo" class="logo-full" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/main font no bg white.png exists.';">
 
-    <!-- Enter button -->
-    <a href="welcome.html?play=true" class="enter-button">Enter the City</a>
+      <!-- New promo image -->
+      <img src="assets/images/archive pink energy.PNG" alt="Archive Pink Energy" class="promo-img" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='Promo image failed to load. Ensure assets/images/archive pink energy.PNG exists.';">
 
-    <!-- Music button -->
-    <button class="music-button" id="music-button">Play Music</button>
+      <!-- Enter button -->
+      <a href="welcome.html?play=true" class="enter-button">Let me in, I'm a weirdo!!!</a>
 
-    <!-- Social icons -->
-    <div class="socials">
-      <a href="https://bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='Bandcamp icon failed to load. Ensure assets/images/bandcamp.PNG exists.';"></a>
-      <a href="https://youtube.com"><img src="assets/images/itunes no text.PNG" alt="YouTube" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='YouTube icon failed to load. Ensure assets/images/itunes no text.PNG exists.';"></a>
-      <a href="https://soundcloud.com"><img src="assets/images/itunes no text.PNG" alt="SoundCloud" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='SoundCloud icon failed to load. Ensure assets/images/itunes no text.PNG exists.';"></a>
-    </div>
+      <!-- Music button -->
+      <button class="music-button" id="music-button">Play Music</button>
 
-    <!-- Notification overlay -->
-    <div id="notification" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 10px 20px; border-radius: 5px; z-index: 10;">
-      <button onclick="this.parentElement.style.display='none';" style="float: right; background: none; border: none; color: white; font-size: 16px; cursor: pointer;">X</button>
+      <!-- Social icons -->
+      <div class="socials">
+        <a href="https://bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='Bandcamp icon failed to load. Ensure assets/images/bandcamp.PNG exists.';"></a>
+        <a href="https://soundcloud.com"><img src="assets/images/itunes no text.PNG" alt="SoundCloud" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='SoundCloud icon failed to load. Ensure assets/images/itunes no text.PNG exists.';"></a>
+        <a href="https://youtube.com"><img src="assets/images/itunes no text.PNG" alt="YouTube" onerror="document.getElementById('notification').style.display='block';document.getElementById('notification').textContent='YouTube icon failed to load. Ensure assets/images/itunes no text.PNG exists.';"></a>
+      </div>
     </div>
   </div>
 
