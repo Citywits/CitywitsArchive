@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weirdo Music Vault - Citywits Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Kaushan+Script&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+      overflow-x: hidden;
+      font-family: 'Josefin Sans', sans-serif;
+      color: #f8f4e3;
+    }
+
+    #bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+      padding-left: 200px; /* Shift content to avoid full overlap */
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2;
+      overflow-y: auto;
+    }
+
+    .menu {
+      list-style: none;
+    }
+
+    .menu li {
+      margin: 0.5rem 0;
+    }
+
+    .menu a {
+      color: #f8f4e3;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .menu a:hover {
+      color: #4b2a74;
+    }
+
+    .submenu {
+      list-style: none;
+      padding-left: 1rem;
+      display: none;
+    }
+
+    .menu li:hover .submenu {
+      display: block;
+    }
+
+    .sidebar-logo {
+      width: 100%;
+      max-width: 150px;
+      max-height: 100px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+    }
+
+    .content {
+      padding: 1rem;
+      text-align: center;
+      flex-grow: 1;
+      overflow-y: auto;
+      max-width: 100%; /* Prevent content from exceeding viewport */
+    }
+
+    .album-section {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      z-index: 1;
+    }
+
+    .album-cover {
+      width: 100%;
+      max-width: 250px;
+      z-index: 1;
+    }
+
+    .sales-text {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 1.5rem;
+      text-shadow: 0 0 8px #210042;
+      margin: 2rem 0;
+    }
+
+    .bandcamp-embed {
+      margin: 1rem 0;
+      max-width: 600px;
+      width: 100%;
+      border: 0;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      max-width: 700px;
+      text-shadow: 0 0 6px black;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 0.5rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .footer a {
+      color: #f8f4e3;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer a:hover {
+      color: #4b2a74;
+    }
+
+    .audio-player {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .audio-player button {
+      background-color: #2e1a47;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .audio-player button:hover {
+      background-color: #4b2a74;
+    }
+
+    .audio-player input[type="range"] {
+      width: 80px;
+    }
+
+    .notification {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 10;
+    }
+
+    .notification button {
+      float: right;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 150px;
+      }
+      .container {
+        padding-left: 150px;
+      }
+      .content {
+        margin-left: 0;
+      }
+      .album-section {
+        gap: 1rem;
+      }
+      .album-cover {
+        max-width: 200px;
+      }
+      .audio-player {
+        bottom: 70px;
+        right: 10px;
+      }
+      .sales-text {
+        font-size: 1.2rem;
+      }
+      .sidebar-logo {
+        max-width: 120px;
+        max-height: 80px;
+      }
+      .bandcamp-embed {
+        width: 100%;
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Image -->
+  <img src="assets/images/background.png" alt="Background" id="bg-image" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Background image failed to load. Ensure assets/images/background.png exists.';">
+
+  <!-- Audio -->
+  <audio id="bg-music" loop>
+    <source src="Reception_Song.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Notification overlay -->
+  <div id="notification" class="notification">
+    <button onclick="this.parentElement.style.display='none';">X</button>
+  </div>
+
+  <!-- Audio player interface -->
+  <div class="audio-player" id="audio-player">
+    <button id="play-pause">Play</button>
+    <input type="range" id="progress" min="0" max="100" value="0">
+  </div>
+
+  <!-- Main container -->
+  <div class="container">
+    <!-- Sidebar menu -->
+    <nav class="sidebar">
+      <ul class="menu">
+        <li>
+          <img src="assets/images/yellow logo.JPG" alt="WEIRDO MUSIC" class="sidebar-logo" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/yellow logo.JPG exists.';">
+          <ul class="submenu">
+            <li><a href="weirdo-art.html">Art & Videos</a></li>
+            <li><a href="weirdo-mixes.html">Alternate Mixes</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="mayors-desk.html">The MAYOR’S DESK</a>
+          <ul class="submenu">
+            <li><a href="bio.html">Bio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="updates.html">Updates</a></li>
+            <li><a href="mailing-list.html">Mailing List</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="vault.html">the VAULT</a>
+          <ul class="submenu">
+            <li>
+              <img src="assets/images/yellow logo.JPG" alt="Citywits" class="sidebar-logo" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/yellow logo.JPG exists.';">
+              <ul class="submenu">
+                <li><a href="weirdo-vault.html">Weirdo Music</a></li>
+                <li><a href="elemeno.html">Elemeno</a></li>
+                <li><a href="drum-covers.html">Drum Covers & Collabs</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="small-drawings.html">Small Drawings</a>
+              <ul class="submenu">
+                <li><a href="drawing-progress.html">Drawing Progress</a></li>
+                <li><a href="dogwater.html">Dogwater EP/Self Titled</a></li>
+                <li><a href="early-unreleased.html">Early Days & Unreleased</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="content">
+      <p>
+        The Weirdo Music Vault contains the core releases and archives of Citywits' Weirdo Music project. Dive into the tracks that define the Weirdo Era.
+      </p>
+
+      <div class="album-section">
+        <!-- Album cover -->
+        <img src="assets/images/The actual 3k album cover.PNG" alt="Weirdo Music Album Cover" class="album-cover" 
+             onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Album cover failed to load. Ensure assets/images/The actual 3k album cover.PNG exists.';">
+
+        <!-- Sales text -->
+        <div class="sales-text">Weirdo Music - Available Now!</div>
+
+        <!-- Bandcamp embed placeholder (replace album ID) -->
+        <iframe class="bandcamp-embed" src="https://bandcamp.com/EmbeddedPlayer/album=1234567890/size=large/bgcol=333333/linkcol=f8f4e3/tracklist=false/transparent=true/" seamless>
+          <a href="https://citywits.bandcamp.com/album/weirdo-music">Weirdo Music by Citywits</a>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Footer with link tree -->
+    <footer class="footer">
+      <a href="https://citywits.bandcamp.com">Bandcamp</a>
+      <a href="https://youtube.com/@citywits">YouTube</a>
+      <a href="https://soundcloud.com/citywits">SoundCloud</a>
+    </footer>
+  </div>
+
+  <!-- JS for audio player -->
+  <script>
+    const music = document.getElementById('bg-music');
+    const notification = document.getElementById('notification');
+    const playPauseButton = document.getElementById('play-pause');
+    const progressBar = document.getElementById('progress');
+
+    function updatePlayPauseButton() {
+      if (music.paused) {
+        music.play().then(() => {
+          playPauseButton.textContent = 'Pause';
+          notification.style.display = 'block';
+          notification.textContent = 'Music started.';
+          setTimeout(() => notification.style.display = 'none', 3000);
+        }).catch(err => {
+          notification.style.display = 'block';
+          notification.textContent = 'Error starting music: ' + err.message;
+          setTimeout(() => notification.style.display = 'none', 3000);
+        });
+      } else {
+        music.pause();
+        playPauseButton.textContent = 'Play';
+        notification.style.display = 'block';
+        notification.textContent = 'Music paused.';
+        setTimeout(() => notification.style.display = 'none', 3000);
+      }
+    }
+
+    playPauseButton.addEventListener('click', updatePlayPauseButton);
+
+    music.addEventListener('timeupdate', () => {
+      const progress = (music.currentTime / music.duration) * 100;
+      progressBar.value = isNaN(progress) ? 0 : progress;
+    });
+
+    progressBar.addEventListener('input', () => {
+      const time = (progressBar.value / 100) * music.duration;
+      music.currentTime = time;
+    });
+
+    // Autoplay logic
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('play') === 'true') {
+      music.play().then(() => {
+        notification.style.display = 'block';
+        notification.textContent = 'Music started automatically.';
+        setTimeout(() => notification.style.display = 'none', 3000);
+      }).catch(err => {
+        notification.style.display = 'block';
+        notification.textContent = 'Autoplay error: ' + err.message;
+        setTimeout(() => notification.style.display = 'none', 3000);
+      });
+    }
+  </script>
+</body>
+</html>
