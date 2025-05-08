@@ -48,6 +48,7 @@
       flex-direction: column;
       justify-content: space-between;
       overflow-y: auto;
+      padding-left: 200px; /* Shift content to avoid full overlap */
     }
 
     .sidebar {
@@ -100,11 +101,11 @@
     }
 
     .content {
-      margin-left: 220px;
       padding: 1rem;
       text-align: center;
       flex-grow: 1;
       overflow-y: auto;
+      max-width: 100%; /* Prevent content from exceeding viewport */
     }
 
     .header-img {
@@ -247,8 +248,11 @@
       .sidebar {
         width: 150px;
       }
+      .container {
+        padding-left: 150px;
+      }
       .content {
-        margin-left: 170px;
+        margin-left: 0;
       }
       .header-img {
         max-height: 200px;
