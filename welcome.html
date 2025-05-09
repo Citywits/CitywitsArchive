@@ -17,6 +17,7 @@
       overflow-x: hidden;
       font-family: 'Josefin Sans', sans-serif;
       color: #f8f4e3;
+      background-color: black; /* Ensure any uncovered areas are black */
     }
 
     #bg-video {
@@ -108,11 +109,19 @@
       max-width: 100%; /* Prevent content from exceeding viewport */
     }
 
-    .header-img {
+    .header-video {
       width: 100%;
       max-height: 300px;
       object-fit: cover;
       margin-bottom: 1rem;
+    }
+
+    .header-fallback {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      display: none;
     }
 
     p {
@@ -122,6 +131,9 @@
       text-shadow: 0 0 6px black;
       margin-left: auto;
       margin-right: auto;
+      background: rgba(0, 0, 0, 0.5); /* Semi-opaque background for readability */
+      padding: 0.5rem;
+      border-radius: 5px;
     }
 
     .album-section {
@@ -144,6 +156,9 @@
       font-size: 1.5rem;
       text-shadow: 0 0 8px #210042;
       margin: 2rem 0;
+      background: rgba(0, 0, 0, 0.5); /* Semi-opaque background for readability */
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
     }
 
     .bandcamp-link {
@@ -254,7 +269,7 @@
       .content {
         margin-left: 0;
       }
-      .header-img {
+      .header-video, .header-fallback {
         max-height: 200px;
       }
       .album-section {
@@ -348,8 +363,12 @@
 
     <!-- Main content -->
     <div class="content">
-      <!-- Header image -->
-      <img src="assets/images/coverwidescreen.png" alt="Header Image" class="header-img" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header image failed to load. Ensure assets/images/coverwidescreen.png exists.';">
+      <!-- Header video with fallback -->
+      <video autoplay muted loop playsinline class="header-video" onerror="document.getElementById('header-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header video failed to load. Using fallback image.';">
+        <source src="assets/images/coverwidescreen.webm" type="video/webm">
+        <source src="assets/images/coverwidescreen.mov" type="video/mp4">
+      </video>
+      <img src="assets/images/coverwidescreen.png" alt="Header Image Fallback" id="header-fallback" class="header-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header fallback image failed to load. Ensure assets/images/coverwidescreen.png exists.';">
 
       <p>
         Rejoice, Weirdos; you have finally made it home. Citywits has returned & bears gifts: first, the Citywits Archive. From now until the bombs drop, this will serve as an archive for all Citywits content past, present, and future—as well as a repository for all content that falls under the Cityverse umbrella (Small Drawings, Covers, Citywits Studios projects & collaborations). "Weirdo Music" will soon be available wherever music is sold, pirated, or naturally occurring. The Weirdo Era has begun. Welcome to the City.
