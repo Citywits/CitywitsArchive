@@ -17,7 +17,7 @@
       overflow-x: hidden;
       font-family: 'Josefin Sans', sans-serif;
       color: #f8f4e3;
-      background-color: black; /* Ensure any uncovered areas are black */
+      background-color: black;
     }
 
     #bg-video {
@@ -49,7 +49,7 @@
       flex-direction: column;
       justify-content: space-between;
       overflow-y: auto;
-      padding-left: 200px; /* Shift content to avoid full overlap */
+      padding-left: 200px;
     }
 
     .sidebar {
@@ -106,7 +106,7 @@
       text-align: center;
       flex-grow: 1;
       overflow-y: auto;
-      max-width: 100%; /* Prevent content from exceeding viewport */
+      max-width: 100%;
     }
 
     .header-video {
@@ -131,7 +131,7 @@
       text-shadow: 0 0 6px black;
       margin-left: auto;
       margin-right: auto;
-      background: rgba(0, 0, 0, 0.5); /* Semi-opaque background for readability */
+      background: rgba(0, 0, 0, 0.5);
       padding: 0.5rem;
       border-radius: 5px;
     }
@@ -156,7 +156,7 @@
       font-size: 1.5rem;
       text-shadow: 0 0 8px #210042;
       margin: 2rem 0;
-      background: rgba(0, 0, 0, 0.5); /* Semi-opaque background for readability */
+      background: rgba(0, 0, 0, 0.5);
       padding: 0.5rem 1rem;
       border-radius: 5px;
     }
@@ -365,8 +365,8 @@
     <div class="content">
       <!-- Header video with fallback -->
       <video autoplay muted loop playsinline class="header-video" onerror="document.getElementById('header-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header video failed to load. Using fallback image.';">
-        <source src="assets/images/coverwidescreen.webm" type="video/webm">
-        <source src="assets/images/coverwidescreen.mov" type="video/mp4">
+        <source src="assets/images/anime type logo.webm" type="video/webm">
+        <source src="assets/images/anime type logo.mp4" type="video/mp4">
       </video>
       <img src="assets/images/coverwidescreen.png" alt="Header Image Fallback" id="header-fallback" class="header-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header fallback image failed to load. Ensure assets/images/coverwidescreen.png exists.';">
 
