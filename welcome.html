@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Vault - Citywits Archive</title>
+  <title>Welcome to the City</title>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Kaushan+Script&display=swap" rel="stylesheet">
   <style>
     * {
@@ -17,17 +17,29 @@
       overflow-x: hidden;
       font-family: 'Josefin Sans', sans-serif;
       color: #f8f4e3;
-      background-color: black;
+      background-color: #f5f1e9 !important; /* Crème/off-white background */
+      z-index: -10; /* Furthest background layer */
     }
 
-    #bg-image {
+    #bg-video {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0.5in;
+      left: 0.5in;
+      width: calc(100vw - 1in);
+      height: calc(100vh - 1in);
       object-fit: cover;
       z-index: -1;
+    }
+
+    #bg-fallback {
+      position: fixed;
+      top: 0.5in;
+      left: 0.5in;
+      width: calc(100vw - 1in);
+      height: calc(100vh - 1in);
+      object-fit: cover;
+      z-index: -2;
+      display: none;
     }
 
     .container {
@@ -38,6 +50,7 @@
       flex-direction: column;
       justify-content: space-between;
       overflow-y: auto;
+      padding-left: 200px;
     }
 
     .sidebar {
@@ -90,44 +103,26 @@
     }
 
     .content {
-      margin-left: 220px;
       padding: 1rem;
       text-align: center;
       flex-grow: 1;
       overflow-y: auto;
+      max-width: 100%;
     }
 
-    .vault-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
+    .header-video {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      margin-bottom: 1rem;
     }
 
-    .vault-card {
-      background: rgba(0, 0, 0, 0.8);
-      border: 2px solid #f8f4e3;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .vault-card:hover {
-      transform: scale(1.05);
-    }
-
-    .vault-card a {
-      color: #f8f4e3;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-family: 'Kaushan Script', cursive;
-    }
-
-    .vault-card a:hover {
-      color: #4b2a74;
+    .header-fallback {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      display: none;
     }
 
     p {
@@ -137,6 +132,51 @@
       text-shadow: 0 0 6px black;
       margin-left: auto;
       margin-right: auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+
+    .album-section {
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      z-index: 1;
+    }
+
+    .album-cover {
+      width: 100%;
+      max-width: 250px;
+      z-index: 1;
+    }
+
+    .sales-text {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 1.5rem;
+      text-shadow: 0 0 8px #210042;
+      margin: 2rem 0;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .bandcamp-link {
+      font-size: 1rem;
+      padding: 10px 20px;
+      background-color: #2e1a47;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      z-index: 1;
+    }
+
+    .bandcamp-link:hover {
+      background-color: #4b2a74;
+      transform: scale(1.05);
     }
 
     .footer {
@@ -214,21 +254,37 @@
     }
 
     @media (max-width: 768px) {
+      #bg-video, #bg-fallback {
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        border: none;
+      }
       .sidebar {
         width: 150px;
       }
+      .container {
+        padding-left: 150px;
+      }
       .content {
-        margin-left: 170px;
+        margin-left: 0;
       }
-      p {
-        font-size: 0.9rem;
+      .header-video, .header-fallback {
+        max-height: 200px;
       }
-      .vault-grid {
-        grid-template-columns: 1fr;
+      .album-section {
+        gap: 1rem;
+      }
+      .album-cover {
+        max-width: 200px;
       }
       .audio-player {
         bottom: 70px;
         right: 10px;
+      }
+      .sales-text {
+        font-size: 1.2rem;
       }
       .sidebar-logo {
         max-width: 120px;
@@ -238,8 +294,11 @@
   </style>
 </head>
 <body>
-  <!-- Background Image -->
-  <img src="assets/images/background.png" alt="Background" id="bg-image" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Background image failed to load. Ensure assets/images/background.png exists.';">
+  <!-- Background Video with Fallback -->
+  <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Video background failed to load. Using fallback image.';">
+    <source src="assets/images/citywits/weirdomusic/WELCOME BACKGROUND.mp4" type="video/mp4">
+  </video>
+  <img src="assets/images/background.png" alt="Fallback Background" id="bg-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Fallback image failed to load. Ensure assets/images/background.png exists.';">
 
   <!-- Audio -->
   <audio id="bg-music" loop>
@@ -305,32 +364,30 @@
 
     <!-- Main content -->
     <div class="content">
+      <!-- Header video with fallback -->
+      <video autoplay muted loop playsinline class="header-video" onerror="document.getElementById('header-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header video failed to load. Using fallback image.';">
+        <source src="assets/images/anime type logo.webm" type="video/webm">
+        <source src="assets/images/anime type logo.mp4" type="video/mp4">
+      </video>
+      <img src="assets/images/coverwidescreen.png" alt="Header Image Fallback" id="header-fallback" class="header-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header fallback image failed to load. Ensure assets/images/coverwidescreen.png exists.';">
+
       <p>
-        Welcome to the Vault—a sacred archive for all Citywits content past, present, and future. Explore music, art, and collaborations from the Cityverse.
+        Rejoice, Weirdos; you have finally made it home. Citywits has returned & bears gifts: first, the Citywits Archive. From now until the bombs drop, this will serve as an archive for all Citywits content past, present, and future—as well as a repository for all content that falls under the Cityverse umbrella (Small Drawings, Covers, Citywits Studios projects & collaborations). "Weirdo Music" will soon be available wherever music is sold, pirated, or naturally occurring. The Weirdo Era has begun. Welcome to the City.
       </p>
 
-      <div class="vault-grid">
-        <div class="vault-card">
-          <a href="weirdo-vault.html">Weirdo Music</a>
-        </div>
-        <div class="vault-card">
-          <a href="elemeno.html">Elemeno</a>
-        </div>
-        <div class="vault-card">
-          <a href="drum-covers.html">Drum Covers & Collabs</a>
-        </div>
-        <div class="vault-card">
-          <a href="small-drawings.html">Small Drawings</a>
-        </div>
-        <div class="vault-card">
-          <a href="drawing-progress.html">Drawing Progress</a>
-        </div>
-        <div class="vault-card">
-          <a href="dogwater.html">Dogwater EP/Self Titled</a>
-        </div>
-        <div class="vault-card">
-          <a href="early-unreleased.html">Early Days & Unreleased</a>
-        </div>
+      <div class="album-section">
+        <!-- Embedded YouTube video -->
+        <iframe id="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/9YzBKnuIkhk?enablejsapi=1" title="Weirdo Music Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <!-- Sales text -->
+        <div class="sales-text">Out NOW, the NEW ALBUM from CITYWITS!!</div>
+
+        <!-- Album cover -->
+        <img src="assets/images/The actual 3k album cover.PNG" alt="Weirdo Music Album Cover" class="album-cover" 
+             onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Album cover failed to load. Ensure assets/images/The actual 3k album cover.PNG exists.';">
+
+        <!-- Bandcamp link -->
+        <a href="https://citywits.bandcamp.com" class="bandcamp-link">Buy on Bandcamp</a>
       </div>
     </div>
 
@@ -342,13 +399,18 @@
     </footer>
   </div>
 
-  <!-- JS for audio player -->
+  <!-- YouTube Iframe API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <!-- JS for audio player and YouTube integration -->
   <script>
     const music = document.getElementById('bg-music');
     const notification = document.getElementById('notification');
     const playPauseButton = document.getElementById('play-pause');
     const progressBar = document.getElementById('progress');
+    let youtubePlayer;
 
+    // Audio player controls
     function updatePlayPauseButton() {
       if (music.paused) {
         music.play().then(() => {
@@ -394,6 +456,30 @@
         notification.textContent = 'Autoplay error: ' + err.message;
         setTimeout(() => notification.style.display = 'none', 3000);
       });
+    }
+
+    // YouTube Iframe API setup
+    function onYouTubeIframeAPIReady() {
+      youtubePlayer = new YT.Player('youtube-player', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        music.pause();
+        notification.style.display = 'block';
+        notification.textContent = 'YouTube video playing, music paused.';
+        setTimeout(() => notification.style.display = 'none', 3000);
+      } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+        music.play().catch(err => {
+          notification.style.display = 'block';
+          notification.textContent = 'Error resuming music: ' + err.message;
+          setTimeout(() => notification.style.display = 'none', 3000);
+        });
+      }
     }
   </script>
 </body>
