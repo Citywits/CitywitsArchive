@@ -50,14 +50,13 @@
       flex-direction: column;
       justify-content: space-between;
       overflow-y: auto;
-      padding-left: 200px;
     }
 
     .sidebar {
       position: fixed;
       top: 0;
-      left: 2;
-      width: 150px;
+      left: -0.5in; /* Offset to counteract the 1/2" body padding */
+      width: 200px;
       height: 100%;
       padding: 1rem;
       background: rgba(0, 0, 0, 0.7);
@@ -263,9 +262,10 @@
       }
       .sidebar {
         width: 150px;
+        left: -0.5in; /* Adjusted for mobile */
       }
       .container {
-        padding-left: 150px;
+        padding-left: 0; /* Remove padding on mobile */
       }
       .content {
         margin-left: 0;
