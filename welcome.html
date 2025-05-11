@@ -17,26 +17,26 @@
       overflow-x: hidden;
       font-family: 'Josefin Sans', sans-serif;
       color: #f8f4e3;
-      background-color: #f5f1e9 !important; /* Crème/off-white background */
-      z-index: -10; /* Furthest background layer */
+      background-color: #ffffff; /* White background */
+      padding: 0.5in; /* 1/2" margin around edges like a Polaroid frame */
     }
 
     #bg-video {
       position: fixed;
-      top: 0.5in;
-      left: 0.5in;
-      width: calc(100vw - 1in);
-      height: calc(100vh - 1in);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: -1;
     }
 
     #bg-fallback {
       position: fixed;
-      top: 0.5in;
-      left: 0.5in;
-      width: calc(100vw - 1in);
-      height: calc(100vh - 1in);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       z-index: -2;
       display: none;
@@ -45,7 +45,7 @@
     .container {
       position: relative;
       z-index: 1;
-      min-height: 100vh;
+      min-height: calc(100vh - 1in); /* Adjust for 1/2" margin top and bottom */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -112,14 +112,14 @@
 
     .header-video {
       width: 100%;
-      max-height: 300px;
+      height: 400px; /* Stretched height for header effect */
       object-fit: cover;
       margin-bottom: 1rem;
     }
 
     .header-fallback {
       width: 100%;
-      max-height: 300px;
+      height: 400px; /* Stretched height for header effect */
       object-fit: cover;
       margin-bottom: 1rem;
       display: none;
@@ -271,7 +271,7 @@
         margin-left: 0;
       }
       .header-video, .header-fallback {
-        max-height: 200px;
+        height: 200px; /* Adjusted for mobile */
       }
       .album-section {
         gap: 1rem;
@@ -296,7 +296,7 @@
 <body>
   <!-- Background Video with Fallback -->
   <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Video background failed to load. Using fallback image.';">
-    <source src="assets/images/citywits/weirdomusic/WELCOME BACKGROUND.mp4" type="video/mp4">
+    <source src="assets/images/citywits/weirdomusic/welcome rainbow.webm" type="video/webm">
   </video>
   <img src="assets/images/background.png" alt="Fallback Background" id="bg-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Fallback image failed to load. Ensure assets/images/background.png exists.';">
 
@@ -366,8 +366,7 @@
     <div class="content">
       <!-- Header video with fallback -->
       <video autoplay muted loop playsinline class="header-video" onerror="document.getElementById('header-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header video failed to load. Using fallback image.';">
-        <source src="assets/images/anime type logo.webm" type="video/webm">
-        <source src="assets/images/anime type logo.mp4" type="video/mp4">
+        <source src="assets/images/citywits/weirdomusic/WELCOME BACKGROUND.mp4" type="video/mp4">
       </video>
       <img src="assets/images/coverwidescreen.png" alt="Header Image Fallback" id="header-fallback" class="header-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header fallback image failed to load. Ensure assets/images/coverwidescreen.png exists.';">
 
