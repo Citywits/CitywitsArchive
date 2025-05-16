@@ -24,15 +24,29 @@
       padding: 20px;
       text-align: center;
     }
+    .content a {
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      padding: 10px;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+    .content a:hover {
+      color: #ddd;
+    }
   </style>
 </head>
 <body>
-  <video autoplay loop muted playsinline id="bg-video">
-    <source src="assets/videos/treasure.webm" type="video/webm">
+  <video autoplay loop muted playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block';">
+    <source src="assets/video/treasure.mp4" type="video/mp4">
   </video>
+  <div id="bg-fallback" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:#000; z-index:-1;"></div>
   <div class="content">
     <h1>Welcome to the Vault</h1>
-    <p>More treasures coming soon!</p>
+    <p>Choose a section to explore:</p>
+    <a href="citywitsvault/index.html">Citywits Vault</a>
+    <a href="smalldrawingsvault/index.html">Smalldrawings Vault</a>
   </div>
 </body>
 </html>
