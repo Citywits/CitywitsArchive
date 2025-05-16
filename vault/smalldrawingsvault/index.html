@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smalldrawings Vault</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .content {
+      position: relative;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .content a {
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+      padding: 10px;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+    .content a:hover {
+      color: #ddd;
+    }
+    .album-cover {
+      max-width: 300px;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block';">
+    <source src="assets/video/treasure.mp4" type="video/mp4">
+  </video>
+  <div id="bg-fallback" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:#000; z-index:-1;"></div>
+  <div class="content">
+    <h1>Welcome to the Smalldrawings Vault</h1>
+    <p>Explore the musical treasures of Small Drawings:</p>
+    <a href="https://smalldrawingsmusic.bandcamp.com/album/drawing-progress">Listen to Drawing Progress</a>
+    <p>Album Cover:</p>
+    <img src="assets/images/smalldrawings/drawingprogresscover.jpg" alt="Drawing Progress Album Cover" class="album-cover" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Album cover failed to load. Ensure assets/images/smalldrawings/drawingprogresscover.jpg exists.';">
+  </div>
+</body>
+</html>
