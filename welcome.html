@@ -6,20 +6,13 @@
   <title>Welcome to the City</title>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Kaushan+Script&display=swap" rel="stylesheet">
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      min-height: 100%;
+      background-color: black;
       overflow-x: hidden;
-      font-family: 'Josefin Sans', sans-serif;
       color: #f8f4e3;
-      background-color: #000000; /* Black background */
+      font-family: 'Josefin Sans', sans-serif;
     }
-
     #bg-video {
       position: fixed;
       top: 0;
@@ -29,28 +22,31 @@
       object-fit: cover;
       z-index: -1;
     }
-
     #bg-fallback {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      background-color: #000;
       z-index: -2;
       display: none;
     }
-
     .container {
       position: relative;
       z-index: 1;
+      width: 100%;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
       overflow-y: auto;
+      background: transparent;
     }
-
     .sidebar {
       position: fixed;
       top: 0;
@@ -62,36 +58,33 @@
       z-index: 2;
       overflow-y: auto;
     }
-
     .menu {
       list-style: none;
     }
-
     .menu li {
       margin: 0.5rem 0;
     }
-
     .menu a {
       color: #f8f4e3;
       text-decoration: none;
       font-size: 1rem;
       transition: color 0.3s ease;
     }
-
     .menu a:hover {
       color: #4b2a74;
     }
-
     .submenu {
       list-style: none;
       padding-left: 1rem;
       display: none;
     }
-
     .menu li:hover .submenu {
       display: block;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background: rgba(0, 0, 0, 0.7);
     }
-
     .sidebar-logo {
       width: 100%;
       max-width: 150px;
@@ -99,137 +92,93 @@
       object-fit: contain;
       margin-bottom: 0.5rem;
     }
-
     .content {
       padding: 1rem;
       text-align: center;
       flex-grow: 1;
       overflow-y: auto;
       max-width: 100%;
-      margin-left: 200px; /* Offset for sidebar */
+      margin-left: 200px;
     }
-
-    .header-video {
+    .logo-full {
       width: 100%;
-      height: 400px; /* Stretched height for header effect */
-      object-fit: cover;
-      margin-bottom: 1rem;
+      max-height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(2px 2px 4px #000);
     }
-
-    .header-fallback {
-      width: 100%;
-      height: 400px; /* Stretched height for header effect */
-      object-fit: cover;
-      margin-bottom: 1rem;
-      display: none;
+    .promo-img {
+      width: 400px;
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
-
-    p {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      max-width: 700px;
-      text-shadow: 0 0 6px black;
-      margin-left: auto;
-      margin-right: auto;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 0.5rem;
-      border-radius: 5px;
-    }
-
-    .album-section {
-      margin: 1rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      z-index: 1;
-    }
-
-    .album-cover {
-      width: 125%;
-      max-width: 250px;
-      z-index: 1;
-    }
-
-    .sales-text {
-      font-family: 'Kaushan Script', cursive;
-      font-size: 1.9rem;
-      text-shadow: 0 0 8px #210042;
-      margin: 2rem 0;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-    }
-
-    .bandcamp-link {
-      font-size: 2rem;
+    .enter-button {
+      font-size: 1.2rem;
       padding: 10px 20px;
-      background-color: #2e1a47;
       color: #fff;
+      background-color: #1f1f1f;
       border: 2px solid #fff;
-      border-radius: 8px;
+      border-radius: 5px;
       text-decoration: none;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      z-index: 1;
+      transition: all 0.3s ease;
+      font-family: 'Kaushan Script', cursive;
+      text-shadow: 2px 2px 4px #4a00e0;
     }
-
-    .bandcamp-link:hover {
-      background-color: #4b2a74;
+    .enter-button:hover {
+      background-color: #fff;
+      color: #1f1f1f;
+      cursor: pointer;
       transform: scale(1.05);
     }
-
+    .music-button {
+      font-size: 1rem;
+      padding: 8px 16px;
+      margin-top: 10px;
+      color: #fff;
+      background-color: #444;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      font-family: 'Josefin Sans', sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .music-button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: scale(1.05);
+    }
+    .socials {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .socials a img {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+    .socials a img:hover {
+      transform: scale(1.2);
+      filter: brightness(1.2);
+    }
     .footer {
-      position: fixed;
-      bottom: 0;
       width: 100%;
       background: rgba(0, 0, 0, 0.8);
       padding: 0.5rem;
       text-align: center;
       z-index: 2;
     }
-
     .footer a {
       color: #f8f4e3;
       margin: 0 0.5rem;
       text-decoration: none;
       font-size: 0.9rem;
     }
-
     .footer a:hover {
       color: #4b2a74;
     }
-
-    .audio-player {
-      position: fixed;
-      bottom: 60px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 8px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 3;
-    }
-
-    .audio-player button {
-      background-color: #2e1a47;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 4px;
-      padding: 4px 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .audio-player button:hover {
-      background-color: #4b2a74;
-    }
-
-    .audio-player input[type="range"] {
-      width: 80px;
-    }
-
     .notification {
       display: none;
       position: fixed;
@@ -242,249 +191,77 @@
       border-radius: 5px;
       z-index: 10;
     }
-
-    .notification button {
-      float: right;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
     @media (max-width: 768px) {
-      #bg-video, #bg-fallback {
+      #bg-video {
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        border: none;
       }
       .sidebar {
         width: 150px;
       }
       .content {
-        margin-left: 150px; /* Adjusted for mobile sidebar */
+        margin-left: 150px;
       }
-      .header-video, .header-fallback {
-        height: 200px; /* Adjusted for mobile */
+      .promo-img, .logo-full {
+        width: 90%;
       }
-      .album-section {
-        gap: 1rem;
+      .enter-button {
+        font-size: 1rem;
       }
-      .album-cover {
-        max-width: 200px;
-      }
-      .audio-player {
-        bottom: 70px;
-        right: 10px;
-      }
-      .sales-text {
-        font-size: 1.2rem;
-      }
-      .sidebar-logo {
-        max-width: 120px;
-        max-height: 80px;
+      .socials img {
+        width: 40px;
+        height: 40px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Background Video with Fallback -->
   <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Video background failed to load. Using fallback.';">
-  <source src="assets/video/CityBackground.webm" type="video/webm">
-</video>
-<div id="bg-fallback" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:#000; z-index:-2;"></div>
-  <!-- Audio -->
-  <audio id="bg-music" loop>
-    <source src="Reception_Song.m4a" type="audio/mp4">
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- Notification overlay -->
-  <div id="notification" class="notification">
-    <button onclick="this.parentElement.style.display='none';">X</button>
-  </div>
-
-  <!-- Audio player interface -->
-  <div class="audio-player" id="audio-player">
-    <button id="play-pause">Play</button>
-    <input type="range" id="progress" min="0" max="100" value="0">
-  </div>
-
-  <!-- Main container -->
+    <source src="assets/video/CityBackground.webm" type="video/webm">
+  </video>
+  <div id="bg-fallback" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:#000; z-index:-2;"></div>
+  <div id="notification" class="notification"></div>
   <div class="container">
-    <!-- Sidebar menu -->
-    <li>
-<nav class="sidebar">
-  <ul class="menu">
-    <li>
-      <img src="assets/images/yellow logo.JPG" alt="WEIRDO MUSIC" class="sidebar-logo" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/yellow logo.JPG exists.';">
-      <ul class="submenu">
-        <li><a href="weirdo-art.html">Art & Videos</a></li>
-        <li><a href="weirdo-mixes.html">Alternate Mixes</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="mayors-desk.html">The MAYOR’S DESK</a>
-      <ul class="submenu">
-        <li><a href="bio.html">Bio</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="updates.html">Updates</a></li>
-        <li><a href="mailinglist.html">Mailing List</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="vault">the VAULT</a>
-      <ul class="submenu">
-        <li><a href="vault/citywitsvault">Citywits Vault</a></li>
-        <li><a href="vault/smalldrawingsvault">Smalldrawings Vault</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-    </li>
-    <li>
-      <a href="https://smalldrawingsmusic.bandcamp.com">Small Drawings</a>
-    </li>
-  </ul>
-</li>
+    <nav class="sidebar">
+      <ul class="menu">
         <li>
-          <a href="vault.html">the VAULT</a>
+          <a href="vault">the VAULT</a>
           <ul class="submenu">
-            <li>
-              <img src="assets/images/yellow logo.JPG" alt="Citywits" class="sidebar-logo" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load. Ensure assets/images/yellow logo.JPG exists.';">
-              <ul class="submenu">
-                <li><a href="weirdo-vault.html">Weirdo Music</a></li>
-                <li><a href="elemeno.html">Elemeno</a></li>
-                <li><a href="drum-covers.html">Drum Covers & Collabs</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="https://smalldrawingsmusic.bandcamp.com">Small Drawings</a>
-            </li>
+            <li><a href="vault/citywitsvault/index.html">Citywits Vault</a></li>
+            <li><a href="vault/smalldrawingsvault/index.html">Smalldrawings Vault</a></li>
           </ul>
         </li>
       </ul>
     </nav>
-
-    <!-- Main content -->
     <div class="content">
-      <!-- Header video with fallback -->
-      <video autoplay muted loop playsinline class="header-video" onerror="document.getElementById('header-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header video failed to load. Using fallback image.';">
-        <source src="assets/images/citywits/weirdomusic/anime type logo.mp4" type="video/mp4">
-      </video>
-      <img src="assets/images/coverwidescreen.png" alt="Header Image Fallback" id="header-fallback" class="header-fallback" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Header fallback image failed to load. Ensure assets/images/coverwidescreen.png exists.';">
-
-      <p>
-        Rejoice, Weirdos; you have finally made it home. Citywits has returned & bears gifts: first, the Citywits Archive. From now until the bombs drop, this will serve as an archive for all Citywits content past, present, and future—as well as a repository for all content that falls under the Cityverse umbrella (Small Drawings, Covers, Citywits Studios projects & collaborations). "Weirdo Music" is now available wherever you get your music from. Enter the city from any of the following: spotify, apple music, amazon, youtube, soundcloud, bandcamp, tiktok, instagram, & probably three more by the time you finish reading. The Weirdo Era has begun. Welcome to the City.
-      </p>
-
-      <div class="album-section">
-        <!-- Embedded YouTube video -->
-        <iframe id="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/D3Qs-_5zi_U?enablejsapi=1" title="New Citywits Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-        <!-- Sales text -->
-        <div class="sales-text">Out NOW, the NEW ALBUM from CITYWITS!!</div>
-
-        <!-- Album cover -->
-        <img src="assets/images/The actual 3k album cover.PNG" alt="Weirdo Music Album Cover" class="album-cover" 
-             onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Album cover failed to load. Ensure assets/images/The actual 3k album cover.PNG exists.';">
-
-        <!-- Bandcamp link -->
-        <a href="https://citywits.bandcamp.com" class="bandcamp-link">Buy on Bandcamp</a>
+      <img src="assets/images/main font no bg white.png" alt="Citywits Logo" class="logo-full" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load.';">
+      <img src="assets/images/archive pink energy.PNG" alt="Archive Promo" class="promo-img" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Promo image failed to load.';">
+      <a href="welcome.html?play=true" class="enter-button">I'm a weirdo! Let me in!!</a>
+      <button class="music-button" id="music-button">Play Music</button>
+      <div class="socials">
+        <a href="https://citywits.bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load.';"></a>
+        <a href="https://soundcloud.com/citywits"><img src="assets/images/soundcloud button.PNG" alt="SoundCloud" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load.';"></a>
+        <a href="https://youtube.com/@citywits"><img src="assets/images/youtube.PNG" alt="YouTube" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load.';"></a>
       </div>
     </div>
-
-    <!-- Footer with link tree -->
- <footer class="footer">
-  <a href="https://citywits.bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load. Ensure assets/images/bandcamp.PNG exists.';"></a>
-  <a href="https://youtube.com/@citywits"><img src="assets/images/youtube.PNG" alt="YouTube" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load. Ensure assets/images/youtube.PNG exists.';"></a>
-  <a href="https://soundcloud.com/citywits"><img src="assets/images/soundcloud button.PNG" alt="SoundCloud" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load. Ensure assets/images/soundcloud button.PNG exists.';"></a>
-</footer>
-
-  <!-- YouTube Iframe API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-
-  <!-- JS for audio player and YouTube integration -->
+    <footer class="footer">
+      <a href="https://citywits.bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load.';"></a>
+      <a href="https://youtube.com/@citywits"><img src="assets/images/youtube.PNG" alt="YouTube" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load.';"></a>
+      <a href="https://soundcloud.com/citywits"><img src="assets/images/soundcloud button.PNG" alt="SoundCloud" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load.';"></a>
+    </footer>
+  </div>
+  <audio id="bg-music" loop>
+    <source src="Reception_Song.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
   <script>
     const music = document.getElementById('bg-music');
+    const musicButton = document.getElementById('music-button');
     const notification = document.getElementById('notification');
-    const playPauseButton = document.getElementById('play-pause');
-    const progressBar = document.getElementById('progress');
-    let youtubePlayer;
 
-    // Audio player controls
-    function updatePlayPauseButton() {
+    function updateMusicButton() {
       if (music.paused) {
         music.play().then(() => {
-          playPauseButton.textContent = 'Pause';
-          notification.style.display = 'block';
-          notification.textContent = 'Music started.';
-          setTimeout(() => notification.style.display = 'none', 3000);
-        }).catch(err => {
-          notification.style.display = 'block';
-          notification.textContent = 'Error starting music: ' + err.message;
-          setTimeout(() => notification.style.display = 'none', 3000);
-        });
-      } else {
-        music.pause();
-        playPauseButton.textContent = 'Play';
-        notification.style.display = 'block';
-        notification.textContent = 'Music paused.';
-        setTimeout(() => notification.style.display = 'none', 3000);
-      }
-    }
-
-    playPauseButton.addEventListener('click', updatePlayPauseButton);
-
-    music.addEventListener('timeupdate', () => {
-      const progress = (music.currentTime / music.duration) * 100;
-      progressBar.value = isNaN(progress) ? 0 : progress;
-    });
-
-    progressBar.addEventListener('input', () => {
-      const time = (progressBar.value / 100) * music.duration;
-      music.currentTime = time;
-    });
-
-    // Autoplay logic
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('play') === 'true') {
-      music.play().then(() => {
-        notification.style.display = 'block';
-        notification.textContent = 'Music started automatically.';
-        setTimeout(() => notification.style.display = 'none', 3000);
-      }).catch(err => {
-        notification.style.display = 'block';
-        notification.textContent = 'Autoplay error: ' + err.message;
-        setTimeout(() => notification.style.display = 'none', 3000);
-      });
-    }
-
-    // YouTube Iframe API setup
-    function onYouTubeIframeAPIReady() {
-      youtubePlayer = new YT.Player('youtube-player', {
-        events: {
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }
-
-    function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.PLAYING) {
-        music.pause();
-        notification.style.display = 'block';
-        notification.textContent = 'YouTube video playing, music paused.';
-        setTimeout(() => notification.style.display = 'none', 3000);
-      } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-        music.play().catch(err => {
-          notification.style.display = 'block';
-          notification.textContent = 'Error resuming music: ' + err.message;
-          setTimeout(() => notification.style.display = 'none', 3000);
-        });
-      }
-    }
-  </script>
-</body>
-</html>
+          musicButton.textContent = 'Pause Music
