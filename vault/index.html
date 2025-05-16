@@ -35,6 +35,10 @@
     .content a:hover {
       color: #ddd;
     }
+    .preview {
+      max-width: 300px;
+      margin: 10px auto;
+    }
   </style>
 </head>
 <body>
@@ -44,9 +48,11 @@
   <div id="bg-fallback" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:#000; z-index:-1;"></div>
   <div class="content">
     <h1>Welcome to the Vault</h1>
-    <p>Choose a section to explore:</p>
+    <p>Explore the rich archives of Citywits and Small Drawings:</p>
     <a href="citywitsvault/index.html">Citywits Vault</a>
     <a href="smalldrawingsvault/index.html">Smalldrawings Vault</a>
+    <p>Preview of Citywits Art:</p>
+    <img src="assets/images/citywits/sample-art.jpg" alt="Citywits Art Preview" class="preview" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Art preview failed to load. Ensure assets/images/citywits/sample-art.jpg exists.';">
   </div>
 </body>
 </html>
