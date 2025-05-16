@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      background-color: black;
+      background-color: transparent;
       overflow-x: hidden;
       color: #f8f4e3;
       font-family: 'Josefin Sans', sans-serif;
@@ -40,12 +40,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       text-align: center;
       padding: 40px 20px;
       box-sizing: border-box;
       overflow-y: auto;
-      background: transparent;
     }
     .sidebar {
       position: fixed;
@@ -84,13 +83,6 @@
       left: 100%;
       top: 0;
       background: rgba(0, 0, 0, 0.7);
-    }
-    .sidebar-logo {
-      width: 100%;
-      max-width: 150px;
-      max-height: 100px;
-      object-fit: contain;
-      margin-bottom: 0.5rem;
     }
     .content {
       padding: 1rem;
@@ -170,14 +162,15 @@
       text-align: center;
       z-index: 2;
     }
-    .footer a {
-      color: #f8f4e3;
+    .footer a img {
+      width: 50px;
+      height: 50px;
       margin: 0 0.5rem;
-      text-decoration: none;
-      font-size: 0.9rem;
+      transition: transform 0.3s ease;
     }
-    .footer a:hover {
-      color: #4b2a74;
+    .footer a img:hover {
+      transform: scale(1.2);
+      filter: brightness(1.2);
     }
     .notification {
       display: none;
@@ -210,7 +203,7 @@
       .enter-button {
         font-size: 1rem;
       }
-      .socials img {
+      .socials img, .footer a img {
         width: 40px;
         height: 40px;
       }
@@ -227,7 +220,7 @@
     <nav class="sidebar">
       <ul class="menu">
         <li>
-          <a href="vault">the VAULT</a>
+          <a href="vault/index.html">the VAULT</a>
           <ul class="submenu">
             <li><a href="vault/citywitsvault/index.html">Citywits Vault</a></li>
             <li><a href="vault/smalldrawingsvault/index.html">Smalldrawings Vault</a></li>
@@ -247,9 +240,9 @@
       </div>
     </div>
     <footer class="footer">
-      <a href="https://citywits.bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load.';"></a>
-      <a href="https://youtube.com/@citywits"><img src="assets/images/youtube.PNG" alt="YouTube" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load.';"></a>
-      <a href="https://soundcloud.com/citywits"><img src="assets/images/soundcloud button.PNG" alt="SoundCloud" style="width:50px; height:50px; margin:0 0.5rem;" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load.';"></a>
+      <a href="https://citywits.bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load.';"></a>
+      <a href="https://youtube.com/@citywits"><img src="assets/images/youtube.PNG" alt="YouTube" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load.';"></a>
+      <a href="https://soundcloud.com/citywits"><img src="assets/images/soundcloud button.PNG" alt="SoundCloud" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load.';"></a>
     </footer>
   </div>
   <audio id="bg-music" loop>
@@ -264,4 +257,38 @@
     function updateMusicButton() {
       if (music.paused) {
         music.play().then(() => {
-          musicButton.textContent = 'Pause Music
+          musicButton.textContent = 'Pause Music';
+          notification.style.display = 'block';
+          notification.textContent = 'Music started.';
+          setTimeout(() => notification.style.display = 'none', 3000);
+        }).catch(err => {
+          notification.style.display = 'block';
+          notification.textContent = 'Error starting music: ' + err.message;
+          setTimeout(() => notification.style.display = 'none', 3000);
+        });
+      } else {
+        music.pause();
+        musicButton.textContent = 'Play Music';
+        notification.style.display = 'block';
+        notification.textContent = 'Music paused.';
+        setTimeout(() => notification.style.display = 'none', 3000);
+      }
+    }
+
+    musicButton.addEventListener('click', updateMusicButton);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('play') === 'true') {
+      music.play().then(() => {
+        notification.style.display = 'block';
+        notification.textContent = 'Music started automatically.';
+        setTimeout(() => notification.style.display = 'none', 3000);
+      }).catch(err => {
+        notification.style.display = 'block';
+        notification.textContent = 'Autoplay error: ' + err.message;
+        setTimeout(() => notification.style.display = 'none', 3000);
+      });
+    }
+  </script>
+</body>
+</html>
