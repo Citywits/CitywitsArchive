@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Citywits Vault</title>
+  <title>Vault</title>
   <style>
     body {
       margin: 0;
@@ -35,22 +35,37 @@
     .content a:hover {
       color: #ddd;
     }
-    .art-preview {
+    .preview {
       max-width: 300px;
       margin: 10px auto;
+    }
+    .notification {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 10;
     }
   </style>
 </head>
 <body>
-  <video autoplay loop muted playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block';">
+  <video autoplay loop muted playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Background video failed to load.';">
     <source src="assets/video/treasure.mp4" type="video/mp4">
   </video>
   <div id="bg-fallback" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:#000; z-index:-1;"></div>
+  <div id="notification" class="notification"></div>
   <div class="content">
-    <h1>Welcome to the Citywits Vault</h1>
-    <p>Explore an endless collection of Citywits art:</p>
-    <img src="assets/images/citywits/sample-art.jpg" alt="Citywits Art Preview" class="art-preview" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Art preview failed to load. Ensure assets/images/citywits/sample-art.jpg exists.';">
-    <p>More art coming soon!</p>
+    <h1>Welcome to the Vault</h1>
+    <p>Explore the rich archives of Citywits and Small Drawings:</p>
+    <a href="citywitsvault/index.html">Citywits Vault</a>
+    <a href="smalldrawingsvault/index.html">Smalldrawings Vault</a>
+    <p>Preview of Citywits Art:</p>
+    <img src="assets/images/citywits/sample-art.jpg" alt="Citywits Art Preview" class="preview" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Art preview failed to load. Ensure assets/images/citywits/sample-art.jpg exists.';">
   </div>
 </body>
 </html>
