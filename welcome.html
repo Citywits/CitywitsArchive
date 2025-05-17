@@ -89,106 +89,11 @@
 <body>
 
   <!-- Fallback image behind video -->
-  <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
+  <img src="assets/images/The actual 3k album cover.PNG" alt="Fallback Background" id="bg-fallback">
 
   <!-- Background video -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the City</title>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      overflow-x: hidden;
-      font-family: 'Josefin Sans', sans-serif;
-      color: #f8f4e3;
-      background-color: black;
-    }
-
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    #bg-fallback {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px #210042;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      max-width: 800px;
-      text-shadow: 0 0 8px black;
-    }
-
-    button {
-      font-size: 1.1rem;
-      padding: 12px 24px;
-      background-color: #2e1a47;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #4b2a74;
-      transform: scale(1.05);
-    }
-
-    audio {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Fallback image behind video -->
-  <img src="fallback.jpg" alt="Fallback Background" id="bg-fallback">
-
-  <!-- Background video -->
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="assets/images/citywits/weirdomusic/WELCOME BACKGROUND.mp4" type="video/mp4">
+    <source src="assets/images/citywits/weirdomusic/WELCOME BACKGROUND.mp4" type="video/webm">
     Your browser does not support the video tag.
   </video>
 
@@ -196,54 +101,7 @@
   <div class="content">
     <h1>Welcome to the City</h1>
     <p>
-      Welcome my Weirdos! From here you can navigate the archive, or at least as much as has been designed so far. This site is being built with longevity
-      in mind & is both the mothership for Citywits as well as a permanent time capsule to preserve the work that I have poured my heart & soul into. The Citywits Legacy.
-      Until further notice, the archive will be in varying states of construction until I can get it fully built — please forgive the mess.
-      <br><br>
-      Enter the Vaults & peruse old Citywits content from the historical record: videos, artwork, lyrics, side projects... this will be the ultimate
-      repository for all things artistic in the Cityverse. Please check out the work & buy the album <strong>WEIRDO MUSIC</strong> if these songs and vibes call to you.
-      Stay tuned for TONS of new content that is coming very soon, so keep your eye on this site & all my other platforms!!
-      <br><br>
-      The Weirdo Era has begun.
-    </p>
-    <button id="play-music">Play Music</button>
-    <audio id="bg-music" autoplay loop>
-      <source src="Reception_Song.m4a" type="audio/mp4">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
-  <!-- Script to enable music -->
-  <script>
-    window.addEventListener('load', () => {
-      const music = document.getElementById('bg-music');
-      const playButton = document.getElementById('play-music');
-
-      const tryPlay = () => {
-        music.play().then(() => {
-          playButton.style.display = 'none';
-        }).catch(err => {
-          console.warn("Autoplay blocked, waiting for user interaction.");
-        });
-      };
-
-      // Try autoplay first
-      tryPlay();
-
-      // Fallback on button click
-      playButton.addEventListener('click', tryPlay);
-    });
-  </script>
-</body>
-</html>" type="video/webm">
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- Main content -->
-  <div class="content">
-    <h1>Welcome to the City</h1>
-    <p>
-      Welcome Weirdos! From here you can navigate the archive, or at least as much as has been designed so far. This site is being built with longevity
+      Welcome my weirdo friends! From here you can navigate the archive, or at least as much as has been designed so far. This site is being built with longevity
       in mind & is both the mothership for Citywits as well as a permanent time capsule to preserve the work that I have poured my heart & soul into. The Citywits Legacy.
       Until further notice, the archive will be in varying states of construction until I can get it fully built — please forgive the mess.
       <br><br>
