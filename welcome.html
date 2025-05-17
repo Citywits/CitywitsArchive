@@ -94,14 +94,14 @@
       margin-left: 200px;
     }
     .logo-full {
-      width: 100%;
-      max-height: 120px;
+      width: 200%;
+      max-height: 400px;
       object-fit: contain;
       filter: drop-shadow(2px 2px 4px #000);
     }
     .promo-img {
       width: 400px;
-      max-width: 80%;
+      max-width: 100%;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
@@ -190,6 +190,32 @@
     }
   </style>
 </head>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .video-container iframe {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://youtu.be/iYi_M07rC64" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+    </div>
+</body>
+</html>
 <body>
   <video autoplay muted loop playsinline id="bg-video" onerror="document.getElementById('bg-fallback').style.display='block'; document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Video background failed to load. Using fallback.';">
     <source src="assets/video/WELCOME BACKGROUND.mp4" type="video/mp4">
@@ -202,23 +228,23 @@
         <li>
           <a href="vault/index.html">the VAULT</a>
           <ul class="submenu">
-            <li><a href="vault/citywitsvault/index.html">Citywits Vault</a></li>
-            <li><a href="vault/smalldrawingsvault/index.html">Smalldrawings Vault</a></li>
+            <li><a href="vault/citywitsvault/index.html">the Citywits Vault</a></li>
+            <li><a href="vault/smalldrawingsvault/index.html">the Smalldrawings Vault</a></li>
           </ul>
         </li>
       </ul>
     </nav>
     <div class="content">
-      <img src="assets/images/main font no bg white.png" alt="Citywits Logo" class="logo-full" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load.';">
-      <img src="assets/images/archive pink energy.PNG" alt="Archive Promo" class="promo-img" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Promo image failed to load.';">
+      <img src="assets/images/citywits/weirdomusic/anime type logo.mp4" alt="Citywits Logo" class="logo-full" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Logo image failed to load.';">
+      <img src="assets/images/The actual 3k album cover.PNG" alt="Album Cover" class="promo-img" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Promo image failed to load.';">
       <button class="music-button" id="music-button">Play Music</button>
-      <div class="socials">
-        <a href="https://citywits.bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load.';"></a>
-        <a href="https://soundcloud.com/citywits"><img src="assets/images/soundcloud button.PNG" alt="SoundCloud" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load.';"></a>
-        <a href="https://youtube.com/@citywits"><img src="assets/images/youtube.PNG" alt="YouTube" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load.';"></a>
-      </div>
+      
     </div>
     <footer class="footer">
+     <a href="https://instagram.com/citywits/"><img src="Instagram_icon.png" alt="Instagram" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load.';"></a>
+        <a href="https://open.spotify.com/artist/2tB2LRfIx9ejZCEwAfiyDt"><img src="spotify-logo-png-icon-spotify-4500-768x287.png" alt="Spotify" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load.';"></a>
+        <a href="https://music.apple.com/us/album/weirdo-music/1813859181"><img src="apple-circular.png" alt="Apple Music" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load.';"></a>
+      </div>
       <a href="https://citywits.bandcamp.com"><img src="assets/images/bandcamp.PNG" alt="Bandcamp" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='Bandcamp icon failed to load.';"></a>
       <a href="https://youtube.com/@citywits"><img src="assets/images/youtube.PNG" alt="YouTube" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='YouTube icon failed to load.';"></a>
       <a href="https://soundcloud.com/citywits"><img src="assets/images/soundcloud button.PNG" alt="SoundCloud" onerror="document.getElementById('notification').style.display='block'; document.getElementById('notification').textContent='SoundCloud icon failed to load.';"></a>
