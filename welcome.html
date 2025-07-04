@@ -1,10 +1,13 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to the City</title>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <title>Citywits Archive - Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,11 +18,12 @@
     html, body {
       height: 100%;
       overflow-x: hidden;
-      font-family: 'Josefin Sans', sans-serif;
+      font-family: 'Rajdhani', sans-serif;
       color: #f8f4e3;
-      background-color: black;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0d33 50%, #0a0a0a 100%);
     }
 
+    /* Background Video - Fixed paths */
     #bg-video {
       position: fixed;
       top: 0;
@@ -27,7 +31,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -1;
+      z-index: -2;
+      opacity: 0.3;
     }
 
     #bg-fallback {
@@ -37,67 +42,170 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
+      z-index: -3;
+      opacity: 0.2;
     }
 
+    /* Header with Logo */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 2px solid rgba(138, 43, 226, 0.5);
+      padding: 15px 0;
+    }
+
+    .header-logo {
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.8));
+    }
+
+    /* Menu Toggle Button */
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1002;
+      background: linear-gradient(45deg, #ff1493, #8a2be2);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #fff;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
+    }
+
+    /* Sidebar Menu */
+    .sidebar {
+      position: fixed;
+      left: -300px;
+      top: 0;
+      width: 300px;
+      height: 100vh;
+      background: linear-gradient(180deg, rgba(138, 43, 226, 0.95) 0%, rgba(30, 144, 255, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      transition: left 0.3s ease;
+      z-index: 1001;
+      padding: 20px;
+      box-shadow: 5px 0 20px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .menu-item {
+      margin-bottom: 20px;
+    }
+
+    .menu-item > a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 15px 20px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+    }
+
+    .menu-item > a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(10px);
+      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .submenu.open {
+      max-height: 300px;
+    }
+
+    .submenu a {
+      display: block;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 10px 20px 10px 40px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border-left: 2px solid transparent;
+    }
+
+    .submenu a:hover {
+      color: #fff;
+      border-left-color: #ff1493;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Overlay for sidebar */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Main Content Container */
     .content {
       position: relative;
       z-index: 1;
+      margin-top: 120px;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
       text-align: center;
-      padding: 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px #210042;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      max-width: 800px;
-      text-shadow: 0 0 8px black;
-    }
-
-    button {
-      font-size: 1.1rem;
-      padding: 12px 24px;
-      background-color: #2e1a47;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #4b2a74;
-      transform: scale(1.05);
-    }
-
-    audio {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Fallback image behind video -->
-  <img src="assets/images/The actual 3k album cover.PNG" alt="Fallback Background" id="bg-fallback">
-
-  <!-- Background video -->
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="assets/images/citywits/weirdomusic/WELCOME BACKGROUND.mp4" type="video/webm">
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- Main content -->
   <div class="content">
     <h1>Welcome to the City</h1>
     <p>
@@ -111,32 +219,381 @@
       <br><br>
       The Weirdo Era has begun.
     </p>
-    <button id="play-music">Play Music</button>
-    <audio id="bg-music" autoplay loop>
-      <source src="Reception_Song.m4a" type="audio/mp4">
-      Your browser does not support the audio element.
-    </audio>
+    /* YouTube Video Section */
+    .video-section {
+      margin-bottom: 60px;
+      width: 100%;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(138, 43, 226, 0.6);
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+    }
+
+    /* Album Section */
+    .album-section {
+      margin-bottom: 60px;
+      width: 100%;
+    }
+
+    .album-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #ff1493, #00ffff, #ffff00, #8a2be2);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientText 3s ease-in-out infinite;
+      text-shadow: 0 0 30px rgba(255, 20, 147, 0.5);
+    }
+
+    @keyframes gradientText {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .album-cover-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    .album-cover {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 40px rgba(138, 43, 226, 0.4);
+    }
+
+    .album-cover:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 60px rgba(255, 20, 147, 0.8);
+    }
+
+    .buy-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 20px;
+    }
+
+    .album-cover-container:hover .buy-overlay {
+      opacity: 1;
+    }
+
+    .buy-text {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+    }
+
+    /* Store Links */
+    .store-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .store-link {
+      padding: 12px 24px;
+      background: linear-gradient(45deg, rgba(138, 43, 226, 0.3), rgba(30, 144, 255, 0.3));
+      border: 2px solid transparent;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .store-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .store-link:hover::before {
+      left: 100%;
+    }
+
+    .store-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+      border-color: #ff1493;
+    }
+
+    /* Music Control Button */
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      padding: 10px 20px;
+      background: rgba(138, 43, 226, 0.7);
+      border: 2px solid #ff1493;
+      border-radius: 25px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .music-control:hover {
+      background: rgba(255, 20, 147, 0.7);
+      transform: scale(1.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-logo {
+        max-width: 200px;
+      }
+      
+      .album-title {
+        font-size: 2rem;
+      }
+      
+      .album-cover {
+        max-width: 300px;
+      }
+      
+      .video-container iframe {
+        height: 300px;
+      }
+      
+      .store-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .store-link {
+        width: 200px;
+      }
+      
+      .content {
+        padding: 20px 10px;
+        margin-top: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Video - FIXED PATH -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="assets/video/WELCOME-BACKGROUND.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Fallback Background -->
+  <img src="assets/images/WM-album-cover.PNG" alt="Fallback Background" id="bg-fallback">
+
+  <!-- Header with Logo -->
+  <div class="header">
+    <img src="assets/images/cursivelogo.jpeg" alt="Citywits Logo" class="header-logo">
   </div>
 
-  <!-- Script to enable music -->
+  <!-- Menu Toggle Button -->
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    
+    <div class="menu-item">
+      <a onclick="toggleSubmenu('homepage-sub')">Homepage</a>
+      <div class="submenu" id="homepage-sub">
+        <a href="#">Latest Updates</a>
+        <a href="#">Featured Content</a>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <a onclick="toggleSubmenu('mayors-sub')">The Mayor's Office</a>
+      <div class="submenu" id="mayors-sub">
+        <a href="#">Band Statements</a>
+        <a href="#">Updates & News</a>
+        <a href="#">Blog Posts</a>
+        <a href="#">Band Info</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <a onclick="toggleSubmenu('vault-sub')">The Vault</a>
+      <div class="submenu" id="vault-sub">
+        <a href="#">Citywits Albums</a>
+        <a href="#">Small Drawings</a>
+        <a href="#">Solo & Collaborations</a>
+        <a href="#">Videos & Artwork</a>
+        <a href="#">Lyrics Archive</a>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <a onclick="toggleSubmenu('citizen-sub')">Become a Citywitizen</a>
+      <div class="submenu" id="citizen-sub">
+        <a href="#">Join the Community</a>
+        <a href="#">Fan Club</a>
+        <a href="#">Exclusive Content</a>
+        <a href="#">Merchandise</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- YouTube Video Section -->
+    <div class="video-section">
+      <div class="video-container">
+        <iframe src="hhttps://www.youtube.com/watch?v=iYi_M07rC64" 
+                title="Citywits - YouTube Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Album Section -->
+    <div class="album-section">
+      <h1 class="album-title">WEIRDO MUSIC ON SALE NOW</h1>
+      
+      <div class="album-cover-container" onclick="openAlbumStore()">
+        <img src="assets/images/WM-album-cover.PNG" alt="Weirdo Music Album Cover" class="album-cover">
+        <div class="buy-overlay">
+          <div class="buy-text">Click to Buy!</div>
+        </div>
+      </div>
+
+      <div class="store-links">
+        <a href="#" class="https://open.spotify.com/artist/2tB2LRfIx9ejZCEwAfiyDt">🎵 Spotify</a>
+        <a href="#" class="https://music.apple.com/us/album/weirdo-music/1813859181">🍎 Apple Music</a>
+        <a href="#" class=http://www.citywits.bandcamp.com">🎧 Bandcamp</a>
+        <a href="#" class="https://www.youtube.com/@citywits">📺 YouTube Music</a>
+        <a href="#" class="https://www.twitch.tv/citywits"> TWITCH </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Music Control -->
+  <div class="music-control" id="music-toggle">
+    🎵 Play Music
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="Reception_Song.m4a" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
+
   <script>
-    window.addEventListener('load', () => {
-      const music = document.getElementById('bg-music');
-      const playButton = document.getElementById('play-music');
+    // Music control
+    let musicPlaying = false;
+    const music = document.getElementById('bg-music');
+    const musicToggle = document.getElementById('music-toggle');
 
-      const tryPlay = () => {
+    function toggleMusic() {
+      if (musicPlaying) {
+        music.pause();
+        musicToggle.textContent = '🎵 Play Music';
+        musicPlaying = false;
+      } else {
         music.play().then(() => {
-          playButton.style.display = 'none';
+          musicToggle.textContent = '🔇 Pause Music';
+          musicPlaying = true;
         }).catch(err => {
-          console.warn("Autoplay blocked, waiting for user interaction.");
+          console.warn("Music play failed:", err);
         });
-      };
+      }
+    }
 
-      // Try autoplay first
-      tryPlay();
+    musicToggle.addEventListener('click', toggleMusic);
 
-      // Fallback on button click
-      playButton.addEventListener('click', tryPlay);
+    // Sidebar functionality
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+
+    function toggleSubmenu(submenuId) {
+      const submenu = document.getElementById(submenuId);
+      submenu.classList.toggle('open');
+    }
+
+    function openAlbumStore() {
+      // Replace with your store URL
+      window.open('https://your-store-link.com', '_blank');
+    }
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const menuToggle = document.querySelector('.menu-toggle');
+      
+      if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+        closeSidebar();
+      }
+    });
+
+    // Auto-play music attempt
+    window.addEventListener('load', () => {
+      music.play().then(() => {
+        musicToggle.textContent = '🔇 Pause Music';
+        musicPlaying = true;
+      }).catch(err => {
+        console.warn("Autoplay blocked, waiting for user interaction.");
+      });
     });
   </script>
 </body>
