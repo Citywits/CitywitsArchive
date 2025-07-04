@@ -6,8 +6,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Citywits Archive - Homepage</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>the Citywits Archive - Homepage</title>
+   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -18,7 +18,7 @@
     html, body {
       height: 100%;
       overflow-x: hidden;
-      font-family: 'Rajdhani', sans-serif;
+      font-family: 'Josefin', sans-serif;
       color: #f8f4e3;
       background: linear-gradient(135deg, #0a0a0a 0%, #1a0d33 50%, #0a0a0a 100%);
     }
@@ -114,7 +114,7 @@
     }
 
     .sidebar h2 {
-      font-family: 'Orbitron', monospace;
+      font-family: 'Joesfin', monospace;
       font-size: 1.5rem;
       margin-bottom: 30px;
       text-align: center;
@@ -248,7 +248,7 @@
     }
 
     .album-title {
-      font-family: 'Orbitron', monospace;
+      font-family: 'Josefin', monospace;
       font-size: 3rem;
       font-weight: 900;
       margin-bottom: 30px;
@@ -307,7 +307,7 @@
     }
 
     .buy-text {
-      font-family: 'Orbitron', monospace;
+      font-family: Josefin', monospace;
       font-size: 1.5rem;
       font-weight: 700;
       color: #fff;
@@ -417,12 +417,12 @@
 <body>
   <!-- Background Video - FIXED PATH -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="assets/video/WELCOME-BACKGROUND.mp4" type="video/mp4">
+    <source src="newwebmbackgroundmay.webm" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
   <!-- Fallback Background -->
-  <img src="assets/images/WM-album-cover.PNG" alt="Fallback Background" id="bg-fallback">
+  <img src="albumcover.JPG" alt="Fallback Background" id="bg-fallback">
 
   <!-- Header with Logo -->
   <div class="header">
@@ -486,7 +486,7 @@
     <div class="video-section">
       <div class="video-container">
         <iframe src="hhttps://www.youtube.com/watch?v=iYi_M07rC64" 
-                title="Citywits - YouTube Video" 
+                title="Citywits - Weirdo Music Trailer!" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen>
@@ -499,7 +499,7 @@
       <h1 class="album-title">WEIRDO MUSIC ON SALE NOW</h1>
       
       <div class="album-cover-container" onclick="openAlbumStore()">
-        <img src="assets/images/WM-album-cover.PNG" alt="Weirdo Music Album Cover" class="album-cover">
+        <img src="albumcover.JPG" alt="Weirdo Music Album Cover" class="album-cover">
         <div class="buy-overlay">
           <div class="buy-text">Click to Buy!</div>
         </div>
@@ -573,7 +573,7 @@
 
     function openAlbumStore() {
       // Replace with your store URL
-      window.open('https://your-store-link.com', '_blank');
+      window.open('https://www.citywits.bandcamp.com', '_blank');
     }
 
     // Close sidebar when clicking outside
