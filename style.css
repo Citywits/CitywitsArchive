@@ -2,16 +2,20 @@ body {
   margin: 0;
   background-color: transparent;
   overflow-x: hidden; /* ⛔ disables horizontal only — keeps mobile sane */
-  color: #f8f4e3;
+  color: #F8FABE;
   font-family: 'manufacturing-consent-regular {
   font-family: "Manufacturing Consent", system-ui;
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
-  font-size: 1.5rem; /* Example using rem */
+  font-size: 2rem; /* Example using rem */
+    h1, p {
+  font-family: "Manufacturing Consent", sans-serif;
+  font-size: 1.4rem;
+}
 } 
  
   font-family: "Caveat", cursive;
-  font-optical-sizing: auto;
+  font-optical-sizing: 1.4rem;
   font-weight: <600>;
   font-style: normal;
 
@@ -89,7 +93,7 @@ body {
 
 /* Music Button */
 .music-button {
-  font-size: 1.5rem;
+  font-size: 2.0rem;
   padding: 8px 16px;
   margin-top: 10px;
   color: #fff;
@@ -144,7 +148,7 @@ body {
   }
 
   .enter-button {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .socials img {
