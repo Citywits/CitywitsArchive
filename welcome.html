@@ -1,320 +1,326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>the Citywits Archive</title>
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Estonia&family=Great+Vibes&family=Manufacturing+Consent&family=PT+Sans+Narrow:wght@400;700&family=Twinkle+Star&display=swap" rel="stylesheet"><style>
-    * {
-  <link href="https://fonts.googleapis.com/css2?family=Manufacturing+Consent&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Citywits — Vampire Music</title>
+  <meta name="description" content="Citywits • Vampire Music — official site. Videos, statement of intent, links, and the vault." />
 
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    html, body {
-      height: 100%;
-      overflow-x: hidden;
-      font-family: "Manufacturing Consent", sans-serif;
-      background-color: #0a0a0a;
-      color: #f8f4e3;
-      font-size: 18px;
-      line-height: 1.6;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  -->
 
-    video#bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      opacity: 0.6;
+  <style>
+    :root{
+      /* Palette: symbolic, not campy; warm off-white on near-black, crimson accent, burnt orange, forest green */
+      --ink:#0b0b0c;
+      --ink-2:#141516;
+      --paper:#ece8e1;
+      --muted:#bdb7ad;
+      --crimson:#b31d28;
+      --ember:#e16b2d;
+      --forest:#183321;
+
+      --maxw:1200px;
+      --radius:14px;
+      --gap:28px;
+      --line:1.25px;
     }
 
-    .header {
-      text-align: center;
-      padding: 20px;
-      background-color: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
-      z-index: 10;
+    /* Reset-ish */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--paper); background:var(--ink);
+      font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    h1,h2,h3{line-height:1.2; margin:0 0 12px}
+    h1,.display{
+      font-family: EB Garamond, "Times New Roman", Georgia, serif;
+      letter-spacing: .5px;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; height:auto; display:block}
+
+    /* Background video layer */
+    .bg{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
+      background:#000;
+    }
+    .bg video{
+      position:absolute; min-width:100%; min-height:100%;
+      width:auto; height:auto; top:50%; left:50%; transform:translate(-50%,-50%);
+      filter:saturate(.9) contrast(1.05) brightness(.65);
+    }
+    .bg::after{
+      /* readable glass veil; faint vignette + subtle crimson top edge (symbolic bloodline) */
+      content:""; position:absolute; inset:0; z-index:1;
+      background:
+        radial-gradient(1200px 600px at 50% -200px, rgba(179,29,40,.25), transparent 60%),
+        radial-gradient(1200px 600px at 50% 120%, rgba(24,51,33,.20), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.35) 25%, rgba(0,0,0,.45));
     }
 
-    .header img {
-      max-width: 600px;
-      height: auto;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
-    }
-  
-    /* YouTube Video Section */
-    .video-section {
-      margin-bottom: 60px;
-      width: 100%;
+    /* Accessibility: reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .bg video{display:none}
+      .bg{background:linear-gradient(#0c0d0e, #0a0a0b)}
     }
 
-    .video-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(138, 43, 226, 0.6);
+    /* Top bar */
+    .top{
+      position:sticky; top:0; z-index:10; backdrop-filter:saturate(110%) blur(6px);
+      background:linear-gradient(to bottom, rgba(10,10,11,.9), rgba(10,10,11,.65));
+      border-bottom: var(--line) solid rgba(179,29,40,.3);
     }
+    .top-inner{
+      max-width:var(--maxw); margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; padding:8px 0;
+    }
+    .brand-mark{width:40px; height:40px; border-radius:50%;
+      background:conic-gradient(from 220deg, var(--crimson), var(--ember), var(--forest), var(--crimson));
+      filter:saturate(.7) brightness(.9); box-shadow:0 0 0 1px rgba(255,255,255,.06) inset;
+    }
+    .brand h1{font-size:20px; letter-spacing:.12em; text-transform:uppercase}
+    .brand .era{opacity:.7; font-weight:600; margin-left:6px; color:var(--muted); letter-spacing:.08em}
 
-    .video-container iframe {
-      width: 100%;
-      height: 450px;
-      border: none;
-    .menu-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: #8a2be2;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 1.2rem;
-      z-index: 999;
+    /* Nav (B) as accessible details/summary drop-downs */
+    nav{margin-left:auto; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    details.menu{position:relative}
+    summary{
+      list-style:none; user-select:none; cursor:pointer;
+      padding:8px 12px; border-radius:999px; font-weight:600; letter-spacing:.03em;
+      border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.02);
     }
+    summary:hover{border-color:rgba(255,255,255,.18)}
+    details[open] summary{background:rgba(179,29,40,.12); border-color:rgba(179,29,40,.35)}
+    .dropdown{
+      position:absolute; right:0; top:calc(100% + 8px); width:260px;
+      background:rgba(13,13,14,.98);
+      border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:8px;
+      box-shadow:0 10px 30px rgba(0,0,0,.6);
+    }
+    .dropdown a{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 12px; border-radius:10px; color:var(--paper);
+    }
+    .dropdown a span{opacity:.65; font-size:12px}
+    .dropdown a:hover{background:rgba(255,255,255,.06)}
+    .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+    .skip:focus{left:16px; top:16px; width:auto; height:auto; padding:8px 12px; background:#000; border:1px solid var(--paper); z-index:999}
 
-    .sidebar {
-      position: fixed;
-      left: -250px;
-      top: 0;
-      width: 250px;
-      height: 100vh;
-      background: #1a0d33;
-      padding: 20px;
-      overflow-y: auto;
-      transition: left 0.3s ease;
-      z-index: 998;
+    /* Page content container */
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:32px 18px 60px}
+    .stack{display:grid; gap:var(--gap)}
+    .card{
+      background:rgba(14,14,15,.72); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); overflow:hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
     }
+    .card .pad{padding:22px}
+    .thin-rule{height:1px; background:linear-gradient(to right, rgba(179,29,40,.55), rgba(179,29,40,.12) 40%, transparent)}
 
-    .sidebar.open {
-      left: 0;
+    /* A — Banner */
+    .hero{
+      display:grid; align-items:end; min-height:36vh; padding:26px 22px 30px;
+      background:linear-gradient(to bottom right, rgba(179,29,40,.15), rgba(24,51,33,.08));
+      border-radius:var(--radius); border:1px solid rgba(255,255,255,.08);
     }
+    .hero h2{
+      font-size: clamp(28px, 5vw, 56px);
+      text-transform:uppercase; letter-spacing:.14em; margin:0 0 4px;
+    }
+    .hero p{max-width:68ch; margin:6px 0 0; color:var(--muted)}
 
-    .sidebar a {
-      display: block;
-      color: #fff;
-      text-decoration: none;
-      margin-bottom: 10px;
-      padding: 10px;
-      border-left: 3px solid transparent;
-      transition: all 0.3s;
-    }
+    /* C — Embedded YouTube */
+    .video-embed{aspect-ratio:16/9; width:100%; border:0; border-radius:12px; overflow:hidden}
+    .section-title{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.85; font-size:13px}
+    .section-title .dot{width:6px; height:6px; border-radius:50%; background:var(--crimson); box-shadow:0 0 0 3px rgba(179,29,40,.2)}
 
-    .sidebar a:hover {
-      border-left: 3px solid #ff1493;
-      background: rgba(255,255,255,0.1);
-    }
+    /* D — Statement */
+    .statement p{margin:0 0 12px}
+    .statement strong{color:#fff}
 
-    .content {
-      padding: 100px 20px 40px;
-      max-width: 800px;
-      margin: auto;
-      z-index: 1;
-      position: relative;
+    /* F — Album teaser video */
+    .teaser{
+      display:grid; gap:12px
     }
+    .teaser video{
+      width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.08);
+      outline:none; background:#000;
+    }
+    .teaser .caption{color:var(--muted); font-size:14px}
 
-    h1, .album-title {
- 
-      font-family: "Estonia", cursive;
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: #ffccff;
+    /* E — Social strip */
+    .socials{
+      display:flex; flex-wrap:wrap; gap:14px; align-items:center;
+      padding:14px; border-radius:12px; background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
     }
+    .socials a{
+      display:inline-grid; place-items:center; width:44px; height:44px; border-radius:50%;
+      border:1px solid rgba(255,255,255,.08); background:rgba(0,0,0,.35);
+    }
+    .socials a:hover{border-color:rgba(255,255,255,.2); transform:translateY(-1px)}
+    .socials img{width:22px; height:22px; object-fit:contain; filter:grayscale(15%) brightness(1.1)}
 
-    .album-cover {
-      width: 100%;
-      max-width: 400px;
-      margin: 20px auto;
-      display: block;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
-      transition: transform 0.3s;
-    }
-
-    .album-cover:hover {
-      transform: scale(1.05);
-    }
-
-    .store-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .store-links a {
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #f8f4e3;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .store-links a:hover {
-      background: rgba(255, 20, 147, 0.2);
-      border-color: #ff1493;
-    }
+    footer{opacity:.6; font-size:12px; margin-top:6px}
   </style>
 </head>
 <body>
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="assets/video/WELCOME-BACKGROUND.mp4" type="video/mp4">
-  </video>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-  <div class="sidebar" id="sidebar">
-    <a href="#">Home</a>
-    <a href="#">Vault</a>
-    <a href="#">Mayor's Office</a>
-    <a href="#">Join</a>
-    <a href="#">Merch</a>
+  <!-- Background video (replace src with your .webm); add poster if you like -->
+  <div class="bg" aria-hidden="true">
+    <video id="bgVideo" autoplay muted loop playsinline preload="auto">
+      <source src="<iframe width="560" height="315" src="https://www.youtube.com/embed/G8SwI1ZCWO8?si=11eFatbHof-Xjaky" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" type="video/webm">
+    </video>
   </div>
 
-  <div class="header">
-    <img src="assets/images/main-font-no-bg-white.png" alt="Citywits Logo">
-  </div>
-
-   <!-- YouTube Video Section -->
-    <div class="video-section">
-      <div class="video-container">
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/iYi_M07rC64?si=TuOq_bEEgDHNGRHb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/D3Qs-_5zi_U?si=ep2i50os-tx-Fnqz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-<!-- Main Content -->
-  <div class="content">
-     <div class="content">
-    <h1>Welcome to the City</h1>
-    <p>
-      Welcome! If you have ended up here, theres a good chance you heard the call without even realizing it! This is the hub for all things Citywits, past present & future. 
-      Currently we are under construction & progress is slow. When completed, this site will act as an Archive to preserve the work that I have poured my heart & soul into over the years. The Citywits Legacy, if you will.
-      Staff is sporadic throughout the organization, but, rest assured, the machines and I are all we need.
-      <br><br>
-      In addition to all Citywits work and back catalogue, there will also be vaults for my dormant two-man band (SMALL DRAWINGS) my solo & theatrical work, as well as songs produced 
-      for friends of the City at Citywits Studios. Additionally there will be vaults for all artwork and video content, everything. If it takes 15 years, this will be my end-of-the-world bunker. 
-      <br><br>
-      PLEASE CHECK OUT 'WEIRDO MUSIC' its free to stream & a bargain to buy your own copy! <strong>WEIRDO MUSIC</strong> availabile on spotify/apple/amazon/soundcloud/tiktok/bandcamp/instagram/youtube/twitch!! get Weirdo Music before its too late! You dont want to 
-      fall behind when the new ones come out :).
-      Stay tuned for TONS of new content that is coming very soon, so keep your eye on this site & all my other platforms!!
-      <br><br>
-      The Weirdo Era has begun.
-    </p>
-    <div class="album-section">
-      <h2 class="album-title">WEIRDO MUSIC</h2>
-      <img src="albumcover.JPG" alt="Weirdo Music Album Cover" class="album-cover">
-      <div class="store-links">
-        <a href="https://open.spotify.com/artist/2tB2LRfIx9ejZCEwAfiyDt">Spotify</a>
-        <a href="https://music.apple.com/us/album/weirdo-music/1813859181">Apple Music</a>
-        <a href="http://www.citywits.bandcamp.com">Bandcamp</a>
-        <a href="https://www.youtube.com/@citywits">YouTube</a>
-        <a href="https://www.twitch.tv/citywits">Twitch</a>
+  <!-- Sticky top bar with brand + dropdowns (B) -->
+  <header class="top" role="banner">
+    <div class="top-inner">
+      <div class="brand" aria-label="Citywits Vampire Music">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <h1>CITYWITS <span class="era">VAMPIRE&nbsp;MUSIC</span></h1>
       </div>
+
+      <nav aria-label="Primary">
+        <details class="menu">
+          <summary>Mayor’s Office</summary>
+          <div class="dropdown" role="menu">
+            <a href="/mayors-office/about"><div>About</div><span>who/what/why</span></a>
+            <a href="/mayors-office/writings"><div>Writings</div><span>notes & essays</span></a>
+            <a href="/mayors-office/links"><div>Official Links</div><span>contact + press</span></a>
+          </div>
+        </details>
+
+        <details class="menu">
+          <summary>Citywits Studios</summary>
+          <div class="dropdown" role="menu">
+            <a href="/studios/videos"><div>Videos</div><span>visual diaries</span></a>
+            <a href="/studios/ai-memes"><div>AI & Memes</div><span>satire lab</span></a>
+            <a href="/studios/tour"><div>Studio Tour</div><span>gear + process</span></a>
+          </div>
+        </details>
+
+        <details class="menu">
+          <summary>The Vault</summary>
+          <div class="dropdown" role="menu">
+            <a href="/vault/weirdo-music"><div>Weirdo Music</div><span>album</span></a>
+            <a href="/vault/vampire-music"><div>Vampire Music</div><span>this era</span></a>
+            <a href="/vault/collaborations"><div>Collaborations</div><span>others</span></a>
+            <a href="/vault/archive"><div>Archive</div><span>deep cuts</span></a>
+          </div>
+        </details>
+
+        <details class="menu">
+          <summary>Town Square</summary>
+          <div class="dropdown" role="menu">
+            <a href="/square/merch"><div>Merch</div><span>shirts & artifacts</span></a>
+            <a href="/square/announcements"><div>Announcements</div><span>updates</span></a>
+            <a href="/square/shows"><div>Shows</div><span>dates & tickets</span></a>
+            <a href="/square/mailing-list"><div>Mailing List</div><span>join in</span></a>
+            <a href="/square/fan-club"><div>Fan Club</div><span>citywitizens</span></a>
+          </div>
+        </details>
+      </nav>
     </div>
-  </div>
- <!-- Music Control -->
-  <div class="music-control" id="music-toggle">
-    🎵 TRY ME!
-  </div>
+  </header>
 
-  <!-- Background Music -->
-  <audio id="bg-music" loop>
-    <source src="Reception_Song.m4a" type="audio/mp4">
-    Your browser does not support the audio element.
-  </audio>
+  <main id="main" class="wrap">
+    <div class="stack">
+
+      <!-- A — Banner -->
+      <section class="hero" aria-labelledby="banner">
+        <div>
+          <h2 id="banner">Vampire Music</h2>
+          <div class="thin-rule" aria-hidden="true"></div>
+          <p class="tag">A new era from Citywits. Clean lines, sharp teeth — a hymnbook for late-stage daylight.</p>
+        </div>
+      </section>
+
+      <!-- C — Embedded YouTube (Weirdo Music teaser already live) -->
+      <section class="card" aria-labelledby="weirdo-teaser">
+        <div class="pad">
+          <div class="section-title" id="weirdo-teaser"><span class="dot"></span> Weirdo Music • Teaser</div>
+          <div style="margin-top:12px">
+            <!-- Replace VIDEO_ID with the actual ID -->
+            <iframe class="video-embed" src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1&color=white"
+              title="Weirdo Music — teaser video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- D — Statement -->
+      <section class="card statement" aria-labelledby="statement">
+        <div class="pad">
+          <div class="section-title" id="statement"><span class="dot"></span> Statement of Intent</div>
+          <p><strong>Welcome to the City.</strong> This site is the front door to <em>Vampire Music</em> — songs about soft hearts living under hard systems. The teeth here are mostly metaphor: boardrooms that never see daylight, timelines that drink our hours, a country run by glow-in-the-dark ghouls.</p>
+          <p>What you’ll find: the work, not the theater around it. Videos, notes, archives, and a map to where it’s all headed. It’s handmade — recorded alone, built with friends, and aimed at anyone who still believes music can be honest and a little dangerous.</p>
+          <p>Take what you need. If you feel seen, tell someone else who might.</p>
+        </div>
+      </section>
+
+      <!-- F — New album teaser (swap the source to your .webm/mp4) -->
+      <section class="card" aria-labelledby="album-teaser">
+        <div class="pad teaser">
+          <div class="section-title" id="album-teaser"><span class="dot"></span> Vampire Music • Album Teaser</div>
+          <video controls playsinline preload="metadata" poster="assets/images/vampire-teaser-poster.jpg">
+            <source src="<iframe width="560" height="315" src="https://www.youtube.com/embed/rMbCWwGqgX4?si=Ie9UPnxUubfFtgJW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>" type="video/webm">
+            <source src="Whisk_qmy3iwyhvgnifgmx0cnjzwotcjnkrtljfmnx0iy.mp4" type="video/mp4">
+          </video>
+          <div class="caption">Vampire Music for the end of the world...& the start of the next</div>
+        </div>
+      </section>
+
+      <!-- E — Social links -->
+      <section aria-labelledby="socials">
+        <div class="section-title" id="socials"><span class="dot"></span> Find Citywits</div>
+        <div class="socials" style="margin-top:12px">
+          <a href="https://music.apple.com/us/album/weirdo-music/1813859181" aria-label="Apple Music">
+            <img src="assets/icons/apple-circular.png" alt="">
+          </a>
+          <a href="https://open.spotify.com/artist/2tB2LRfIx9ejZCEwAfiyDt" aria-label="Spotify">
+            <img src="assets/icons/spotify-logo-png-icon-spotify-4500-768x287.png" alt="">
+          </a>
+          <a href="https://www.twitch.tv/citywits" aria-label="Twitch">
+            <img src="assets/icons/twitch.WEBP" alt="">
+          </a>
+          <a href="https://www.instagram.com/citywits/" aria-label="Instagram">
+            <img src="assets/icons/Instagram_icon.png" alt="">
+          </a>
+          <a href="https://www.tiktok.com/@citywits" aria-label="TikTok">
+            <img src="assets/icons/tik-tok-logo-transparent-square-701751694793273qftyarldbx.png" alt="">
+          </a>
+          <a href="https://soundcloud.com/citywits" aria-label="SoundCloud">
+            <img src="assets/icons/soundcloud.png" alt="">
+          </a>
+          <a href="https://youtube.com/@citywits" aria-label="YouTube">
+            <img src="assets/icons/youtube.png" alt="">
+          </a>
+          <a href="https://citywits.bandcamp.com" aria-label="Bandcamp">
+            <img src="assets/icons/bandcamp.png" alt="">
+          </a>
+        </div>
+        <footer>© <span id="year"></span> Citywits — built by hand, hosted in the vault.</footer>
+      </section>
+
+    </div>
+  </main>
 
   <script>
-    // Music control
-    let musicPlaying = false;
-    const music = document.getElementById('bg-music');
-    const musicToggle = document.getElementById('music-toggle');
-
-    function toggleMusic() {
-      if (musicPlaying) {
-        music.pause();
-        musicToggle.textContent = '🎵 Play Music';
-        musicPlaying = false;
-      } else {
-        music.play().then(() => {
-          musicToggle.textContent = '🔇 Pause Music';
-          musicPlaying = true;
-        }).catch(err => {
-          console.warn("Music play failed:", err);
-        });
-      }
-    }
-
-    musicToggle.addEventListener('click', toggleMusic);
-
-    // Sidebar functionality
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('overlay');
-      
-      sidebar.classList.toggle('open');
-      overlay.classList.toggle('active');
-    }
-
-    function closeSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('overlay');
-      
-      sidebar.classList.remove('open');
-      overlay.classList.remove('active');
-    }
-
-    function toggleSubmenu(submenuId) {
-      const submenu = document.getElementById(submenuId);
-      submenu.classList.toggle('open');
-    }
-
-    function openAlbumStore() {
-      // Replace with your store URL
-      window.open('https://music.apple.com/us/album/weirdo-music/1813859181', '_blank');
-    }
-
-    // Close sidebar when clicking outside
-    document.addEventListener('click', function(event) {
-      const sidebar = document.getElementById('sidebar');
-      const menuToggle = document.querySelector('.menu-toggle');
-      
-      if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
-        closeSidebar();
-      }
-    });
-
-    // Auto-play music attempt
-    window.addEventListener('load', () => {
-      music.play().then(() => {
-        musicToggle.textContent = '🔇 Pause Music';
-        musicPlaying = true;
-      }).catch(err => {
-        console.warn("Autoplay blocked, waiting for user interaction.");
-      });
-    });
+    // Close one dropdown when another opens (keeps it tidy)
+    document.querySelectorAll('details.menu').forEach(d=>{
+      d.addEventListener('toggle', ()=>{
+        if (d.open) document.querySelectorAll('details.menu').forEach(o=>{ if(o!==d) o.removeAttribute('open') })
+      })
+    })
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('open');
-    }
-  </script>
-</body>
-</html>
-
